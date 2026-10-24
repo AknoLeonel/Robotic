@@ -107,11 +107,14 @@
     d.dispatchEvent(new CustomEvent("arena:consent", { detail: consent }));
   }
 
-  /* ---------------- Google: GA4 + GTM (Consent Mode já aplicado) ---------------- */
-  if (CFG.ga4Id) {
-    loadScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(CFG.ga4Id));
+  /* ---------------- Google: GA4 + Google Ads + GTM (Consent Mode já aplicado) ---------------- */
+  // um único gtag.js atende o GA4 e o Google Ads
+  var gtagId = CFG.ga4Id || CFG.googleAdsId;
+  if (gtagId) {
+    loadScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gtagId));
     gtag("js", new Date());
-    gtag("config", CFG.ga4Id, DEBUG ? { debug_mode: true } : {});
+    if (CFG.ga4Id) gtag("config", CFG.ga4Id, DEBUG ? { debug_mode: true } : {});
+    if (CFG.googleAdsId) gtag("config", CFG.googleAdsId);
   }
   if (CFG.gtmId) {
     dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
@@ -120,8 +123,22 @@
 
   function ga(name, params) {
     if (!CFG.ga4Id) return;
-    gtag("event", name, params || {});
-    log("GA4", name, params || {});
+    params = params || {};
+    params.send_to = CFG.ga4Id; // sem isso o evento também iria para o Google Ads
+    gtag("event", name, params);
+    log("GA4", name, params);
+  }
+
+  // conversão do Google Ads "AR26 - Clique ingresso" (só se o rótulo estiver configurado)
+  function adsTicketConversion(cb) {
+    if (!CFG.googleAdsId || !CFG.googleAdsTicketLabel) return false;
+    gtag("event", "conversion", {
+      send_to: CFG.googleAdsId + "/" + CFG.googleAdsTicketLabel,
+      value: 0, currency: "BRL",
+      event_callback: cb, event_timeout: 450
+    });
+    log("Google Ads conversão", CFG.googleAdsTicketLabel);
+    return true;
   }
 
   /* ---------------- Clarity (só com consentimento de métricas) ---------------- */
@@ -266,14 +283,17 @@
       dataLayer.push({ event: "clique_ingresso", posicao: posicao, link_url: params.link_url });
 
       var newTab = ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1 || el.target === "_blank";
-      if (newTab || !CFG.ga4Id || ev.defaultPrevented) { ga("ticket_click", params); return; }
-      // mesma aba: espera o GA4 confirmar o envio (no máximo 500 ms) antes de sair para a Sympla
+      if (newTab || !gtagId || ev.defaultPrevented) { ga("ticket_click", params); adsTicketConversion(); return; }
+      // mesma aba: espera o Google confirmar o envio (no máximo 500 ms) antes de sair para a Sympla
       ev.preventDefault();
-      var done = false;
+      var done = false, pending = 0;
       var go = function () { if (!done) { done = true; location.href = url.toString(); } };
-      params.event_callback = go;
-      params.event_timeout = 450;
+      var settle = function () { if (--pending <= 0) go(); };
+      if (CFG.ga4Id) { pending++; params.event_callback = settle; params.event_timeout = 450; }
+      if (CFG.googleAdsId && CFG.googleAdsTicketLabel) pending++;
       ga("ticket_click", params);
+      adsTicketConversion(settle);
+      if (!pending) go();
       setTimeout(go, 500);
       return;
     }
@@ -427,7 +447,7 @@
     d.addEventListener("click", onClick, true);
     d.addEventListener("submit", onSubmit, true);
     w.addEventListener("scroll", onScroll, { passive: true });
-    log("pronto", { ga4: CFG.ga4Id, gtm: CFG.gtmId, pixel: CFG.metaPixelId, clarity: CFG.clarityId, consentimento: consent });
+    log("pronto", { ga4: CFG.ga4Id, ads: CFG.googleAdsId, gtm: CFG.gtmId, pixel: CFG.metaPixelId, clarity: CFG.clarityId, consentimento: consent });
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", ready);
   else ready();
