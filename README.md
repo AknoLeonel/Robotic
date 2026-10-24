@@ -68,7 +68,7 @@ voluntários: `.../voluntarios-arena-robotica/3617780`) e no `offers.url` do JSO
 ```js
 window.ARENA_TRACKING_CONFIG = {
   metaPixelId: '1694579642232662',   // Pixel "arena robotica"
-  ga4Id: 'G-5GHCH96NG1',             // GA4 "Arena Robótica 26 - Site"
+  ga4Id: 'G-4GDC9N3GS0',             // GA4 (fluxo de dados do site)
   googleAdsId: 'AW-18535303737',     // tag do Google Ads
   googleAdsTicketLabel: '',          // rótulo da conversão "AR26 - Clique ingresso" (opcional)
   gtmId: 'GTM-WV3MFCVQ',             // contêiner do Google Tag Manager
