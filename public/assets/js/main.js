@@ -42,6 +42,19 @@
     a.removeAttribute("target"); // o Sympla abre na mesma aba
   });
 
+  /* esconde a chamada de voluntários depois do fim das inscrições */
+  $$("[data-vol-until]").forEach(function (el) {
+    if (Date.now() > new Date(el.getAttribute("data-vol-until")).getTime()) el.hidden = true;
+  });
+
+  /* inscrição de voluntários: link secundário, abre em nova aba, também leva as UTMs */
+  $$("[data-vol]").forEach(function (a) {
+    a.href = buildTicketUrl(CFG.volunteerUrl || a.getAttribute("href"), attribution);
+    a.addEventListener("click", function () {
+      dataLayer.push({ event: "clique_voluntario", posicao: a.getAttribute("data-vol"), link_url: a.href });
+    });
+  });
+
   /* ------------------------------------------------------------
      2. Evento de conversão: clique_ingresso { posicao }
      ------------------------------------------------------------ */
@@ -269,6 +282,12 @@
     var today = new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10);
     var match = tabs.filter(function (t) { return t.getAttribute("data-date") === today; })[0];
     if (match) select(match);
+  });
+
+  /* durante o evento, destaca o dia de hoje nos cards de dia */
+  var todayBr = new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10);
+  $$(".day[data-date]").forEach(function (d) {
+    if (d.getAttribute("data-date") === todayBr) d.classList.add("is-today");
   });
 
   /* ------------------------------------------------------------

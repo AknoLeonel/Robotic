@@ -45,17 +45,18 @@ cd public && python3 -m http.server 8080
 
 ```js
 window.AR26 = {
-  symplaUrl: "https://www.sympla.com.br/",  // ← link do evento no Sympla
+  symplaUrl: "https://www.sympla.com.br/evento/arena-robotica-26/3617088",           // ingresso
+  volunteerUrl: "https://www.sympla.com.br/evento/voluntarios-arena-robotica/3617780", // voluntários
   gtmId: "",                                 // ← ex.: "GTM-ABC1234"
   metaPixelId: "",                           // ← opcional
   eventStart: "2026-11-06T09:00:00-03:00",  // ← abertura dos portões (contagem regressiva)
-  eventEnd: "2026-11-08T20:00:00-03:00",
+  eventEnd: "2026-11-08T16:00:00-03:00",
   battleVideo: ""                            // ← ex.: "/assets/video/batalha.mp4"
 };
 ```
 
-O JS aplica `symplaUrl` em todos os botões. Troque também o `href` dos botões e o `offers.url` do JSON-LD
-(procure por `https://www.sympla.com.br/` no `index.html`), para quem estiver sem JavaScript.
+O JS aplica `symplaUrl` em todos os botões de ingresso e `volunteerUrl` nos links de voluntário. Se um link mudar,
+troque também os `href` e o `offers.url` do JSON-LD no `index.html`, para quem estiver sem JavaScript.
 
 ## Conversão e rastreamento
 
@@ -105,22 +106,58 @@ Eles ficam guardados na sessão, para não se perderem se a pessoa navegar pelas
 5. **Meta Pixel (opcional)**: preencha `metaPixelId`. Ele só carrega com consentimento de marketing e envia
    `Lead` com `posicao` em cada clique. Se preferir gerenciar pelo GTM, deixe o campo vazio e use o evento `consent_update`.
 
-Também é enviado `mapa_aberto` quando alguém carrega o mapa interativo.
+Também são enviados:
+
+- `clique_voluntario` com `posicao` (`faq` ou `rodape`), nos links de inscrição de voluntários. Eles somem sozinhos depois de 05/11, quando as inscrições fecham (`data-vol-until`). Eles abrem em nova aba, levam as mesmas UTMs e **não** contam como conversão de ingresso.
+- `mapa_aberto`, quando alguém carrega o mapa interativo.
 
 ## Pendências de conteúdo (precisam vir do cliente)
 
 Os textos abaixo estão **provisórios** e precisam ser confirmados antes de publicar:
 
-- [ ] Link do evento no Sympla (`symplaUrl`, `href` dos botões e `offers.url` do JSON-LD).
+- [x] Link do evento no Sympla e link de inscrição de voluntários.
 - [ ] ID do GTM e conversão do Google Ads.
-- [ ] Horários de abertura e encerramento (seção Local, `eventStart`/`eventEnd` e JSON-LD).
-- [ ] **Programação por dia**: os horários das abas 06, 07 e 08 são um rascunho.
+- [x] Horários (06 e 07/11, das 9h às 18h; 08/11, das 9h às 16h), endereço e descrição oficial do Sympla.
+- [ ] **Programação por dia**: a página mostra só o que é oficial (dias, horários e o que rola todos os dias) com o aviso "em breve". Quando sair, siga “Publicar a programação” abaixo.
 - [ ] Portão de entrada, estacionamento, transporte e acessibilidade (seção Local).
 - [ ] Respostas do FAQ sobre idade, documento na entrada e saída e retorno.
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
 - [ ] Links das redes sociais (rodapé) e e-mail de privacidade (`privacidade.html`).
 - [ ] Fotos dos cards de atividades e vídeo da batalha (opcionais).
 - [ ] Domínio final, caso não seja `arenarobotica26.com` (canonical, OG, sitemap, robots, JSON-LD).
+
+## Publicar a programação
+
+Hoje a seção `#programacao` mostra os 3 dias com o horário oficial e a lista “todos os dias”.
+Quando a programação sair, troque o bloco `<div class="sched__body">` por abas com horários.
+O CSS (`.tabs`, `.tab`, `.timeline`) e o JS (teclado, ARIA, abrir no dia de hoje durante o evento) já estão prontos:
+
+```html
+<div class="tabs reveal" data-tabs>
+  <div class="tabs__list" role="tablist" aria-label="Dias do evento">
+    <button class="tab" role="tab" id="tab-6" aria-controls="dia-6" aria-selected="true" data-date="2026-11-06">
+      <span class="tab__num lcd-txt">06</span><span class="tab__day">sex</span><span class="tab__hours">9h–18h</span>
+    </button>
+    <button class="tab" role="tab" id="tab-7" aria-controls="dia-7" aria-selected="false" tabindex="-1" data-date="2026-11-07">
+      <span class="tab__num lcd-txt">07</span><span class="tab__day">sáb</span><span class="tab__hours">9h–18h</span>
+    </button>
+    <button class="tab" role="tab" id="tab-8" aria-controls="dia-8" aria-selected="false" tabindex="-1" data-date="2026-11-08">
+      <span class="tab__num lcd-txt">08</span><span class="tab__day">dom</span><span class="tab__hours">9h–16h</span>
+    </button>
+  </div>
+  <div class="tabs__panel" role="tabpanel" id="dia-6" aria-labelledby="tab-6" tabindex="0">
+    <ol class="timeline">
+      <li><time class="lcd-txt">09:00</time><div><h3>Título da atividade</h3><p>Detalhe opcional.</p></div></li>
+      <!-- … -->
+    </ol>
+  </div>
+  <div class="tabs__panel" role="tabpanel" id="dia-7" aria-labelledby="tab-7" tabindex="0" hidden>…</div>
+  <div class="tabs__panel" role="tabpanel" id="dia-8" aria-labelledby="tab-8" tabindex="0" hidden>…</div>
+  <p class="tabs__note">Programação sujeita a alterações.</p>
+</div>
+```
+
+Se preferir, me mande a programação (pode ser um texto ou uma planilha) que eu monto.
 
 ## Imagens
 
