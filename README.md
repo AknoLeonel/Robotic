@@ -71,7 +71,7 @@ window.ARENA_TRACKING_CONFIG = {
   ga4Id: 'G-5GHCH96NG1',             // GA4 "Arena Robótica 26 - Site"
   googleAdsId: 'AW-18535303737',     // tag do Google Ads
   googleAdsTicketLabel: '',          // rótulo da conversão "AR26 - Clique ingresso" (opcional)
-  gtmId: 'GTM-P6KZQGFD',             // contêiner arenarobotica.com.br
+  gtmId: 'GTM-WV3MFCVQ',             // contêiner do Google Tag Manager
   clarityId: 'z2rtmqwol5',           // Clarity "Arena Robótica 26"
   capiEndpoint: '/api/meta-events',  // função da Vercel (null = só Pixel)
   privacyPolicyUrl: '/politica-de-privacidade',
@@ -149,7 +149,9 @@ Sem o token, `/api/meta-events` responde 204 e ignora os eventos: o Pixel contin
 
 ### GTM, GA4 e Google Ads
 
-1. **Publique o contêiner `GTM-P6KZQGFD`** (Enviar → Publicar), mesmo vazio. Sem isso, o `gtm.js` dá 404.
+1. **Publique o contêiner `GTM-WV3MFCVQ`** (Enviar → Publicar), mesmo vazio. Sem isso, o `gtm.js` dá 404.
+   O snippet do `<head>` que o GTM mostra na instalação **não** é colado no HTML: o `tracking.js` já carrega o GTM,
+   depois do Consent Mode. Só o `<noscript>` fica logo após o `<body>`, nas 3 páginas.
 2. **Não crie tags do GA4 nem do Pixel dentro do GTM:** o `tracking.js` já envia os dois, e haveria contagem em dobro.
 3. **Tag do Google Ads (`AW-18535303737`):** já é carregada pelo `tracking.js`, no mesmo `gtag.js` do GA4 e com o Consent Mode.
    **Não cole o snippet do Google Ads no HTML** nem crie essa tag no GTM: ela seria carregada duas vezes, e antes do consentimento.
