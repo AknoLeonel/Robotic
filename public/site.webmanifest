@@ -1,0 +1,14 @@
+{
+  "name": "Arena Robótica 26",
+  "short_name": "AR26",
+  "description": "3 dias de robótica, drones e games. 06 a 08 de novembro, Arena Mané Garrincha, Brasília.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1E8C",
+  "theme_color": "#0A1E8C",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
