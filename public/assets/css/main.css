@@ -636,6 +636,8 @@ p { text-wrap: pretty; }
 .qa summary:hover { color: var(--neon); }
 .qa__a { padding: 0 20px 20px; color: var(--muted); }
 .qa__a strong { color: var(--neon); }
+.qa__a a { color: var(--neon); text-underline-offset: 3px; }
+.qa__a a:hover { text-decoration-thickness: 2px; }
 @supports (interpolate-size: allow-keywords) {
   .qa { interpolate-size: allow-keywords; }
   .qa::details-content { height: 0; overflow: clip; transition: height .4s var(--ease-out), content-visibility .4s allow-discrete; }

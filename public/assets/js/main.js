@@ -42,6 +42,14 @@
     a.removeAttribute("target"); // o Sympla abre na mesma aba
   });
 
+  /* inscrição de voluntários: link secundário, abre em nova aba, também leva as UTMs */
+  $$("[data-vol]").forEach(function (a) {
+    a.href = buildTicketUrl(CFG.volunteerUrl || a.getAttribute("href"), attribution);
+    a.addEventListener("click", function () {
+      dataLayer.push({ event: "clique_voluntario", posicao: a.getAttribute("data-vol"), link_url: a.href });
+    });
+  });
+
   /* ------------------------------------------------------------
      2. Evento de conversão: clique_ingresso { posicao }
      ------------------------------------------------------------ */

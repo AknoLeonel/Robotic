@@ -45,7 +45,8 @@ cd public && python3 -m http.server 8080
 
 ```js
 window.AR26 = {
-  symplaUrl: "https://www.sympla.com.br/",  // ← link do evento no Sympla
+  symplaUrl: "https://www.sympla.com.br/evento/arena-robotica-26/3617088",           // ingresso
+  volunteerUrl: "https://www.sympla.com.br/evento/voluntarios-arena-robotica/3617780", // voluntários
   gtmId: "",                                 // ← ex.: "GTM-ABC1234"
   metaPixelId: "",                           // ← opcional
   eventStart: "2026-11-06T09:00:00-03:00",  // ← abertura dos portões (contagem regressiva)
@@ -54,8 +55,8 @@ window.AR26 = {
 };
 ```
 
-O JS aplica `symplaUrl` em todos os botões. Troque também o `href` dos botões e o `offers.url` do JSON-LD
-(procure por `https://www.sympla.com.br/` no `index.html`), para quem estiver sem JavaScript.
+O JS aplica `symplaUrl` em todos os botões de ingresso e `volunteerUrl` nos links de voluntário. Se um link mudar,
+troque também os `href` e o `offers.url` do JSON-LD no `index.html`, para quem estiver sem JavaScript.
 
 ## Conversão e rastreamento
 
@@ -105,13 +106,16 @@ Eles ficam guardados na sessão, para não se perderem se a pessoa navegar pelas
 5. **Meta Pixel (opcional)**: preencha `metaPixelId`. Ele só carrega com consentimento de marketing e envia
    `Lead` com `posicao` em cada clique. Se preferir gerenciar pelo GTM, deixe o campo vazio e use o evento `consent_update`.
 
-Também é enviado `mapa_aberto` quando alguém carrega o mapa interativo.
+Também são enviados:
+
+- `clique_voluntario` com `posicao` (`faq` ou `rodape`), nos links de inscrição de voluntários. Eles abrem em nova aba, levam as mesmas UTMs e **não** contam como conversão de ingresso.
+- `mapa_aberto`, quando alguém carrega o mapa interativo.
 
 ## Pendências de conteúdo (precisam vir do cliente)
 
 Os textos abaixo estão **provisórios** e precisam ser confirmados antes de publicar:
 
-- [ ] Link do evento no Sympla (`symplaUrl`, `href` dos botões e `offers.url` do JSON-LD).
+- [x] Link do evento no Sympla e link de inscrição de voluntários.
 - [ ] ID do GTM e conversão do Google Ads.
 - [ ] Horários de abertura e encerramento (seção Local, `eventStart`/`eventEnd` e JSON-LD).
 - [ ] **Programação por dia**: os horários das abas 06, 07 e 08 são um rascunho.
