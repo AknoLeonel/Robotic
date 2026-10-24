@@ -3,6 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Arena Robótica 26 · rastreamento (mesmo bloco em todas as páginas; ver README) -->
+  <script>
+    window.ARENA_TRACKING_CONFIG = {
+      metaPixelId: '1694579642232662',      // Pixel "arena robotica"
+      ga4Id: 'G-5GHCH96NG1',                // GA4: propriedade "Arena Robótica 26 - Site"
+      gtmId: 'GTM-P6KZQGFD',                // contêiner arenarobotica.com.br
+      clarityId: 'z2rtmqwol5',              // Clarity: projeto "Arena Robótica 26"
+      capiEndpoint: '/api/meta-events',     // função da Vercel em /api/meta-events.js
+      privacyPolicyUrl: '/politica-de-privacidade',
+      spa: false,
+      debug: false                          // ou abra o site com ?arena_debug=1
+    };
+  </script>
+  <script src="/tracking/tracking.js" defer></script>
+  <script src="/tracking/consent-banner.js" defer></script>
+  <!-- Fim do rastreamento -->
   <title>Página não encontrada | Arena Robótica 26</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -14,6 +30,8 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6KZQGFD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main class="nf">
     <div>
       <p class="lcd-txt" aria-hidden="true">404</p>

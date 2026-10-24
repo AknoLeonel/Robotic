@@ -1,6 +1,12 @@
 [build]
   publish = "public"
 
+# A API de Conversões (/api/meta-events) é uma função da Vercel; na Netlify use capiEndpoint: null
+[[redirects]]
+  from = "/politica-de-privacidade"
+  to = "/privacidade.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

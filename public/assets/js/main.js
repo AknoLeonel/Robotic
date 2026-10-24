@@ -4,163 +4,21 @@
   "use strict";
 
   var CFG = window.AR26 || {};
-  var dataLayer = (window.dataLayer = window.dataLayer || []);
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-
-  /* ------------------------------------------------------------
-     1. Link do Sympla + repasse de UTMs e IDs de clique
-     ------------------------------------------------------------ */
-  var PASS_KEYS = /^(utm_[a-z_]+|gclid|gbraid|wbraid|fbclid|msclkid)$/;
-  var STORE_KEY = "ar26_attrib";
-
-  function readAttribution() {
-    var found = {};
-    new URLSearchParams(location.search).forEach(function (v, k) {
-      if (PASS_KEYS.test(k) && v) found[k] = v;
-    });
-    try {
-      if (Object.keys(found).length) sessionStorage.setItem(STORE_KEY, JSON.stringify(found));
-      else found = JSON.parse(sessionStorage.getItem(STORE_KEY) || "{}");
-    } catch (e) {}
-    return found;
-  }
-
-  function buildTicketUrl(base, params) {
-    var url;
-    try { url = new URL(base); } catch (e) { return base; }
-    Object.keys(params).forEach(function (k) { url.searchParams.set(k, params[k]); });
-    return url.toString();
-  }
-
-  var attribution = readAttribution();
-  var ctas = $$("[data-cta]");
-  ctas.forEach(function (a) {
-    var base = CFG.symplaUrl || a.getAttribute("href");
-    a.href = buildTicketUrl(base, attribution);
-    a.removeAttribute("target"); // o Sympla abre na mesma aba
-  });
+  /* rastreamento, consentimento e UTMs ficam em /tracking/tracking.js e /tracking/consent-banner.js */
+  var track = function (name, params) {
+    if (window.ArenaTracking) window.ArenaTracking.track(name, params || {});
+  };
 
   /* esconde a chamada de voluntários depois do fim das inscrições */
   $$("[data-vol-until]").forEach(function (el) {
     if (Date.now() > new Date(el.getAttribute("data-vol-until")).getTime()) el.hidden = true;
   });
 
-  /* inscrição de voluntários: link secundário, abre em nova aba, também leva as UTMs */
-  $$("[data-vol]").forEach(function (a) {
-    a.href = buildTicketUrl(CFG.volunteerUrl || a.getAttribute("href"), attribution);
-    a.addEventListener("click", function () {
-      dataLayer.push({ event: "clique_voluntario", posicao: a.getAttribute("data-vol"), link_url: a.href });
-    });
-  });
-
   /* ------------------------------------------------------------
-     2. Evento de conversão: clique_ingresso { posicao }
-     ------------------------------------------------------------ */
-  ctas.forEach(function (a) {
-    a.addEventListener("click", function (ev) {
-      var posicao = a.getAttribute("data-cta");
-      var href = a.href;
-      var newTab = ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button === 1;
-
-      if (window.fbq) window.fbq("track", "Lead", { content_name: "ingresso", posicao: posicao });
-
-      var gtmReady = !!(window.google_tag_manager && CFG.gtmId && window.google_tag_manager[CFG.gtmId]);
-      if (!gtmReady || newTab) {
-        dataLayer.push({ event: "clique_ingresso", posicao: posicao, link_url: href });
-        return;
-      }
-      // Segura a navegação até a tag disparar (ou 700 ms, o que vier antes)
-      ev.preventDefault();
-      var done = false;
-      var go = function () { if (!done) { done = true; location.href = href; } };
-      dataLayer.push({ event: "clique_ingresso", posicao: posicao, link_url: href, eventCallback: go, eventTimeout: 700 });
-      setTimeout(go, 800);
-    });
-  });
-
-  /* ------------------------------------------------------------
-     3. Consentimento (LGPD + Consent Mode v2)
-     ------------------------------------------------------------ */
-  var CONSENT_KEY = "ar26_consent";
-  var banner = $("[data-consent]");
-  var prefs = $("[data-consent-prefs]");
-
-  function getConsent() {
-    try { return JSON.parse(localStorage.getItem(CONSENT_KEY) || "null"); } catch (e) { return null; }
-  }
-
-  function applyConsent(c) {
-    if (typeof window.gtag === "function") {
-      window.gtag("consent", "update", {
-        analytics_storage: c.analytics ? "granted" : "denied",
-        ad_storage: c.marketing ? "granted" : "denied",
-        ad_user_data: c.marketing ? "granted" : "denied",
-        ad_personalization: c.marketing ? "granted" : "denied"
-      });
-    }
-    dataLayer.push({ event: "consent_update", consent_analytics: !!c.analytics, consent_marketing: !!c.marketing });
-    if (c.marketing) loadMetaPixel();
-  }
-
-  function saveConsent(c) {
-    c.ts = new Date().toISOString();
-    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(c)); } catch (e) {}
-    applyConsent(c);
-    hideBanner();
-  }
-
-  function showBanner() {
-    if (!banner) return;
-    var c = getConsent();
-    if (prefs && c) {
-      prefs.elements.analytics.checked = !!c.analytics;
-      prefs.elements.marketing.checked = !!c.marketing;
-    }
-    banner.hidden = false;
-    document.body.classList.add("has-consent");
-  }
-  function hideBanner() {
-    if (!banner) return;
-    banner.hidden = true;
-    document.body.classList.remove("has-consent");
-  }
-
-  if (banner) {
-    $("[data-consent-accept]", banner).addEventListener("click", function () { saveConsent({ analytics: true, marketing: true }); });
-    $("[data-consent-reject]", banner).addEventListener("click", function () { saveConsent({ analytics: false, marketing: false }); });
-    var custom = $("[data-consent-custom]", banner);
-    var save = $("[data-consent-save]", banner);
-    custom.addEventListener("click", function () {
-      var open = prefs.hidden;
-      prefs.hidden = !open;
-      save.hidden = !open;
-      custom.setAttribute("aria-expanded", String(open));
-      if (open) prefs.elements.analytics.focus();
-    });
-    save.addEventListener("click", function () {
-      saveConsent({ analytics: prefs.elements.analytics.checked, marketing: prefs.elements.marketing.checked });
-    });
-    $$("[data-consent-open]").forEach(function (b) { b.addEventListener("click", showBanner); });
-
-    var saved = getConsent();
-    if (saved) { if (saved.marketing) loadMetaPixel(); }
-    else setTimeout(showBanner, 1200); // não compete com o hero no primeiro segundo
-  }
-
-  function loadMetaPixel() {
-    var id = CFG.metaPixelId;
-    if (!id || window.fbq) return;
-    /* eslint-disable */
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
-    /* eslint-enable */
-    window.fbq("init", id);
-    window.fbq("track", "PageView");
-  }
-
-  /* ------------------------------------------------------------
-     4. Contagem regressiva estilo display
+     1. Contagem regressiva estilo display
      ------------------------------------------------------------ */
   var cd = $("[data-countdown]");
   if (cd) {
@@ -196,7 +54,7 @@
   }
 
   /* ------------------------------------------------------------
-     5. Revelar ao rolar
+     2. Revelar ao rolar
      ------------------------------------------------------------ */
   var reveals = $$(".reveal");
   if ("IntersectionObserver" in window && !reduceMotion) {
@@ -219,7 +77,7 @@
   }
 
   /* ------------------------------------------------------------
-     6. Troca de personagens do hero (com glitch)
+     3. Troca de personagens do hero (com glitch)
      ------------------------------------------------------------ */
   var chars = $$("[data-chars] .chars__item");
   if (chars.length > 1 && !reduceMotion) {
@@ -254,7 +112,7 @@
   }
 
   /* ------------------------------------------------------------
-     7. Abas da programação (padrão WAI-ARIA)
+     4. Abas da programação (padrão WAI-ARIA)
      ------------------------------------------------------------ */
   $$("[data-tabs]").forEach(function (root) {
     var tabs = $$('[role="tab"]', root);
@@ -291,7 +149,7 @@
   });
 
   /* ------------------------------------------------------------
-     8. Cabeçalho e barra fixa do celular
+     5. Cabeçalho e barra fixa do celular
      ------------------------------------------------------------ */
   var hdr = $("[data-hdr]");
   if (hdr) {
@@ -333,7 +191,7 @@
   }
 
   /* ------------------------------------------------------------
-     9. Batalha: cronômetro do round + vídeo só no desktop
+     6. Batalha: cronômetro do round + vídeo só no desktop
      ------------------------------------------------------------ */
   var stage = $("[data-battle]");
   if (stage) {
@@ -366,7 +224,7 @@
   }
 
   /* ------------------------------------------------------------
-     10. Mapa sob demanda (não carrega Google Maps sem ação)
+     7. Mapa sob demanda (não carrega Google Maps sem ação)
      ------------------------------------------------------------ */
   var map = $("[data-map]");
   if (map) {
@@ -379,7 +237,7 @@
       f.allowFullscreen = true;
       map.innerHTML = "";
       map.appendChild(f);
-      dataLayer.push({ event: "mapa_aberto" });
+      track("mapa_aberto");
     });
   }
 })();
