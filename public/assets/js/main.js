@@ -42,6 +42,11 @@
     a.removeAttribute("target"); // o Sympla abre na mesma aba
   });
 
+  /* esconde a chamada de voluntários depois do fim das inscrições */
+  $$("[data-vol-until]").forEach(function (el) {
+    if (Date.now() > new Date(el.getAttribute("data-vol-until")).getTime()) el.hidden = true;
+  });
+
   /* inscrição de voluntários: link secundário, abre em nova aba, também leva as UTMs */
   $$("[data-vol]").forEach(function (a) {
     a.href = buildTicketUrl(CFG.volunteerUrl || a.getAttribute("href"), attribution);

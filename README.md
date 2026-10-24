@@ -50,7 +50,7 @@ window.AR26 = {
   gtmId: "",                                 // ← ex.: "GTM-ABC1234"
   metaPixelId: "",                           // ← opcional
   eventStart: "2026-11-06T09:00:00-03:00",  // ← abertura dos portões (contagem regressiva)
-  eventEnd: "2026-11-08T20:00:00-03:00",
+  eventEnd: "2026-11-08T16:00:00-03:00",
   battleVideo: ""                            // ← ex.: "/assets/video/batalha.mp4"
 };
 ```
@@ -108,7 +108,7 @@ Eles ficam guardados na sessão, para não se perderem se a pessoa navegar pelas
 
 Também são enviados:
 
-- `clique_voluntario` com `posicao` (`faq` ou `rodape`), nos links de inscrição de voluntários. Eles abrem em nova aba, levam as mesmas UTMs e **não** contam como conversão de ingresso.
+- `clique_voluntario` com `posicao` (`faq` ou `rodape`), nos links de inscrição de voluntários. Eles somem sozinhos depois de 05/11, quando as inscrições fecham (`data-vol-until`). Eles abrem em nova aba, levam as mesmas UTMs e **não** contam como conversão de ingresso.
 - `mapa_aberto`, quando alguém carrega o mapa interativo.
 
 ## Pendências de conteúdo (precisam vir do cliente)
@@ -117,8 +117,8 @@ Os textos abaixo estão **provisórios** e precisam ser confirmados antes de pub
 
 - [x] Link do evento no Sympla e link de inscrição de voluntários.
 - [ ] ID do GTM e conversão do Google Ads.
-- [ ] Horários de abertura e encerramento (seção Local, `eventStart`/`eventEnd` e JSON-LD).
-- [ ] **Programação por dia**: os horários das abas 06, 07 e 08 são um rascunho.
+- [x] Horários (06 e 07/11, das 9h às 18h; 08/11, das 9h às 16h), endereço e descrição oficial do Sympla.
+- [ ] **Programação por dia**: as atividades das abas 06, 07 e 08 são um rascunho (já encaixadas nos horários oficiais).
 - [ ] Portão de entrada, estacionamento, transporte e acessibilidade (seção Local).
 - [ ] Respostas do FAQ sobre idade, documento na entrada e saída e retorno.
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
