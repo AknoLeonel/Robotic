@@ -69,7 +69,9 @@ voluntários: `.../voluntarios-arena-robotica/3617780`) e no `offers.url` do JSO
 window.ARENA_TRACKING_CONFIG = {
   metaPixelId: '1694579642232662',   // Pixel "arena robotica"
   ga4Id: 'G-5GHCH96NG1',             // GA4 "Arena Robótica 26 - Site"
-  gtmId: 'GTM-P6KZQGFD',             // contêiner arenarobotica.com.br
+  googleAdsId: 'AW-18535303737',     // tag do Google Ads
+  googleAdsTicketLabel: '',          // rótulo da conversão "AR26 - Clique ingresso" (opcional)
+  gtmId: 'GTM-WV3MFCVQ',             // contêiner do Google Tag Manager
   clarityId: 'z2rtmqwol5',           // Clarity "Arena Robótica 26"
   capiEndpoint: '/api/meta-events',  // função da Vercel (null = só Pixel)
   privacyPolicyUrl: '/politica-de-privacidade',
@@ -93,7 +95,7 @@ do README dele, com a mesma configuração, os mesmos eventos e a mesma API (`Ar
 |---|---|---|---|
 | Abrir página | PageView | page_view | gravação/mapa de calor |
 | Rolar 50% ou ficar 30 s | ViewContent | engaged_view | evento |
-| Clique em “Retirar ingresso grátis” (Sympla) | InitiateCheckout | ticket_click (+ `posicao`) | evento |
+| Clique em “Retirar ingresso grátis” (Sympla) | InitiateCheckout | ticket_click (+ `posicao`) e, se configurada, conversão do Google Ads | evento |
 | WhatsApp, telefone, e-mail, Instagram | Contact | contact_click | evento |
 | Envio de formulário | Lead (+ e-mail/telefone criptografados) | generate_lead | evento |
 | Botão/link com `data-track="nome"` | — | cta_click | evento |
@@ -147,12 +149,18 @@ Sem o token, `/api/meta-events` responde 204 e ignora os eventos: o Pixel contin
 
 ### GTM, GA4 e Google Ads
 
-1. **Publique o contêiner `GTM-P6KZQGFD`** (Enviar → Publicar), mesmo vazio. Sem isso, o `gtm.js` dá 404.
+1. **Publique o contêiner `GTM-WV3MFCVQ`** (Enviar → Publicar), mesmo vazio. Sem isso, o `gtm.js` dá 404.
+   O snippet do `<head>` que o GTM mostra na instalação **não** é colado no HTML: o `tracking.js` já carrega o GTM,
+   depois do Consent Mode. Só o `<noscript>` fica logo após o `<body>`, nas 3 páginas.
 2. **Não crie tags do GA4 nem do Pixel dentro do GTM:** o `tracking.js` já envia os dois, e haveria contagem em dobro.
-3. **Conversão do Google Ads “AR26 - Clique ingresso”:** escolha **um** dos caminhos:
-   - importar o evento-chave `ticket_click` do GA4 no Google Ads (recomendado); ou
-   - no GTM, uma tag de conversão do Google Ads acionada pelo evento personalizado `clique_ingresso`.
-4. No GA4, marque `ticket_click` como **evento-chave**.
+3. **Tag do Google Ads (`AW-18535303737`):** já é carregada pelo `tracking.js`, no mesmo `gtag.js` do GA4 e com o Consent Mode.
+   **Não cole o snippet do Google Ads no HTML** nem crie essa tag no GTM: ela seria carregada duas vezes, e antes do consentimento.
+4. **Conversão “AR26 - Clique ingresso”:** escolha **um** dos caminhos (os dois juntos contam em dobro):
+   - **Pelo GA4 (recomendado):** no Google Ads, importe o evento-chave `ticket_click` do GA4 e deixe `googleAdsTicketLabel: ''`.
+   - **Direto no Google Ads:** crie a conversão do tipo “Site” no Google Ads. No trecho do evento aparece
+     `send_to: 'AW-18535303737/XXXXXXXX'`. Copie só o `XXXXXXXX` para `googleAdsTicketLabel`, nas 3 páginas,
+     e **não** importe o `ticket_click` do GA4.
+5. No GA4, marque `ticket_click` como **evento-chave**.
 
 ### Como testar
 
