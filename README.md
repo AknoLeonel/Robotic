@@ -12,10 +12,12 @@ Página única para levar a pessoa ao clique em **“Retirar ingresso grátis”
 ```
 public/                    ← raiz publicada (Vercel/Netlify)
   index.html               ← a landing page
-  privacidade.html         ← política de privacidade (LGPD)
+  privacidade.html         ← política de privacidade (servida em /politica-de-privacidade)
   404.html
+  tracking/tracking.js     ← GA4, GTM, Meta Pixel + API de Conversões, Clarity, UTMs
+  tracking/consent-banner.js ← aviso de cookies (LGPD)
   assets/css/main.css      ← design system + seções + animações
-  assets/js/main.js        ← UTMs, rastreamento, consentimento, contagem, abas…
+  assets/js/main.js        ← contagem, abas, carrossel, barra mobile, mapa…
   assets/fonts/            ← Archivo 900 itálico, Space Mono, 7LED (woff2, subset latino)
   assets/img/              ← vetores do KV (SVG) e fotos (WebP)
   favicon.svg, ícones, site.webmanifest, robots.txt, sitemap.xml
@@ -23,46 +25,94 @@ source/                    ← arquivos originais (não são publicados)
   kv/                      ← peças do KV em 1920x1080
   vetores/                 ← caderno .ai e Letra Caixa
   fonts/                   ← TTFs originais
+api/meta-events.js         ← função da Vercel: POST /api/meta-events
+server/meta-capi.js        ← API de Conversões da Meta (Node 18+, sem dependências)
+server/teste-meta-capi.js  ← testes (cd server && npm test)
+.env.example               ← variáveis de ambiente da API de Conversões
 scripts/
   extract_vectors.py       ← .ai/PDF → SVGs limpos e recoloridos
   build_images.py          ← KV → recortes WebP, textura, imagem OG e ícones
-vercel.json / netlify.toml ← publicação, cache e cabeçalhos de segurança
+vercel.json / netlify.toml ← publicação, rewrite da política, cache e cabeçalhos
 ```
 
 ## Rodar localmente
 
 ```bash
 cd public && python3 -m http.server 8080
-# abrir http://localhost:8080/?utm_source=teste&gclid=abc  (para ver o repasse de UTMs)
+# abrir http://localhost:8080/?utm_source=teste&arena_debug=1  (o console mostra cada evento)
+# a API de Conversões só roda na Vercel (ou com `vercel dev`)
 ```
 
 ## Publicar
 
-- **Vercel**: importe o repositório. O `vercel.json` já aponta `public/` como saída. Depois, adicione o domínio `arenarobotica26.com`.
+- **Vercel**: importe o repositório. O `vercel.json` já aponta `public/` como saída. O domínio é `www.arenarobotica.com.br`, e o domínio sem `www` redireciona para ele (308).
 - **Netlify**: importe o repositório. O `netlify.toml` já define `publish = "public"`.
 
-## Configuração (topo do `public/index.html`)
+## Configuração
+
+### Página (`window.AR26`, topo do `index.html`)
 
 ```js
 window.AR26 = {
-  symplaUrl: "https://www.sympla.com.br/evento/arena-robotica-26/3617088",           // ingresso
-  volunteerUrl: "https://www.sympla.com.br/evento/voluntarios-arena-robotica/3617780", // voluntários
-  gtmId: "",                                 // ← ex.: "GTM-ABC1234"
-  metaPixelId: "",                           // ← opcional
-  eventStart: "2026-11-06T09:00:00-03:00",  // ← abertura dos portões (contagem regressiva)
+  eventStart: "2026-11-06T09:00:00-03:00",  // abertura dos portões (contagem regressiva)
   eventEnd: "2026-11-08T16:00:00-03:00",
-  battleVideo: ""                            // ← ex.: "/assets/video/batalha.mp4"
+  battleVideo: ""                            // ex.: "/assets/video/batalha.mp4"
 };
 ```
 
-O JS aplica `symplaUrl` em todos os botões de ingresso e `volunteerUrl` nos links de voluntário. Se um link mudar,
-troque também os `href` e o `offers.url` do JSON-LD no `index.html`, para quem estiver sem JavaScript.
+Os links do Sympla estão direto no `href` dos botões (ingresso: `.../arena-robotica-26/3617088`;
+voluntários: `.../voluntarios-arena-robotica/3617780`) e no `offers.url` do JSON-LD.
+
+### Rastreamento (`window.ARENA_TRACKING_CONFIG`, no `<head>` das 3 páginas)
+
+```js
+window.ARENA_TRACKING_CONFIG = {
+  metaPixelId: '1694579642232662',   // Pixel "arena robotica"
+  ga4Id: 'G-5GHCH96NG1',             // GA4 "Arena Robótica 26 - Site"
+  gtmId: 'GTM-P6KZQGFD',             // contêiner arenarobotica.com.br
+  clarityId: 'z2rtmqwol5',           // Clarity "Arena Robótica 26"
+  capiEndpoint: '/api/meta-events',  // função da Vercel (null = só Pixel)
+  privacyPolicyUrl: '/politica-de-privacidade',
+  spa: false,
+  debug: false                       // ou ?arena_debug=1
+};
+```
+
+O mesmo bloco está em `index.html`, `privacidade.html` e `404.html`, junto com o `<noscript>` do GTM logo depois do `<body>`.
+Se mudar um ID, mude nas 3 páginas.
 
 ## Conversão e rastreamento
 
-### Botões de ingresso
+Segue a especificação do pacote de rastreamento do Marcio. `tracking.js` e `consent-banner.js` foram escritos a partir
+do README dele, com a mesma configuração, os mesmos eventos e a mesma API (`ArenaTracking.track`, `data-track`,
+`data-track-section`, `data-open-consent`). Se os arquivos originais chegarem, basta substituir os dois em `public/tracking/`.
 
-Todos usam o mesmo texto, a mesma cor e `data-cta="<posicao>"`. O link do Sympla abre na mesma aba.
+### O que é medido
+
+| Ação no site | Meta (Pixel + API) | GA4 | Clarity |
+|---|---|---|---|
+| Abrir página | PageView | page_view | gravação/mapa de calor |
+| Rolar 50% ou ficar 30 s | ViewContent | engaged_view | evento |
+| Clique em “Retirar ingresso grátis” (Sympla) | InitiateCheckout | ticket_click (+ `posicao`) | evento |
+| WhatsApp, telefone, e-mail, Instagram | Contact | contact_click | evento |
+| Envio de formulário | Lead (+ e-mail/telefone criptografados) | generate_lead | evento |
+| Botão/link com `data-track="nome"` | — | cta_click | evento |
+| Outros links externos (inclui voluntários) | — | outbound_click | — |
+| Rolagem 25/50/75/90% | — | scroll_depth | — |
+| Tempo visível 15/30/60/120/300 s | — | time_on_page | — |
+| Seção com `data-track-section` vista | — | section_view | — |
+| `<video>` início/25/50/75%/fim (exceto vídeo decorativo em loop) | — | video_start/progress/complete | evento |
+| Abrir o mapa interativo | — | mapa_aberto | evento |
+
+- **Ingresso x voluntários:** só o link do ingresso conta como `InitiateCheckout`/`ticket_click`. O link de voluntários
+  vira `outbound_click` com `link_name: voluntario`.
+- **`clique_ingresso`:** além do GA4, cada clique no ingresso envia `{ event: "clique_ingresso", posicao }` ao `dataLayer`, para o GTM.
+- **Mesma aba:** no clique do ingresso, a página espera o GA4 confirmar o envio (no máximo 500 ms) e segue para a Sympla.
+- **UTMs na Sympla:** `utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid` e `msclkid` da visita vão para todos os links da Sympla.
+  Sem UTM, o link sai com `utm_source=site&utm_medium=referral&utm_campaign=ar26`.
+- **Deduplicação:** Pixel e API de Conversões usam o mesmo `event_id`.
+
+### Botões de ingresso (`posicao`)
 
 | `posicao`      | Onde fica                                      |
 |----------------|------------------------------------------------|
@@ -74,57 +124,60 @@ Todos usam o mesmo texto, a mesma cor e `data-cta="<posicao>"`. O link do Sympla
 | `barra_mobile` | Barra fixa do celular                          |
 | `header`       | Cabeçalho fixo (desktop)                       |
 
-A barra do celular só aparece depois que o botão do hero sai da tela e some no fechamento rosa,
-para nunca existirem dois botões iguais na mesma tela.
+### Privacidade (LGPD)
 
-### Evento enviado ao `dataLayer`
+- Antes do aceite, o Google roda em Consent Mode v2 (negado por padrão), e a Meta e o Clarity **não carregam**.
+  Eventos da Meta ficam numa fila até o aceite e são descartados se a pessoa recusar.
+- Métricas (GA4 e Clarity) e marketing (Meta e Google Ads) são categorias separadas no banner.
+- Dados de formulário (e-mail, telefone, nome) nunca vão para o GA4: só para a API de Conversões, criptografados no servidor.
 
-```js
-{ event: "clique_ingresso", posicao: "hero", link_url: "https://www.sympla.com.br/...?utm_source=..." }
-```
+### Configurar na Vercel (uma vez)
 
-Com o GTM carregado, a navegação espera a tag disparar (`eventCallback`), com limite de 700 ms.
+Em **Settings → Environment Variables** (Production), use o `.env.example` como modelo:
 
-### Repasse de UTMs e GCLID
+| Variável | Valor |
+|---|---|
+| `META_PIXEL_ID` | `1694579642232662` |
+| `META_CAPI_TOKEN` | Gerenciador de Eventos → arena robotica → Configurações → API de Conversões → Gerar token. **Nunca no repositório.** |
+| `ALLOWED_ORIGINS` | `https://www.arenarobotica.com.br,https://arenarobotica.com.br` |
+| `META_API_VERSION` | opcional (padrão `v26.0`) |
+| `META_TEST_EVENT_CODE` | só durante o teste; apague depois |
 
-`utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid` e `msclkid` da URL são copiados para todos os links do Sympla.
-Eles ficam guardados na sessão, para não se perderem se a pessoa navegar pelas âncoras.
+Sem o token, `/api/meta-events` responde 204 e ignora os eventos: o Pixel continua funcionando.
 
-### Configurar o GTM (uma vez)
+### GTM, GA4 e Google Ads
 
-1. **Variáveis** → *Variável da camada de dados* `posicao` (nome: `DLV - posicao`).
-2. **Acionador** → *Evento personalizado* `clique_ingresso` (nome: `CE - clique_ingresso`).
-3. **Tags**
-   - *Tag do Google* com o ID do GA4 (acionador: Initialization - All Pages).
-   - *GA4 Evento* `clique_ingresso` com o parâmetro `posicao = {{DLV - posicao}}` (acionador: `CE - clique_ingresso`).
-     No GA4, marque o evento como **evento-chave**.
-   - *Vinculador de conversões* (acionador: All Pages).
-   - *Acompanhamento de conversões do Google Ads*, conversão **“AR26 - Clique ingresso”** (acionador: `CE - clique_ingresso`).
-4. **Consentimento**: o site já envia o *Consent Mode v2* (padrão `denied`) antes de carregar o GTM e
-   atualiza quando a pessoa escolhe no banner. No GTM, ative a *Visão geral do consentimento* e deixe as tags
-   do Google com o consentimento integrado. Também é enviado o evento `consent_update` para acionar tags de terceiros.
-5. **Meta Pixel (opcional)**: preencha `metaPixelId`. Ele só carrega com consentimento de marketing e envia
-   `Lead` com `posicao` em cada clique. Se preferir gerenciar pelo GTM, deixe o campo vazio e use o evento `consent_update`.
+1. **Publique o contêiner `GTM-P6KZQGFD`** (Enviar → Publicar), mesmo vazio. Sem isso, o `gtm.js` dá 404.
+2. **Não crie tags do GA4 nem do Pixel dentro do GTM:** o `tracking.js` já envia os dois, e haveria contagem em dobro.
+3. **Conversão do Google Ads “AR26 - Clique ingresso”:** escolha **um** dos caminhos:
+   - importar o evento-chave `ticket_click` do GA4 no Google Ads (recomendado); ou
+   - no GTM, uma tag de conversão do Google Ads acionada pelo evento personalizado `clique_ingresso`.
+4. No GA4, marque `ticket_click` como **evento-chave**.
 
-Também são enviados:
+### Como testar
 
-- `clique_voluntario` com `posicao` (`faq` ou `rodape`), nos links de inscrição de voluntários. Eles somem sozinhos depois de 05/11, quando as inscrições fecham (`data-vol-until`). Eles abrem em nova aba, levam as mesmas UTMs e **não** contam como conversão de ingresso.
-- `mapa_aberto`, quando alguém carrega o mapa interativo.
+1. Abra o site com `?arena_debug=1`: o console mostra cada evento, e o GA4 aparece em Administrador → DebugView.
+2. Meta: Gerenciador de Eventos → Eventos de teste. Coloque o código `TEST...` em `META_TEST_EVENT_CODE`, aceite os cookies e navegue.
+   Cada evento deve aparecer como “Navegador” e “Servidor” (deduplicado). Apague o código depois.
+3. Clarity: as gravações aparecem em até 2 horas.
+4. `cd server && npm test` valida a criptografia e os filtros.
 
 ## Pendências de conteúdo (precisam vir do cliente)
 
 Os textos abaixo estão **provisórios** e precisam ser confirmados antes de publicar:
 
 - [x] Link do evento no Sympla e link de inscrição de voluntários.
-- [ ] ID do GTM e conversão do Google Ads.
+- [x] IDs de GA4, GTM, Meta Pixel e Clarity.
+- [ ] Token da API de Conversões na Vercel, publicação do contêiner do GTM e conversão do Google Ads (ver “Configurar na Vercel” e “GTM, GA4 e Google Ads”).
 - [x] Horários (06 e 07/11, das 9h às 18h; 08/11, das 9h às 16h), endereço e descrição oficial do Sympla.
 - [ ] **Programação por dia**: a página mostra só o que é oficial (dias, horários e o que rola todos os dias) com o aviso "em breve". Quando sair, siga “Publicar a programação” abaixo.
 - [ ] Portão de entrada, estacionamento, transporte e acessibilidade (seção Local).
 - [ ] Respostas do FAQ sobre idade, documento na entrada e saída e retorno.
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
-- [ ] Links das redes sociais (rodapé) e e-mail de privacidade (`privacidade.html`).
+- [ ] Links das redes sociais (rodapé) e e-mail de privacidade (`privacidade@arenarobotica.com.br` precisa existir).
 - [ ] Fotos dos cards de atividades e vídeo da batalha (opcionais).
-- [ ] Domínio final, caso não seja `arenarobotica26.com` (canonical, OG, sitemap, robots, JSON-LD).
+- [x] Domínio final: `www.arenarobotica.com.br` (canonical, OG, sitemap, robots, JSON-LD).
+- [ ] **QR code e texto das peças do KV** apontam para `arenarobotica26.com`: registrar esse domínio e redirecionar para o site, ou refazer o QR.
 
 ## Publicar a programação
 

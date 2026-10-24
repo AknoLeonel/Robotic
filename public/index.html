@@ -3,9 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Arena Robótica 26 · rastreamento (mesmo bloco em todas as páginas; ver README) -->
+  <script>
+    window.ARENA_TRACKING_CONFIG = {
+      metaPixelId: '1694579642232662',      // Pixel "arena robotica"
+      ga4Id: 'G-5GHCH96NG1',                // GA4: propriedade "Arena Robótica 26 - Site"
+      gtmId: 'GTM-P6KZQGFD',                // contêiner arenarobotica.com.br
+      clarityId: 'z2rtmqwol5',              // Clarity: projeto "Arena Robótica 26"
+      capiEndpoint: '/api/meta-events',     // função da Vercel em /api/meta-events.js
+      privacyPolicyUrl: '/politica-de-privacidade',
+      spa: false,
+      debug: false                          // ou abra o site com ?arena_debug=1
+    };
+  </script>
+  <script src="/tracking/tracking.js" defer></script>
+  <script src="/tracking/consent-banner.js" defer></script>
+  <!-- Fim do rastreamento -->
   <title>Arena Robótica 26 | Robótica, drones e games grátis em Brasília</title>
   <meta name="description" content="De 6 a 8 de novembro na Arena Mané Garrincha, em Brasília. Mais de 100 equipes, batalha de robôs, drones, oficinas e food park. Entrada gratuita: retire seu ingresso.">
-  <link rel="canonical" href="https://arenarobotica26.com/">
+  <link rel="canonical" href="https://www.arenarobotica.com.br/">
   <meta name="theme-color" content="#0A1E8C">
   <meta name="color-scheme" content="dark">
   <meta name="format-detection" content="telephone=no">
@@ -16,8 +32,8 @@
   <meta property="og:site_name" content="Arena Robótica 26">
   <meta property="og:title" content="Arena Robótica 26 | Robótica, drones e games grátis em Brasília">
   <meta property="og:description" content="3 dias de robótica, drones e games. 06 a 08 de novembro na Arena Mané Garrincha. Entrada gratuita.">
-  <meta property="og:url" content="https://arenarobotica26.com/">
-  <meta property="og:image" content="https://arenarobotica26.com/assets/img/og-arena-robotica-26.jpg">
+  <meta property="og:url" content="https://www.arenarobotica.com.br/">
+  <meta property="og:image" content="https://www.arenarobotica.com.br/assets/img/og-arena-robotica-26.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Arena Robótica 26: 06 a 08 de novembro, Arena Mané Garrincha, Brasília">
@@ -36,50 +52,13 @@
         imagesizes="(min-width: 960px) 46vw, 92vw" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/main.css">
 
-  <!-- Configuração do site: preencha antes de publicar (ver README) -->
+  <!-- Configuração da página (contagem regressiva e vídeo da batalha) -->
   <script>
     window.AR26 = {
-      symplaUrl: "https://www.sympla.com.br/evento/arena-robotica-26/3617088",  // ingresso (Sympla)
-      volunteerUrl: "https://www.sympla.com.br/evento/voluntarios-arena-robotica/3617780",  // inscrição de voluntários (Sympla)
-      gtmId: "",                                  // ex.: "GTM-ABC1234"
-      metaPixelId: "",                            // opcional, ex.: "123456789012345"
       eventStart: "2026-11-06T09:00:00-03:00",   // abertura dos portões no dia 1
       eventEnd: "2026-11-08T16:00:00-03:00",
       battleVideo: ""                             // ex.: "/assets/video/batalha.mp4" (só desktop)
     };
-  </script>
-
-  <!-- Consent Mode v2: padrão negado até a pessoa escolher no banner (LGPD) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag("consent", "default", {
-      ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
-      analytics_storage: "denied", functionality_storage: "granted", security_storage: "granted",
-      wait_for_update: 500
-    });
-    gtag("set", "ads_data_redaction", true);
-    gtag("set", "url_passthrough", true);
-    (function () {
-      try {
-        var saved = JSON.parse(localStorage.getItem("ar26_consent") || "null");
-        if (saved) {
-          gtag("consent", "update", {
-            analytics_storage: saved.analytics ? "granted" : "denied",
-            ad_storage: saved.marketing ? "granted" : "denied",
-            ad_user_data: saved.marketing ? "granted" : "denied",
-            ad_personalization: saved.marketing ? "granted" : "denied"
-          });
-        }
-      } catch (e) {}
-      var id = window.AR26.gtmId;
-      if (!id) return;
-      dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
-      var s = document.createElement("script");
-      s.async = true;
-      s.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(id);
-      document.head.appendChild(s);
-    })();
   </script>
   <script src="/assets/js/main.js" defer></script>
 
@@ -96,7 +75,7 @@
     "isAccessibleForFree": true,
     "inLanguage": "pt-BR",
     "image": [
-      "https://arenarobotica26.com/assets/img/og-arena-robotica-26.jpg"
+      "https://www.arenarobotica.com.br/assets/img/og-arena-robotica-26.jpg"
     ],
     "location": {
       "@type": "Place",
@@ -124,7 +103,7 @@
       { "@type": "Schedule", "startDate": "2026-11-06", "endDate": "2026-11-07", "startTime": "09:00", "endTime": "18:00", "repeatFrequency": "P1D", "scheduleTimezone": "America/Sao_Paulo" },
       { "@type": "Schedule", "startDate": "2026-11-08", "endDate": "2026-11-08", "startTime": "09:00", "endTime": "16:00", "scheduleTimezone": "America/Sao_Paulo" }
     ],
-    "organizer": { "@type": "Organization", "name": "Instituto Guilda", "url": "https://arenarobotica26.com/" },
+    "organizer": { "@type": "Organization", "name": "Instituto Guilda", "url": "https://www.arenarobotica.com.br/" },
     "sponsor": [
       { "@type": "GovernmentOrganization", "name": "Secretaria de Ciência, Tecnologia e Inovação do Distrito Federal" },
       { "@type": "GovernmentOrganization", "name": "Governo do Distrito Federal" }
@@ -133,6 +112,8 @@
   </script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6KZQGFD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <!-- Ícones (sprite) -->
@@ -189,7 +170,7 @@
   <main id="conteudo">
 
     <!-- ========== HERO ========== -->
-    <section class="hero" id="topo" aria-labelledby="hero-title" data-anim-scope>
+    <section class="hero" id="topo" data-track-section="hero" aria-labelledby="hero-title" data-anim-scope>
       <div class="hero__bg" aria-hidden="true">
         <div class="grid-floor"><div class="grid-floor__plane"></div></div>
         <svg class="waves waves--tl" viewBox="0 0 120 260" fill="none"><path d="M86 6c-30 14 18 34-12 50s-46-8-58 18 34 32 6 52-50-4-22 40" /><path d="M110 40c-30 14 18 34-12 50s-46-8-58 18 34 32 6 52-50-4-22 40"/></svg>
@@ -280,7 +261,7 @@
     </section>
 
     <!-- ========== FAIXA DE CONFIANÇA ========== -->
-    <section class="trust" aria-label="Destaques do evento">
+    <section class="trust" data-track-section="destaques" aria-label="Destaques do evento">
       <ul class="trust__list wrap">
         <li><svg class="ico" aria-hidden="true"><use href="#i-tag"/></svg>Entrada gratuita</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg>3 dias</li>
@@ -297,7 +278,7 @@
     </section>
 
     <!-- ========== ATIVIDADES ========== -->
-    <section class="sec acts" id="atividades" aria-labelledby="acts-title">
+    <section class="sec acts" id="atividades" data-track-section="atividades" aria-labelledby="acts-title">
       <div class="wrap">
         <header class="sec__head reveal">
           <p class="eyebrow"><span class="lcd-txt">01</span> O que rola na arena</p>
@@ -385,7 +366,7 @@
     </section>
 
     <!-- ========== DESTAQUE DA BATALHA ========== -->
-    <section class="sec battle" id="batalha" aria-labelledby="battle-title" data-anim-scope>
+    <section class="sec battle" id="batalha" data-track-section="batalha" aria-labelledby="battle-title" data-anim-scope>
       <div class="wrap battle__in">
         <div class="battle__screen reveal">
           <div class="win win--big">
@@ -430,7 +411,7 @@
     </section>
 
     <!-- ========== PROGRAMAÇÃO ========== -->
-    <section class="sec sched" id="programacao" aria-labelledby="sched-title">
+    <section class="sec sched" id="programacao" data-track-section="programacao" aria-labelledby="sched-title">
       <div class="wrap">
         <header class="sec__head reveal">
           <p class="eyebrow"><span class="lcd-txt">03</span> Programação</p>
@@ -474,7 +455,7 @@
     </section>
 
     <!-- ========== COMO RETIRAR ========== -->
-    <section class="sec steps" id="ingresso" aria-labelledby="steps-title">
+    <section class="sec steps" id="ingresso" data-track-section="como_retirar" aria-labelledby="steps-title">
       <div class="wrap">
         <header class="sec__head reveal">
           <p class="eyebrow eyebrow--ink"><span class="lcd-txt">04</span> Ingresso</p>
@@ -512,7 +493,7 @@
     </section>
 
     <!-- ========== LOCAL ========== -->
-    <section class="sec place" id="local" aria-labelledby="place-title">
+    <section class="sec place" id="local" data-track-section="local" aria-labelledby="place-title">
       <div class="wrap place__in">
         <div class="place__info reveal">
           <p class="eyebrow"><span class="lcd-txt">05</span> Local e como chegar</p>
@@ -526,13 +507,13 @@
             <li><svg class="ico" aria-hidden="true"><use href="#i-access"/></svg><div><strong>Acessibilidade</strong><span>Rotas acessíveis e equipe de apoio. Precisa de algo? Fale com a gente na entrada.</span></div></li>
           </ul>
           <div class="place__links">
-            <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Arena+BRB+Man%C3%A9+Garrincha%2C+Bras%C3%ADlia" target="_blank" rel="noopener">
+            <a class="btn btn--ghost" data-track="rota_google_maps" href="https://www.google.com/maps/dir/?api=1&amp;destination=Arena+BRB+Man%C3%A9+Garrincha%2C+Bras%C3%ADlia" target="_blank" rel="noopener">
               <svg class="ico" aria-hidden="true"><use href="#i-map"/></svg><span>Google Maps</span>
             </a>
-            <a class="btn btn--ghost" href="https://waze.com/ul?ll=-15.7835,-47.8992&amp;navigate=yes" target="_blank" rel="noopener">
+            <a class="btn btn--ghost" data-track="rota_waze" href="https://waze.com/ul?ll=-15.7835,-47.8992&amp;navigate=yes" target="_blank" rel="noopener">
               <svg class="ico" aria-hidden="true"><use href="#i-car"/></svg><span>Waze</span>
             </a>
-            <a class="btn btn--ghost" href="https://m.uber.com/ul/?action=setPickup&amp;pickup=my_location&amp;dropoff%5Blatitude%5D=-15.7835&amp;dropoff%5Blongitude%5D=-47.8992&amp;dropoff%5Bnickname%5D=Arena%20Man%C3%A9%20Garrincha" target="_blank" rel="noopener">
+            <a class="btn btn--ghost" data-track="rota_uber" href="https://m.uber.com/ul/?action=setPickup&amp;pickup=my_location&amp;dropoff%5Blatitude%5D=-15.7835&amp;dropoff%5Blongitude%5D=-47.8992&amp;dropoff%5Bnickname%5D=Arena%20Man%C3%A9%20Garrincha" target="_blank" rel="noopener">
               <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg><span>Uber</span>
             </a>
           </div>
@@ -545,7 +526,7 @@
               <div class="map__facade">
                 <div class="map__grid" aria-hidden="true"></div>
                 <span class="map__ping" aria-hidden="true"><svg class="ico"><use href="#i-pin"/></svg></span>
-                <button class="btn btn--cta btn--sm map__load" type="button" data-map-load>
+                <button class="btn btn--cta btn--sm map__load" type="button" data-map-load data-track="mapa_interativo">
                   <svg class="ico" aria-hidden="true"><use href="#i-map"/></svg><span>Ver mapa interativo</span>
                 </button>
                 <p class="map__note">O mapa é carregado do Google Maps só quando você toca no botão.</p>
@@ -557,7 +538,7 @@
     </section>
 
     <!-- ========== FAQ ========== -->
-    <section class="sec faq" id="duvidas" aria-labelledby="faq-title">
+    <section class="sec faq" id="duvidas" data-track-section="faq" aria-labelledby="faq-title">
       <div class="wrap faq__in">
         <header class="sec__head reveal">
           <p class="eyebrow"><span class="lcd-txt">06</span> Perguntas frequentes</p>
@@ -604,7 +585,7 @@
     </section>
 
     <!-- ========== FECHAMENTO ========== -->
-    <section class="final" id="final" aria-labelledby="final-title" data-final>
+    <section class="final" id="final" data-track-section="fechamento" aria-labelledby="final-title" data-final>
       <div class="final__bg" aria-hidden="true">
         <img src="/assets/img/x-pattern.svg" alt="" class="final__x" width="538" height="301" loading="lazy">
         <img src="/assets/img/x-duo.svg" alt="" class="final__duo" width="473" height="379" loading="lazy">
@@ -647,8 +628,8 @@
         </ul>
         <nav class="ftr__links" aria-label="Institucional">
           <a href="https://www.sympla.com.br/evento/voluntarios-arena-robotica/3617780" data-vol-until="2026-11-05T23:59:59-03:00" data-vol="rodape" target="_blank" rel="noopener">Seja voluntário<span class="sr-only"> (abre em nova aba)</span></a>
-          <a href="/privacidade.html">Política de privacidade</a>
-          <button type="button" class="linkish" data-consent-open>Preferências de cookies</button>
+          <a href="/politica-de-privacidade">Política de privacidade</a>
+          <button type="button" class="linkish" data-open-consent>Preferências de cookies</button>
         </nav>
         <p class="ftr__copy">© 2026 Arena Robótica 26</p>
       </div>
@@ -661,27 +642,6 @@
       <svg class="ico" aria-hidden="true"><use href="#i-ticket"/></svg>
       <span>Retirar ingresso grátis</span>
     </a>
-  </div>
-
-  <!-- Banner de cookies (LGPD) -->
-  <div class="consent" role="dialog" aria-modal="false" aria-labelledby="consent-title" aria-describedby="consent-desc" data-consent hidden>
-    <div class="win">
-      <div class="win__bar"><span class="win__title" id="consent-title">cookies.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
-      <div class="consent__body">
-        <p id="consent-desc">Usamos cookies para medir acessos e melhorar nossas campanhas. Você escolhe. <a href="/privacidade.html">Saiba mais</a>.</p>
-        <form class="consent__prefs" data-consent-prefs hidden>
-          <label class="switch"><input type="checkbox" checked disabled><span>Essenciais <small>sempre ativos</small></span></label>
-          <label class="switch"><input type="checkbox" name="analytics"><span>Métricas <small>Google Analytics</small></span></label>
-          <label class="switch"><input type="checkbox" name="marketing"><span>Marketing <small>Google Ads e Meta</small></span></label>
-        </form>
-        <div class="consent__actions">
-          <button type="button" class="btn btn--cta btn--sm" data-consent-accept>Aceitar todos</button>
-          <button type="button" class="btn btn--ghost btn--sm" data-consent-reject>Só essenciais</button>
-          <button type="button" class="linkish" data-consent-custom aria-expanded="false">Personalizar</button>
-          <button type="button" class="btn btn--ghost btn--sm" data-consent-save hidden>Salvar escolhas</button>
-        </div>
-      </div>
-    </div>
   </div>
 
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>

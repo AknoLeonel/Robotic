@@ -1,0 +1,11 @@
+{
+  "name": "arena-tracking-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de Conversões da Meta para o site da Arena Robótica 26",
+  "main": "meta-capi.js",
+  "scripts": {
+    "test": "node --test teste-meta-capi.js"
+  },
+  "engines": { "node": ">=18" }
+}
