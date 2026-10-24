@@ -38,7 +38,7 @@ cd public && python3 -m http.server 8080
 
 ## Publicar
 
-- **Vercel**: importe o repositório. O `vercel.json` já aponta `public/` como saída. Depois, adicione o domínio `arenarobotica26.com`.
+- **Vercel**: importe o repositório. O `vercel.json` já aponta `public/` como saída. O domínio é `www.arenarobotica.com.br`, e o domínio sem `www` redireciona para ele (308).
 - **Netlify**: importe o repositório. O `netlify.toml` já define `publish = "public"`.
 
 ## Configuração (topo do `public/index.html`)
@@ -124,7 +124,8 @@ Os textos abaixo estão **provisórios** e precisam ser confirmados antes de pub
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
 - [ ] Links das redes sociais (rodapé) e e-mail de privacidade (`privacidade.html`).
 - [ ] Fotos dos cards de atividades e vídeo da batalha (opcionais).
-- [ ] Domínio final, caso não seja `arenarobotica26.com` (canonical, OG, sitemap, robots, JSON-LD).
+- [x] Domínio final: `www.arenarobotica.com.br` (canonical, OG, sitemap, robots, JSON-LD).
+- [ ] **QR code e texto das peças do KV** apontam para `arenarobotica26.com`: registrar esse domínio e redirecionar para o site, ou refazer o QR.
 
 ## Publicar a programação
 
