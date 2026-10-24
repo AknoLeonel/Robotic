@@ -118,13 +118,46 @@ Os textos abaixo estão **provisórios** e precisam ser confirmados antes de pub
 - [x] Link do evento no Sympla e link de inscrição de voluntários.
 - [ ] ID do GTM e conversão do Google Ads.
 - [x] Horários (06 e 07/11, das 9h às 18h; 08/11, das 9h às 16h), endereço e descrição oficial do Sympla.
-- [ ] **Programação por dia**: as atividades das abas 06, 07 e 08 são um rascunho (já encaixadas nos horários oficiais).
+- [ ] **Programação por dia**: a página mostra só o que é oficial (dias, horários e o que rola todos os dias) com o aviso "em breve". Quando sair, siga “Publicar a programação” abaixo.
 - [ ] Portão de entrada, estacionamento, transporte e acessibilidade (seção Local).
 - [ ] Respostas do FAQ sobre idade, documento na entrada e saída e retorno.
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
 - [ ] Links das redes sociais (rodapé) e e-mail de privacidade (`privacidade.html`).
 - [ ] Fotos dos cards de atividades e vídeo da batalha (opcionais).
 - [ ] Domínio final, caso não seja `arenarobotica26.com` (canonical, OG, sitemap, robots, JSON-LD).
+
+## Publicar a programação
+
+Hoje a seção `#programacao` mostra os 3 dias com o horário oficial e a lista “todos os dias”.
+Quando a programação sair, troque o bloco `<div class="sched__body">` por abas com horários.
+O CSS (`.tabs`, `.tab`, `.timeline`) e o JS (teclado, ARIA, abrir no dia de hoje durante o evento) já estão prontos:
+
+```html
+<div class="tabs reveal" data-tabs>
+  <div class="tabs__list" role="tablist" aria-label="Dias do evento">
+    <button class="tab" role="tab" id="tab-6" aria-controls="dia-6" aria-selected="true" data-date="2026-11-06">
+      <span class="tab__num lcd-txt">06</span><span class="tab__day">sex</span><span class="tab__hours">9h–18h</span>
+    </button>
+    <button class="tab" role="tab" id="tab-7" aria-controls="dia-7" aria-selected="false" tabindex="-1" data-date="2026-11-07">
+      <span class="tab__num lcd-txt">07</span><span class="tab__day">sáb</span><span class="tab__hours">9h–18h</span>
+    </button>
+    <button class="tab" role="tab" id="tab-8" aria-controls="dia-8" aria-selected="false" tabindex="-1" data-date="2026-11-08">
+      <span class="tab__num lcd-txt">08</span><span class="tab__day">dom</span><span class="tab__hours">9h–16h</span>
+    </button>
+  </div>
+  <div class="tabs__panel" role="tabpanel" id="dia-6" aria-labelledby="tab-6" tabindex="0">
+    <ol class="timeline">
+      <li><time class="lcd-txt">09:00</time><div><h3>Título da atividade</h3><p>Detalhe opcional.</p></div></li>
+      <!-- … -->
+    </ol>
+  </div>
+  <div class="tabs__panel" role="tabpanel" id="dia-7" aria-labelledby="tab-7" tabindex="0" hidden>…</div>
+  <div class="tabs__panel" role="tabpanel" id="dia-8" aria-labelledby="tab-8" tabindex="0" hidden>…</div>
+  <p class="tabs__note">Programação sujeita a alterações.</p>
+</div>
+```
+
+Se preferir, me mande a programação (pode ser um texto ou uma planilha) que eu monto.
 
 ## Imagens
 

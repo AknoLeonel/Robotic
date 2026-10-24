@@ -284,6 +284,12 @@
     if (match) select(match);
   });
 
+  /* durante o evento, destaca o dia de hoje nos cards de dia */
+  var todayBr = new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10);
+  $$(".day[data-date]").forEach(function (d) {
+    if (d.getAttribute("data-date") === todayBr) d.classList.add("is-today");
+  });
+
   /* ------------------------------------------------------------
      8. Cabeçalho e barra fixa do celular
      ------------------------------------------------------------ */

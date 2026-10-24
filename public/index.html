@@ -434,53 +434,41 @@
       <div class="wrap">
         <header class="sec__head reveal">
           <p class="eyebrow"><span class="lcd-txt">03</span> Programação</p>
-          <h2 class="h2" id="sched-title">Escolha seu dia <span class="hl">(ou venha nos 3)</span></h2>
+          <h2 class="h2" id="sched-title">3 dias de <span class="hl">arena aberta</span></h2>
+          <p class="lede">A programação detalhada, com o horário de cada disputa e oficina, sai em breve. Enquanto isso, escolha seu dia (ou venha nos 3).</p>
         </header>
 
-        <div class="tabs reveal" data-tabs>
-          <div class="tabs__list" role="tablist" aria-label="Dias do evento">
-            <button class="tab" role="tab" id="tab-6" aria-controls="dia-6" aria-selected="true" data-date="2026-11-06">
-              <span class="tab__num lcd-txt">06</span><span class="tab__day">sex</span><span class="tab__hours">9h–18h</span>
-            </button>
-            <button class="tab" role="tab" id="tab-7" aria-controls="dia-7" aria-selected="false" tabindex="-1" data-date="2026-11-07">
-              <span class="tab__num lcd-txt">07</span><span class="tab__day">sáb</span><span class="tab__hours">9h–18h</span>
-            </button>
-            <button class="tab" role="tab" id="tab-8" aria-controls="dia-8" aria-selected="false" tabindex="-1" data-date="2026-11-08">
-              <span class="tab__num lcd-txt">08</span><span class="tab__day">dom</span><span class="tab__hours">9h–16h</span>
-            </button>
+        <!-- Quando a programação oficial sair, troque este bloco pelas abas com horários (ver README) -->
+        <div class="sched__body reveal" style="--d:.1s">
+          <ul class="days" role="list">
+            <li class="day" data-date="2026-11-06">
+              <span class="day__num lcd-txt" aria-hidden="true">06</span>
+              <span class="day__wd">Sexta, 06/11</span>
+              <span class="day__hours">9h às 18h</span>
+            </li>
+            <li class="day" data-date="2026-11-07">
+              <span class="day__num lcd-txt" aria-hidden="true">07</span>
+              <span class="day__wd">Sábado, 07/11</span>
+              <span class="day__hours">9h às 18h</span>
+            </li>
+            <li class="day" data-date="2026-11-08">
+              <span class="day__num lcd-txt" aria-hidden="true">08</span>
+              <span class="day__wd">Domingo, 08/11</span>
+              <span class="day__hours">9h às 16h</span>
+            </li>
+          </ul>
+
+          <div class="win allday">
+            <div class="win__bar"><span class="win__title">todos_os_dias.txt</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <ul class="allday__list" role="list">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-robot"/></svg>Competições ao vivo com mais de 100 equipes</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Oficinas e experimentações</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>Ativações e atrações</li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-food"/></svg>Food park</li>
+            </ul>
           </div>
 
-          <!-- PROGRAMAÇÃO PROVISÓRIA: substituir pelos horários oficiais (ver README) -->
-          <div class="tabs__panel" role="tabpanel" id="dia-6" aria-labelledby="tab-6" tabindex="0">
-            <ol class="timeline">
-              <li><time class="lcd-txt">09:00</time><div><h3>Abertura dos portões</h3><p>Credenciamento e acesso a todas as arenas.</p></div></li>
-              <li><time class="lcd-txt">10:00</time><div><h3>Batalha de Robôs: classificatórias</h3><p>Primeiros rounds na arena principal.</p></div></li>
-              <li><time class="lcd-txt">11:00</time><div><h3>Oficina de robótica para iniciantes</h3><p>Vagas por ordem de chegada no espaço de oficinas.</p></div></li>
-              <li><time class="lcd-txt">14:00</time><div><h3>Demonstração de drones</h3><p>Voos e manobras na área de drones.</p></div></li>
-              <li><time class="lcd-txt">16:00</time><div><h3>Arena Gamer: free play</h3><p>Consoles liberados para o público.</p></div></li>
-              <li><time class="lcd-txt">18:00</time><div><h3>Encerramento do dia</h3></div></li>
-            </ol>
-          </div>
-          <div class="tabs__panel" role="tabpanel" id="dia-7" aria-labelledby="tab-7" tabindex="0" hidden>
-            <ol class="timeline">
-              <li><time class="lcd-txt">09:00</time><div><h3>Abertura dos portões</h3></div></li>
-              <li><time class="lcd-txt">10:00</time><div><h3>Batalha de Robôs: chaves</h3><p>Confrontos eliminatórios ao vivo.</p></div></li>
-              <li><time class="lcd-txt">11:30</time><div><h3>Arena Maker aberta</h3><p>Impressão 3D e prototipagem com mentores.</p></div></li>
-              <li><time class="lcd-txt">14:00</time><div><h3>Corrida de drones</h3><p>Pilotos de FPV no circuito.</p></div></li>
-              <li><time class="lcd-txt">16:00</time><div><h3>Campeonato Arena Gamer</h3></div></li>
-              <li><time class="lcd-txt">18:00</time><div><h3>Encerramento do dia</h3></div></li>
-            </ol>
-          </div>
-          <div class="tabs__panel" role="tabpanel" id="dia-8" aria-labelledby="tab-8" tabindex="0" hidden>
-            <ol class="timeline">
-              <li><time class="lcd-txt">09:00</time><div><h3>Abertura dos portões</h3></div></li>
-              <li><time class="lcd-txt">10:00</time><div><h3>Oficinas para toda a família</h3></div></li>
-              <li><time class="lcd-txt">12:00</time><div><h3>Batalha de Robôs: semifinais</h3></div></li>
-              <li><time class="lcd-txt">14:30</time><div><h3>Grande final e premiação</h3><p>O campeão da Arena Robótica 26 sai daqui.</p></div></li>
-              <li><time class="lcd-txt">16:00</time><div><h3>Encerramento</h3></div></li>
-            </ol>
-          </div>
-          <p class="tabs__note">Horários de funcionamento: 06 e 07/11, das 9h às 18h · 08/11, das 9h às 16h. Programação sujeita a alterações.</p>
+          <p class="soon"><span class="dot" aria-hidden="true"></span>Programação completa em breve, aqui nesta página.</p>
         </div>
       </div>
     </section>
