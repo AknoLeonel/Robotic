@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Política de privacidade | Arena Robótica 26</title>
+  <meta name="description" content="Como a Arena Robótica 26 trata dados pessoais e cookies neste site, conforme a LGPD.">
+  <link rel="canonical" href="https://arenarobotica26.com/privacidade.html">
+  <meta name="theme-color" content="#0A1E8C">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .doc { padding: calc(var(--hdr-h) + 40px) 0 80px; }
+    .doc .wrap { max-width: 820px; }
+    .doc h1 { font-family: var(--f-display); font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(2rem, 1.4rem + 3vw, 3.2rem); margin-bottom: 8px; }
+    .doc h2 { font-family: var(--f-mono); font-size: 1.15rem; margin: 36px 0 10px; color: var(--neon); }
+    .doc p, .doc li { color: var(--muted); margin-top: 10px; }
+    .doc ul { padding-left: 1.2em; }
+    .doc a { color: var(--neon); }
+    .doc .back { display: inline-flex; margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+  <header class="hdr is-scrolled">
+    <div class="hdr__in wrap">
+      <a class="brand" href="/">
+        <span class="brand__hash">#AR</span><span class="brand__lcd">26</span><span class="sr-only">: Arena Robótica 26, página inicial</span>
+      </a>
+    </div>
+  </header>
+  <main class="doc">
+    <div class="wrap">
+      <a class="btn btn--ghost btn--sm back" href="/">← Voltar ao site</a>
+      <h1>Política de privacidade</h1>
+      <p>Última atualização: outubro de 2026.</p>
+
+      <h2>1. Quem somos</h2>
+      <p>Este site divulga a Arena Robótica 26, realizada pelo Instituto Guilda com apoio da Secretaria de Ciência, Tecnologia e Inovação e do Governo do Distrito Federal. O Instituto Guilda é o controlador dos dados tratados neste site.</p>
+
+      <h2>2. Quais dados coletamos</h2>
+      <ul>
+        <li><strong>Dados de navegação</strong>, como páginas visitadas, cliques nos botões de ingresso, tipo de dispositivo e origem da visita (por exemplo, parâmetros UTM e identificadores de clique de anúncios). Só são coletados com o seu consentimento.</li>
+        <li><strong>Dados do ingresso</strong>: o cadastro e a emissão do ingresso acontecem no Sympla, que tem política de privacidade própria. Este site não recebe nem armazena esses dados.</li>
+      </ul>
+
+      <h2>3. Cookies e tecnologias semelhantes</h2>
+      <ul>
+        <li><strong>Essenciais</strong>: guardam a sua escolha sobre cookies. Não podem ser desativados.</li>
+        <li><strong>Métricas</strong> (Google Analytics 4): ajudam a entender como o site é usado, de forma agregada.</li>
+        <li><strong>Marketing</strong> (Google Ads e, quando usado, Meta Pixel): medem a eficácia das campanhas de divulgação.</li>
+      </ul>
+      <p>Usamos o Modo de Consentimento do Google: enquanto você não aceitar, as ferramentas de métricas e marketing não gravam cookies no seu navegador. Você pode mudar sua escolha a qualquer momento em <button type="button" class="linkish" data-consent-open>Preferências de cookies</button>.</p>
+
+      <h2>4. Para que usamos os dados</h2>
+      <p>Para medir o alcance da divulgação do evento, melhorar o site e as campanhas. A base legal é o seu consentimento (art. 7º, I, da LGPD).</p>
+
+      <h2>5. Compartilhamento</h2>
+      <p>Os dados de navegação são processados por Google e, quando aplicável, Meta, que atuam como operadores e podem armazenar dados fora do Brasil, conforme as salvaguardas previstas na LGPD.</p>
+
+      <h2>6. Seus direitos</h2>
+      <p>Você pode pedir acesso, correção, anonimização, portabilidade ou exclusão dos seus dados, e revogar o consentimento, escrevendo para <a href="mailto:privacidade@arenarobotica26.com">privacidade@arenarobotica26.com</a>.</p>
+
+      <h2>7. Retenção</h2>
+      <p>Os dados de métricas são mantidos pelo prazo configurado nas ferramentas (até 14 meses no Google Analytics) e depois excluídos.</p>
+    </div>
+  </main>
+
+  <div class="consent" role="dialog" aria-modal="false" aria-labelledby="consent-title" aria-describedby="consent-desc" data-consent hidden>
+    <div class="win">
+      <div class="win__bar"><span class="win__title" id="consent-title">cookies.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+      <div class="consent__body">
+        <p id="consent-desc">Usamos cookies para medir o acesso e melhorar nossas campanhas. Você escolhe.</p>
+        <form class="consent__prefs" data-consent-prefs hidden>
+          <label class="switch"><input type="checkbox" checked disabled><span>Essenciais <small>sempre ativos</small></span></label>
+          <label class="switch"><input type="checkbox" name="analytics"><span>Métricas <small>Google Analytics</small></span></label>
+          <label class="switch"><input type="checkbox" name="marketing"><span>Marketing <small>Google Ads e Meta</small></span></label>
+        </form>
+        <div class="consent__actions">
+          <button type="button" class="btn btn--cta btn--sm" data-consent-accept>Aceitar todos</button>
+          <button type="button" class="btn btn--ghost btn--sm" data-consent-reject>Só essenciais</button>
+          <button type="button" class="linkish" data-consent-custom aria-expanded="false">Personalizar</button>
+          <button type="button" class="btn btn--ghost btn--sm" data-consent-save hidden>Salvar escolhas</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>window.AR26 = window.AR26 || {};</script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
