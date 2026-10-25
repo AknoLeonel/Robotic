@@ -1,0 +1,44 @@
+# SITELINKS (Campanha | Texto do link | Descrição 1 | Descrição 2 | URL final)
+AR26 | C01 | Pesquisa | Marca & Evento	Programação	06 a 08 de novembro	Sex e sáb 9h-18h, dom 9h-16h	https://www.arenarobotica.com.br/#programacao
+AR26 | C01 | Pesquisa | Marca & Evento	Como Retirar o Ingresso	Grátis pelo Sympla	Leva só 1 minuto	https://www.arenarobotica.com.br/#ingresso
+AR26 | C01 | Pesquisa | Marca & Evento	Local e Como Chegar	Arena Mané Garrincha	Eixo Monumental, Brasília	https://www.arenarobotica.com.br/#local
+AR26 | C01 | Pesquisa | Marca & Evento	Atividades	Batalha de robôs e oficinas	Drones, games e food park	https://www.arenarobotica.com.br/#atividades
+AR26 | C01 | Pesquisa | Marca & Evento	Perguntas Frequentes	Idade, ingresso e comida	Tire suas dúvidas antes de ir	https://www.arenarobotica.com.br/#duvidas
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Programação	06 a 08 de novembro	Sex e sáb 9h-18h, dom 9h-16h	https://www.arenarobotica.com.br/#programacao
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Como Retirar o Ingresso	Grátis pelo Sympla	Leva só 1 minuto	https://www.arenarobotica.com.br/#ingresso
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Local e Como Chegar	Arena Mané Garrincha	Eixo Monumental, Brasília	https://www.arenarobotica.com.br/#local
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Atividades	Batalha de robôs e oficinas	Drones, games e food park	https://www.arenarobotica.com.br/#atividades
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Perguntas Frequentes	Idade, ingresso e comida	Tire suas dúvidas antes de ir	https://www.arenarobotica.com.br/#duvidas
+AR26 | C03 | Pesquisa | Lazer & Família	Programação	06 a 08 de novembro	Sex e sáb 9h-18h, dom 9h-16h	https://www.arenarobotica.com.br/#programacao
+AR26 | C03 | Pesquisa | Lazer & Família	Como Retirar o Ingresso	Grátis pelo Sympla	Leva só 1 minuto	https://www.arenarobotica.com.br/#ingresso
+AR26 | C03 | Pesquisa | Lazer & Família	Local e Como Chegar	Arena Mané Garrincha	Eixo Monumental, Brasília	https://www.arenarobotica.com.br/#local
+AR26 | C03 | Pesquisa | Lazer & Família	Atividades	Batalha de robôs e oficinas	Drones, games e food park	https://www.arenarobotica.com.br/#atividades
+AR26 | C03 | Pesquisa | Lazer & Família	Perguntas Frequentes	Idade, ingresso e comida	Tire suas dúvidas antes de ir	https://www.arenarobotica.com.br/#duvidas
+
+# FRASES DE DESTAQUE (Campanha | Texto)
+AR26 | C01 | Pesquisa | Marca & Evento	Entrada Gratuita
+AR26 | C01 | Pesquisa | Marca & Evento	Mais de 100 Equipes
+AR26 | C01 | Pesquisa | Marca & Evento	Para Toda a Família
+AR26 | C01 | Pesquisa | Marca & Evento	3 Dias de Evento
+AR26 | C01 | Pesquisa | Marca & Evento	Oficinas e Ativações
+AR26 | C01 | Pesquisa | Marca & Evento	Food Park
+AR26 | C01 | Pesquisa | Marca & Evento	Ingresso Pelo Sympla
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Entrada Gratuita
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Mais de 100 Equipes
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Para Toda a Família
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	3 Dias de Evento
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Oficinas e Ativações
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Food Park
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Ingresso Pelo Sympla
+AR26 | C03 | Pesquisa | Lazer & Família	Entrada Gratuita
+AR26 | C03 | Pesquisa | Lazer & Família	Mais de 100 Equipes
+AR26 | C03 | Pesquisa | Lazer & Família	Para Toda a Família
+AR26 | C03 | Pesquisa | Lazer & Família	3 Dias de Evento
+AR26 | C03 | Pesquisa | Lazer & Família	Oficinas e Ativações
+AR26 | C03 | Pesquisa | Lazer & Família	Food Park
+AR26 | C03 | Pesquisa | Lazer & Família	Ingresso Pelo Sympla
+
+# SNIPPETS ESTRUTURADOS (Campanha | Cabeçalho | Valores separados por ;)
+AR26 | C01 | Pesquisa | Marca & Evento	Tipos	Batalha de Robôs;Competições;Oficinas;Drones;Games;Ativações
+AR26 | C02 | Pesquisa | Robótica & Tecnologia	Tipos	Batalha de Robôs;Competições;Oficinas;Drones;Games;Ativações
+AR26 | C03 | Pesquisa | Lazer & Família	Tipos	Batalha de Robôs;Competições;Oficinas;Drones;Games;Ativações
