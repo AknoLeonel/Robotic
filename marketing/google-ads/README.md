@@ -78,7 +78,8 @@ python3 marketing/google-ads/gerar_display.py   # gera ar26-display-editor.csv
 O `ar26-display-editor.csv` faz duas coisas:
 - muda os orçamentos diários: C04 Display R$ 55 · C02 R$ 25 · C03 R$ 22 · C01 R$ 16 (total R$ 118);
 - cria a campanha `AR26 | C04 | Display | Branding DF` **pausada**, com lance de CPM visível, o grupo `Branding DF`
-  e o anúncio responsivo de display com 5 títulos, título longo e 5 descrições.
+  e o anúncio responsivo de display com 5 títulos, título longo e 5 descrições. O lance entra como Maximizar cliques
+  (o Editor não aceita "Viewable CPM" na importação); troque por CPM visível à mão, se a opção aparecer.
 
 Depois de importar, termine no Editor:
 1. No anúncio responsivo, adicione as imagens 1200x628 e 1200x1200 e os logos 1200x1200 e 1200x300 (pasta `responsivo/`).
