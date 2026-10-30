@@ -66,3 +66,24 @@ A conversão principal é o clique no ingresso (`ticket_click` no GA4 `G-4GDC9N3
       “Robótica, Drones e Games” em `gerar_campanhas.py`.
 - [ ] “Batalha de Robôs” confirmada como atividade aberta ao público.
 - [ ] Contêiner do GTM publicado e `ticket_click` aparecendo no DebugView do GA4.
+
+## Display (branding) e novos orçamentos
+
+Pedido do cliente: a maior fatia do orçamento vai para o Display, para dar alcance e exposição da marca.
+
+```bash
+python3 marketing/google-ads/gerar_display.py   # gera ar26-display-editor.csv
+```
+
+O `ar26-display-editor.csv` faz duas coisas:
+- muda os orçamentos diários: C04 Display R$ 55 · C02 R$ 25 · C03 R$ 22 · C01 R$ 16 (total R$ 118);
+- cria a campanha `AR26 | C04 | Display | Branding DF` **pausada**, com lance de CPM visível, o grupo `Branding DF`
+  e o anúncio responsivo de display com 5 títulos, título longo e 5 descrições.
+
+Depois de importar, termine no Editor:
+1. No anúncio responsivo, adicione as imagens 1200x628 e 1200x1200 e os logos 1200x1200 e 1200x300 (pasta `responsivo/`).
+2. Em **Anúncios de imagem → Adicionar vários**, adicione os banners de `anuncios_imagem/` (cada um com até 150 KB).
+3. Na campanha C04: locais (DF + 40 km, Presença), lance máximo de CPM visível de R$ 6,00 e segmentação otimizada ligada.
+4. Publique e ative a C04. Na web: limite de frequência de 4 impressões por pessoa por dia.
+
+Confirme o gasto real antes de importar: os R$ 118/dia supõem cerca de R$ 1.000 restantes dos R$ 1.500 até 08/11.
