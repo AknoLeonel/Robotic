@@ -73,6 +73,7 @@ window.ARENA_TRACKING_CONFIG = {
   googleAdsTicketLabel: '',          // rótulo da conversão "AR26 - Clique ingresso" (opcional)
   gtmId: 'GTM-WV3MFCVQ',             // contêiner do Google Tag Manager
   clarityId: 'z2rtmqwol5',           // Clarity "Arena Robótica 26"
+  tiktokPixelId: '',                 // Pixel do TikTok (vazio = não carrega)
   capiEndpoint: '/api/meta-events',  // função da Vercel (null = só Pixel)
   privacyPolicyUrl: '/politica-de-privacidade',
   spa: false,
@@ -95,7 +96,7 @@ do README dele, com a mesma configuração, os mesmos eventos e a mesma API (`Ar
 |---|---|---|---|
 | Abrir página | PageView | page_view | gravação/mapa de calor |
 | Rolar 50% ou ficar 30 s | ViewContent | engaged_view | evento |
-| Clique em “Retirar ingresso grátis” (Sympla) | InitiateCheckout | ticket_click (+ `posicao`) e, se configurada, conversão do Google Ads | evento |
+| Clique em “Retirar ingresso grátis” (Sympla) | InitiateCheckout + Lead | ticket_click (+ `posicao`, `local_botao`) e, se configurada, conversão do Google Ads | evento |
 | WhatsApp, telefone, e-mail, Instagram | Contact | contact_click | evento |
 | Envio de formulário | Lead (+ e-mail/telefone criptografados) | generate_lead | evento |
 | Botão/link com `data-track="nome"` | — | cta_click | evento |
@@ -111,7 +112,15 @@ do README dele, com a mesma configuração, os mesmos eventos e a mesma API (`Ar
 - **`clique_ingresso`:** além do GA4, cada clique no ingresso envia `{ event: "clique_ingresso", posicao }` ao `dataLayer`, para o GTM.
 - **Mesma aba:** no clique do ingresso, a página espera o GA4 confirmar o envio (no máximo 500 ms) e segue para a Sympla.
 - **UTMs na Sympla:** `utm_*`, `gclid`, `gbraid`, `wbraid`, `fbclid` e `msclkid` da visita vão para todos os links da Sympla.
-  Sem UTM, o link sai com `utm_source=site&utm_medium=referral&utm_campaign=ar26`.
+  Visita com `gclid` e sem UTM sai como `utm_source=google&utm_medium=cpc`. Sem nenhum dos dois, sai com
+  `utm_source=site&utm_medium=referral&utm_campaign=ar26`.
+- **TikTok:** com `tiktokPixelId` preenchido, o pixel carrega só depois do aceite de marketing, registra a página e envia
+  `ClickButton` no clique do ingresso.
+- **Pacote “RASTREAMENTO” (LEIA-ME com `1-head.html`, `2-aviso-de-cookies.txt` e `3-antes-do-body.html`):** **não cole**.
+  O que ele tem de novo já está no `tracking.js`: TikTok, `Lead` no clique, UTMs `google/cpc` com `gclid`,
+  `googleAdsConversionLabel` e as funções `liberarRastreamento()` e `bloquearRastreamento()` (o banner já faz o mesmo sozinho).
+  Colar o pacote carregaria o `gtag.js` e o Pixel duas vezes e usaria o GA4 antigo (`G-5GHCH96NG1`).
+  No GA4, o clique no ingresso se chama `ticket_click`, e não `clique_sympla`.
 - **Deduplicação:** Pixel e API de Conversões usam o mesmo `event_id`.
 
 ### Botões de ingresso (`posicao`)

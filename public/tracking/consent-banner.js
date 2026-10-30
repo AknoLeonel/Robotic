@@ -11,6 +11,8 @@
   if (!AT) return;
   var CFG = AT.config || {};
   var privacy = CFG.privacyPolicyUrl || "/politica-de-privacidade";
+  var marketingTools = "Meta (Facebook e Instagram), Google Ads" +
+    (CFG.tiktokPixelId && !/X{4}/.test(CFG.tiktokPixelId) ? " e TikTok" : "");
 
   var root, prefs, save, custom, lastFocus;
 
@@ -33,7 +35,7 @@
           '<form class="consent__prefs" hidden>' +
             '<label class="switch"><input type="checkbox" checked disabled><span>Essenciais <small>sempre ativos</small></span></label>' +
             '<label class="switch"><input type="checkbox" name="analytics"><span>Métricas <small>Google Analytics e Microsoft Clarity</small></span></label>' +
-            '<label class="switch"><input type="checkbox" name="marketing"><span>Marketing <small>Meta (Facebook e Instagram) e Google Ads</small></span></label>' +
+            '<label class="switch"><input type="checkbox" name="marketing"><span>Marketing <small>' + marketingTools + '</small></span></label>' +
           '</form>' +
           '<div class="consent__actions">' +
             '<button type="button" class="btn btn--cta btn--sm" data-accept>Aceitar todos</button>' +

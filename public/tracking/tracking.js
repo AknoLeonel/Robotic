@@ -1,12 +1,15 @@
 /*!
  * Arena Robótica 26 · rastreamento
- * Meta Pixel + API de Conversões, Google Analytics 4, Google Tag Manager e Microsoft Clarity,
+ * Meta Pixel + API de Conversões, Google Analytics 4, Google Ads, Google Tag Manager, Microsoft Clarity
+ * e Pixel do TikTok,
  * com consentimento (LGPD + Consent Mode v2).
  *
  * Configuração em window.ARENA_TRACKING_CONFIG (ver /head.html e o README).
  * API pública: window.ArenaTracking
  *   .track(nome, params, { meta: "NomeNaMeta" })   evento próprio
  *   .consent.get() / .consent.set({ analytics, marketing }) / .consent.open()
+ * Atalhos (mesmos nomes do LEIA-ME do pacote de rastreamento):
+ *   liberarRastreamento()  = aceitar tudo · bloquearRastreamento() = só essenciais
  */
 (function () {
   "use strict";
@@ -100,9 +103,13 @@
     if (consent.marketing) {
       startMeta();
       flushMetaQueue();
+      startTikTok();
+      flushTikTokQueue();
     } else {
       metaQueue.length = 0; // recusou: descarta o que estava na fila
+      tiktokQueue.length = 0;
       if (prev && prev.marketing && w.fbq) w.fbq("consent", "revoke");
+      if (prev && prev.marketing && w.ttq) w.ttq.revokeConsent();
     }
     d.dispatchEvent(new CustomEvent("arena:consent", { detail: consent }));
   }
@@ -130,14 +137,16 @@
   }
 
   // conversão do Google Ads "AR26 - Clique ingresso" (só se o rótulo estiver configurado)
+  var adsLabel = CFG.googleAdsTicketLabel || CFG.googleAdsConversionLabel || "";
+  if (/X{4}/.test(adsLabel)) adsLabel = ""; // "XXXXXXXXXX" = ainda não definido
   function adsTicketConversion(cb) {
-    if (!CFG.googleAdsId || !CFG.googleAdsTicketLabel) return false;
+    if (!CFG.googleAdsId || !adsLabel) return false;
     gtag("event", "conversion", {
-      send_to: CFG.googleAdsId + "/" + CFG.googleAdsTicketLabel,
+      send_to: CFG.googleAdsId + "/" + adsLabel,
       value: 0, currency: "BRL",
       event_callback: cb, event_timeout: 450
     });
-    log("Google Ads conversão", CFG.googleAdsTicketLabel);
+    log("Google Ads conversão", adsLabel);
     return true;
   }
 
@@ -219,6 +228,32 @@
     log("API de Conversões", ev.event_name, ev.event_id);
   }
 
+  /* ---------------- TikTok (só com consentimento de marketing) ---------------- */
+  var tiktokId = /X{4}/.test(CFG.tiktokPixelId || "") ? "" : CFG.tiktokPixelId; // "XXXX" = ainda não definido
+  var tiktokStarted = false;
+  var tiktokQueue = [];
+  function startTikTok() {
+    if (tiktokStarted || !tiktokId) return;
+    tiktokStarted = true;
+    /* eslint-disable */
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    }(w, d, "ttq");
+    /* eslint-enable */
+    w.ttq.grantConsent();
+    w.ttq.load(tiktokId);
+    w.ttq.page();
+    log("TikTok Pixel carregado");
+  }
+  function tiktok(name, props) {
+    if (!tiktokId) return;
+    if (consent && consent.marketing) { startTikTok(); w.ttq.track(name, props || {}); log("TikTok", name, props || {}); }
+    else if (!consent) tiktokQueue.push([name, props]);
+  }
+  function flushTikTokQueue() {
+    tiktokQueue.splice(0).forEach(function (e) { tiktok(e[0], e[1]); });
+  }
+
   /* ---------------- UTMs → links da Sympla ---------------- */
   function attribution() {
     var found = {};
@@ -228,7 +263,12 @@
       else found = JSON.parse(sessionStorage.getItem(ATTRIB_KEY) || "{}");
     } catch (e) {}
     var hasUtm = Object.keys(found).some(function (k) { return k.indexOf("utm_") === 0; });
-    if (!hasUtm) Object.keys(DEFAULT_UTMS).forEach(function (k) { found[k] = DEFAULT_UTMS[k]; });
+    if (!hasUtm && (found.gclid || found.gbraid || found.wbraid)) {
+      found.utm_source = "google"; // anúncio do Google sem UTM (a codificação automática só manda o gclid)
+      found.utm_medium = "cpc";
+    } else if (!hasUtm) {
+      Object.keys(DEFAULT_UTMS).forEach(function (k) { found[k] = DEFAULT_UTMS[k]; });
+    }
     return found;
   }
   function isSympla(url) { return /(^|\.)sympla\.com\.br$/i.test(url.hostname); }
@@ -277,8 +317,11 @@
 
     if (ticketLink(el, url)) {
       var posicao = el.getAttribute("data-cta") || named || "link";
-      var params = { posicao: posicao, link_url: url.toString() };
+      var localBotao = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 40) || "botao-sympla";
+      var params = { posicao: posicao, local_botao: localBotao, link_url: url.toString() };
       meta("InitiateCheckout", { content_name: "ingresso", posicao: posicao, currency: "BRL", value: 0 });
+      meta("Lead", { content_name: "Clique Sympla", posicao: posicao });
+      tiktok("ClickButton", { content_name: "Clique Sympla", posicao: posicao });
       clarityEvent("ticket_click");
       dataLayer.push({ event: "clique_ingresso", posicao: posicao, link_url: params.link_url });
 
@@ -290,7 +333,7 @@
       var go = function () { if (!done) { done = true; location.href = url.toString(); } };
       var settle = function () { if (--pending <= 0) go(); };
       if (CFG.ga4Id) { pending++; params.event_callback = settle; params.event_timeout = 450; }
-      if (CFG.googleAdsId && CFG.googleAdsTicketLabel) pending++;
+      if (CFG.googleAdsId && adsLabel) pending++;
       ga("ticket_click", params);
       adsTicketConversion(settle);
       if (!pending) go();
@@ -434,10 +477,12 @@
     },
     debug: function (on) { DEBUG = on !== false; }
   };
+  w.liberarRastreamento = function () { setConsent({ analytics: true, marketing: true }); };
+  w.bloquearRastreamento = function () { setConsent({ analytics: false, marketing: false }); };
 
   /* ---------------- início ---------------- */
   if (consent && consent.analytics) startClarity();
-  if (consent && consent.marketing) startMeta();
+  if (consent && consent.marketing) { startMeta(); startTikTok(); }
   meta("PageView");
 
   function ready() {
@@ -447,7 +492,7 @@
     d.addEventListener("click", onClick, true);
     d.addEventListener("submit", onSubmit, true);
     w.addEventListener("scroll", onScroll, { passive: true });
-    log("pronto", { ga4: CFG.ga4Id, ads: CFG.googleAdsId, gtm: CFG.gtmId, pixel: CFG.metaPixelId, clarity: CFG.clarityId, consentimento: consent });
+    log("pronto", { ga4: CFG.ga4Id, ads: CFG.googleAdsId, tiktok: tiktokId, gtm: CFG.gtmId, pixel: CFG.metaPixelId, clarity: CFG.clarityId, consentimento: consent });
   }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", ready);
   else ready();
