@@ -12,6 +12,7 @@
       googleAdsTicketLabel: '',             // rótulo da conversão "AR26 - Clique ingresso" (ver README)
       gtmId: 'GTM-WV3MFCVQ',                // contêiner do Google Tag Manager
       clarityId: 'z2rtmqwol5',              // Clarity: projeto "Arena Robótica 26"
+      tiktokPixelId: '',                    // Pixel do TikTok (vazio = não carrega)
       capiEndpoint: '/api/meta-events',     // função da Vercel em /api/meta-events.js
       privacyPolicyUrl: '/politica-de-privacidade',
       spa: false,
@@ -68,15 +69,15 @@
       <ul>
         <li><strong>Essenciais</strong>: guardam a sua escolha sobre cookies e a origem da visita durante a sessão. Não podem ser desativados.</li>
         <li><strong>Métricas</strong>: Google Analytics 4, para entender de forma agregada como o site é usado, e Microsoft Clarity, que registra mapas de calor e gravações anônimas da navegação (sem capturar o que é digitado em campos).</li>
-        <li><strong>Marketing</strong>: Meta Pixel e API de Conversões da Meta (Facebook e Instagram), e Google Ads, para medir a eficácia das campanhas de divulgação.</li>
+        <li><strong>Marketing</strong>: Meta Pixel e API de Conversões da Meta (Facebook e Instagram), Google Ads e, quando houver campanha no TikTok, o Pixel do TikTok, para medir a eficácia das campanhas de divulgação.</li>
       </ul>
-      <p>O Google Tag Manager organiza essas ferramentas. Usamos o Modo de Consentimento do Google: enquanto você não aceitar, o Google não grava cookies de métricas ou de anúncios, e o Meta Pixel e o Clarity nem são carregados. Você pode mudar sua escolha a qualquer momento em <button type="button" class="linkish" data-open-consent>Preferências de cookies</button>.</p>
+      <p>O Google Tag Manager organiza essas ferramentas. Usamos o Modo de Consentimento do Google: enquanto você não aceitar, o Google não grava cookies de métricas ou de anúncios, e o Meta Pixel, o Pixel do TikTok e o Clarity nem são carregados. Você pode mudar sua escolha a qualquer momento em <button type="button" class="linkish" data-open-consent>Preferências de cookies</button>.</p>
 
       <h2>4. Para que usamos os dados</h2>
       <p>Para medir o alcance da divulgação do evento e melhorar o site e as campanhas. A base legal é o seu consentimento (art. 7º, I, da LGPD), que pode ser revogado quando você quiser.</p>
 
       <h2>5. Compartilhamento</h2>
-      <p>Os dados de navegação são processados pelo Google, pela Microsoft e pela Meta, que atuam como operadores e podem armazenar dados fora do Brasil, conforme as salvaguardas previstas na LGPD. Não vendemos dados pessoais.</p>
+      <p>Os dados de navegação são processados pelo Google, pela Microsoft, pela Meta e, quando usado, pelo TikTok, que atuam como operadores e podem armazenar dados fora do Brasil, conforme as salvaguardas previstas na LGPD. Não vendemos dados pessoais.</p>
 
       <h2>6. Seus direitos</h2>
       <p>Você pode pedir acesso, correção, anonimização, portabilidade ou exclusão dos seus dados, e revogar o consentimento, escrevendo para <a href="mailto:privacidade@arenarobotica.com.br">privacidade@arenarobotica.com.br</a>.</p>
