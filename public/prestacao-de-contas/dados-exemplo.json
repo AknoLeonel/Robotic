@@ -1,0 +1,508 @@
+{
+  "_como_preencher": "Troque null pelos números reais (sem aspas, com ponto decimal: 1234.56). Datas no formato AAAA-MM-DD. Listas vazias [] podem receber itens copiando o modelo do campo _modelo ao lado. Depois de salvar, faça commit: o site publica sozinho.",
+  "meta": {
+    "titulo": "Arena Robótica 26",
+    "subtitulo": "Prestação de contas · Comunicação e resultados",
+    "atualizado_em": "2026-11-10",
+    "periodo_campanha": {
+      "inicio": "2026-10-23",
+      "fim": "2026-11-08"
+    },
+    "datas_evento": [
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08"
+    ],
+    "fontes": [
+      "Sympla (exportação de participantes)",
+      "Google Analytics 4",
+      "Google Ads",
+      "Gerenciador de Anúncios da Meta",
+      "Instagram Insights",
+      "Controle de credenciamento do evento"
+    ]
+  },
+  "geral": {
+    "ingressos_retirados": 4609,
+    "publico_presente": 4229,
+    "publico_por_dia": [
+      {
+        "dia": "2026-11-06",
+        "rotulo": "Sex 06/11",
+        "presentes": 1161
+      },
+      {
+        "dia": "2026-11-07",
+        "rotulo": "Sáb 07/11",
+        "presentes": 1700
+      },
+      {
+        "dia": "2026-11-08",
+        "rotulo": "Dom 08/11",
+        "presentes": 1368
+      }
+    ],
+    "equipes": 100,
+    "premios_reais": 78000,
+    "escolas": 37,
+    "observacao": "O evento teve entrada gratuita, com ingressos retirados pela Sympla."
+  },
+  "ingressos": {
+    "_modelo_diario": [
+      "2026-10-23",
+      0
+    ],
+    "diario": [
+      [
+        "2026-10-23",
+        40
+      ],
+      [
+        "2026-10-24",
+        117
+      ],
+      [
+        "2026-10-25",
+        77
+      ],
+      [
+        "2026-10-26",
+        124
+      ],
+      [
+        "2026-10-27",
+        163
+      ],
+      [
+        "2026-10-28",
+        174
+      ],
+      [
+        "2026-10-29",
+        130
+      ],
+      [
+        "2026-10-30",
+        157
+      ],
+      [
+        "2026-10-31",
+        220
+      ],
+      [
+        "2026-11-01",
+        182
+      ],
+      [
+        "2026-11-02",
+        274
+      ],
+      [
+        "2026-11-03",
+        277
+      ],
+      [
+        "2026-11-04",
+        472
+      ],
+      [
+        "2026-11-05",
+        550
+      ],
+      [
+        "2026-11-06",
+        541
+      ],
+      [
+        "2026-11-07",
+        536
+      ],
+      [
+        "2026-11-08",
+        575
+      ]
+    ],
+    "_modelo_origem": {
+      "canal": "Google Ads",
+      "ingressos": 0
+    },
+    "origem": [
+      {
+        "canal": "Instagram",
+        "ingressos": 1567
+      },
+      {
+        "canal": "Google Ads",
+        "ingressos": 1013
+      },
+      {
+        "canal": "Direto / sem UTM",
+        "ingressos": 921
+      },
+      {
+        "canal": "Meta Ads",
+        "ingressos": 645
+      },
+      {
+        "canal": "Escolas e parceiros",
+        "ingressos": 461
+      }
+    ],
+    "nota": "A origem vem das UTMs que o site repassa ao link da Sympla (utm_source / utm_medium)."
+  },
+  "midia": {
+    "google_ads": {
+      "campanhas": [
+        {
+          "nome": "C01 · Pesquisa · Marca & Evento",
+          "tipo": "Pesquisa",
+          "impressoes": 6200,
+          "cliques": 980,
+          "custo": 210.4,
+          "conversoes": 288
+        },
+        {
+          "nome": "C02 · Pesquisa · Robótica & Tecnologia",
+          "tipo": "Pesquisa",
+          "impressoes": 18400,
+          "cliques": 1320,
+          "custo": 402.9,
+          "conversoes": 280
+        },
+        {
+          "nome": "C03 · Pesquisa · Lazer & Família",
+          "tipo": "Pesquisa",
+          "impressoes": 15800,
+          "cliques": 1110,
+          "custo": 318.2,
+          "conversoes": 322
+        },
+        {
+          "nome": "C04 · Display · Branding DF",
+          "tipo": "Display",
+          "impressoes": 412000,
+          "cliques": 2980,
+          "custo": 489.6,
+          "conversoes": 944
+        }
+      ],
+      "nota": "Conversão = clique em “Retirar ingresso grátis” no site (ticket_click)."
+    },
+    "meta_ads": {
+      "_modelo": {
+        "nome": "Nome da campanha",
+        "objetivo": "Tráfego",
+        "alcance": 0,
+        "impressoes": 0,
+        "cliques": 0,
+        "custo": 0,
+        "resultados": 0
+      },
+      "campanhas": [
+        {
+          "nome": "AR26 · Tráfego · Ingresso",
+          "objetivo": "Tráfego",
+          "alcance": 98000,
+          "impressoes": 210000,
+          "cliques": 3400,
+          "custo": 620.0,
+          "resultados": 3400
+        },
+        {
+          "nome": "AR26 · Reconhecimento · DF",
+          "objetivo": "Alcance",
+          "alcance": 182000,
+          "impressoes": 390000,
+          "cliques": 1200,
+          "custo": 380.0,
+          "resultados": 182000
+        }
+      ]
+    },
+    "outros_canais": [
+      {
+        "canal": "TikTok (impulsionamento no app)",
+        "custo": 150.0,
+        "impressoes": 64000,
+        "cliques": 520
+      }
+    ]
+  },
+  "site": {
+    "visitas": 14800,
+    "usuarios": 11200,
+    "cliques_ingresso": 4790,
+    "cliques_por_posicao": [
+      {
+        "posicao": "hero",
+        "rotulo": "Topo (hero)",
+        "cliques": 1840
+      },
+      {
+        "posicao": "header",
+        "rotulo": "Cabeçalho",
+        "cliques": 420
+      },
+      {
+        "posicao": "barra_mobile",
+        "rotulo": "Barra do celular",
+        "cliques": 960
+      },
+      {
+        "posicao": "card",
+        "rotulo": "Batalha de Robôs",
+        "cliques": 380
+      },
+      {
+        "posicao": "passos",
+        "rotulo": "3 passos",
+        "cliques": 410
+      },
+      {
+        "posicao": "faq",
+        "rotulo": "Dúvidas",
+        "cliques": 260
+      },
+      {
+        "posicao": "final",
+        "rotulo": "Fechamento",
+        "cliques": 520
+      }
+    ],
+    "nota": "O GA4 só conta normalmente quem aceita os cookies (LGPD). Os números de site ficam abaixo dos de mídia e da Sympla."
+  },
+  "instagram": {
+    "alcance": 246000,
+    "visualizacoes": 812000,
+    "interacoes": 21400,
+    "seguidores_ganhos": 1930,
+    "visitas_perfil": 18200,
+    "formatos": [
+      {
+        "formato": "Posts",
+        "visualizacoes": 180000,
+        "interacoes": 6200
+      },
+      {
+        "formato": "Stories",
+        "visualizacoes": 240000,
+        "interacoes": 2100
+      },
+      {
+        "formato": "Reels",
+        "visualizacoes": 392000,
+        "interacoes": 13100
+      }
+    ],
+    "_modelo_publicacao": {
+      "titulo": "Título da publicação",
+      "categoria": "Institucional",
+      "data": "2026-10-30",
+      "url": "https://www.instagram.com/p/XXXX/",
+      "imagem": "",
+      "curtidas": 0,
+      "comentarios": 0,
+      "compartilhamentos": 0,
+      "destaque": false
+    },
+    "publicacoes": [
+      {
+        "titulo": "Save the date AR26",
+        "categoria": "Institucional",
+        "data": "2026-10-23",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/og-arena-robotica-26.jpg",
+        "curtidas": 742,
+        "comentarios": 30,
+        "compartilhamentos": 78,
+        "destaque": false
+      },
+      {
+        "titulo": "Ingressos liberados no Sympla",
+        "categoria": "Conversão",
+        "data": "2026-10-24",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-menino-600.webp",
+        "curtidas": 192,
+        "comentarios": 29,
+        "compartilhamentos": 252,
+        "destaque": true
+      },
+      {
+        "titulo": "Conheça a Batalha de Robôs",
+        "categoria": "Atrações",
+        "data": "2026-10-27",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-homem-600.webp",
+        "curtidas": 843,
+        "comentarios": 51,
+        "compartilhamentos": 191,
+        "destaque": false
+      },
+      {
+        "titulo": "Arena Drones FPV",
+        "categoria": "Atrações",
+        "data": "2026-10-29",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-menina-600.webp",
+        "curtidas": 309,
+        "comentarios": 76,
+        "compartilhamentos": 20,
+        "destaque": false
+      },
+      {
+        "titulo": "Programação oficial",
+        "categoria": "Serviço",
+        "data": "2026-11-04",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/og-arena-robotica-26.jpg",
+        "curtidas": 91,
+        "comentarios": 39,
+        "compartilhamentos": 283,
+        "destaque": true
+      },
+      {
+        "titulo": "Bastidores da montagem",
+        "categoria": "Bastidores",
+        "data": "2026-11-05",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-homem-600.webp",
+        "curtidas": 609,
+        "comentarios": 17,
+        "compartilhamentos": 265,
+        "destaque": false
+      },
+      {
+        "titulo": "É hoje! Arena Robótica 26",
+        "categoria": "Conversão",
+        "data": "2026-11-06",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-menino-600.webp",
+        "curtidas": 104,
+        "comentarios": 2,
+        "compartilhamentos": 242,
+        "destaque": true
+      },
+      {
+        "titulo": "Grande final da batalha",
+        "categoria": "Atrações",
+        "data": "2026-11-08",
+        "url": "https://www.instagram.com/",
+        "imagem": "/assets/img/personagem-menina-600.webp",
+        "curtidas": 674,
+        "comentarios": 73,
+        "compartilhamentos": 165,
+        "destaque": false
+      }
+    ]
+  },
+  "imprensa": {
+    "releases_enviados": 3,
+    "contatos": 84,
+    "_modelo_materia": {
+      "veiculo": "Nome do veículo",
+      "titulo": "Título da matéria",
+      "data": "2026-11-05",
+      "url": "https://",
+      "tipo": "Site"
+    },
+    "materias": [
+      {
+        "veiculo": "Veículo de exemplo 1",
+        "titulo": "Matéria fictícia sobre o evento",
+        "data": "2026-11-03",
+        "url": "https://example.com/",
+        "tipo": "Site"
+      },
+      {
+        "veiculo": "Veículo de exemplo 2",
+        "titulo": "Matéria fictícia de TV",
+        "data": "2026-11-06",
+        "url": "https://example.com/",
+        "tipo": "TV"
+      },
+      {
+        "veiculo": "Veículo de exemplo 3",
+        "titulo": "Entrevista fictícia em rádio",
+        "data": "2026-11-07",
+        "url": "https://example.com/",
+        "tipo": "Rádio"
+      }
+    ]
+  },
+  "outras_acoes": [
+    {
+      "titulo": "Letra caixa AR26",
+      "numero": 1,
+      "rotulo": "peça cenográfica de 8,35 × 2 m",
+      "descricao": "Marca do evento em grande formato na Arena."
+    },
+    {
+      "titulo": "E-mail marketing",
+      "numero": 4,
+      "rotulo": "disparos",
+      "descricao": ""
+    },
+    {
+      "titulo": "Voluntários",
+      "numero": 120,
+      "rotulo": "inscritos pela Sympla",
+      "descricao": "Inscrições até 05/11."
+    }
+  ],
+  "parceiros": [
+    {
+      "nome": "Instituto Guilda",
+      "papel": "Realização"
+    },
+    {
+      "nome": "Secretaria de Ciência, Tecnologia e Inovação do DF",
+      "papel": "Apoio"
+    },
+    {
+      "nome": "Governo do Distrito Federal",
+      "papel": "Apoio"
+    }
+  ],
+  "_modelo_galeria": {
+    "src": "/assets/img/relatorio/foto-1.webp",
+    "legenda": "Batalha de Robôs, sábado"
+  },
+  "galeria": [
+    {
+      "src": "/assets/img/personagem-menino-600.webp",
+      "legenda": "Foto de exemplo"
+    },
+    {
+      "src": "/assets/img/personagem-menina-600.webp",
+      "legenda": "Foto de exemplo"
+    },
+    {
+      "src": "/assets/img/personagem-homem-600.webp",
+      "legenda": "Foto de exemplo"
+    },
+    {
+      "src": "/assets/img/og-arena-robotica-26.jpg",
+      "legenda": "Foto de exemplo"
+    }
+  ],
+  "_modelo_conclusao": {
+    "titulo": "Título curto",
+    "texto": "O que os números mostram e o que vale repetir."
+  },
+  "conclusoes": [
+    {
+      "titulo": "Conclusão de exemplo 1",
+      "texto": "Texto fictício: aqui entra a leitura de por que os números aconteceram."
+    },
+    {
+      "titulo": "Conclusão de exemplo 2",
+      "texto": "Texto fictício: o que funcionou melhor entre os canais e por quê."
+    },
+    {
+      "titulo": "Conclusão de exemplo 3",
+      "texto": "Texto fictício: o que vale repetir ou mudar na próxima edição."
+    }
+  ],
+  "_aviso": "DADOS FICTÍCIOS: servem apenas para visualizar o layout."
+}

@@ -1,0 +1,109 @@
+{
+  "_como_preencher": "Troque null pelos números reais (sem aspas, com ponto decimal: 1234.56). Datas no formato AAAA-MM-DD. Listas vazias [] podem receber itens copiando o modelo do campo _modelo ao lado. Depois de salvar, faça commit: o site publica sozinho.",
+
+  "meta": {
+    "titulo": "Arena Robótica 26",
+    "subtitulo": "Prestação de contas · Comunicação e resultados",
+    "atualizado_em": null,
+    "periodo_campanha": { "inicio": "2026-10-23", "fim": "2026-11-08" },
+    "datas_evento": ["2026-11-06", "2026-11-07", "2026-11-08"],
+    "fontes": ["Sympla (exportação de participantes)", "Google Analytics 4", "Google Ads", "Gerenciador de Anúncios da Meta", "Instagram Insights", "Controle de credenciamento do evento"]
+  },
+
+  "geral": {
+    "ingressos_retirados": null,
+    "publico_presente": null,
+    "publico_por_dia": [
+      { "dia": "2026-11-06", "rotulo": "Sex 06/11", "presentes": null },
+      { "dia": "2026-11-07", "rotulo": "Sáb 07/11", "presentes": null },
+      { "dia": "2026-11-08", "rotulo": "Dom 08/11", "presentes": null }
+    ],
+    "equipes": 100,
+    "premios_reais": 78000,
+    "escolas": null,
+    "observacao": "O evento teve entrada gratuita, com ingressos retirados pela Sympla."
+  },
+
+  "ingressos": {
+    "_modelo_diario": ["2026-10-23", 0],
+    "diario": [],
+    "_modelo_origem": { "canal": "Google Ads", "ingressos": 0 },
+    "origem": [],
+    "nota": "A origem vem das UTMs que o site repassa ao link da Sympla (utm_source / utm_medium)."
+  },
+
+  "midia": {
+    "google_ads": {
+      "campanhas": [
+        { "nome": "C01 · Pesquisa · Marca & Evento", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
+        { "nome": "C02 · Pesquisa · Robótica & Tecnologia", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
+        { "nome": "C03 · Pesquisa · Lazer & Família", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
+        { "nome": "C04 · Display · Branding DF", "tipo": "Display", "impressoes": null, "cliques": null, "custo": null, "conversoes": null }
+      ],
+      "nota": "Conversão = clique em “Retirar ingresso grátis” no site (ticket_click)."
+    },
+    "meta_ads": {
+      "_modelo": { "nome": "Nome da campanha", "objetivo": "Tráfego", "alcance": 0, "impressoes": 0, "cliques": 0, "custo": 0, "resultados": 0 },
+      "campanhas": []
+    },
+    "outros_canais": [
+      { "canal": "TikTok (impulsionamento no app)", "custo": null, "impressoes": null, "cliques": null }
+    ]
+  },
+
+  "site": {
+    "visitas": null,
+    "usuarios": null,
+    "cliques_ingresso": null,
+    "cliques_por_posicao": [
+      { "posicao": "hero", "rotulo": "Topo (hero)", "cliques": null },
+      { "posicao": "header", "rotulo": "Cabeçalho", "cliques": null },
+      { "posicao": "barra_mobile", "rotulo": "Barra do celular", "cliques": null },
+      { "posicao": "card", "rotulo": "Batalha de Robôs", "cliques": null },
+      { "posicao": "passos", "rotulo": "3 passos", "cliques": null },
+      { "posicao": "faq", "rotulo": "Dúvidas", "cliques": null },
+      { "posicao": "final", "rotulo": "Fechamento", "cliques": null }
+    ],
+    "nota": "O GA4 só conta normalmente quem aceita os cookies (LGPD). Os números de site ficam abaixo dos de mídia e da Sympla."
+  },
+
+  "instagram": {
+    "alcance": null,
+    "visualizacoes": null,
+    "interacoes": null,
+    "seguidores_ganhos": null,
+    "visitas_perfil": null,
+    "formatos": [
+      { "formato": "Posts", "visualizacoes": null, "interacoes": null },
+      { "formato": "Stories", "visualizacoes": null, "interacoes": null },
+      { "formato": "Reels", "visualizacoes": null, "interacoes": null }
+    ],
+    "_modelo_publicacao": { "titulo": "Título da publicação", "categoria": "Institucional", "data": "2026-10-30", "url": "https://www.instagram.com/p/XXXX/", "imagem": "", "curtidas": 0, "comentarios": 0, "compartilhamentos": 0, "destaque": false },
+    "publicacoes": []
+  },
+
+  "imprensa": {
+    "releases_enviados": null,
+    "contatos": null,
+    "_modelo_materia": { "veiculo": "Nome do veículo", "titulo": "Título da matéria", "data": "2026-11-05", "url": "https://", "tipo": "Site" },
+    "materias": []
+  },
+
+  "outras_acoes": [
+    { "titulo": "Letra caixa AR26", "numero": null, "rotulo": "peça cenográfica de 8,35 × 2 m", "descricao": "Marca do evento em grande formato na Arena." },
+    { "titulo": "E-mail marketing", "numero": null, "rotulo": "disparos", "descricao": "" },
+    { "titulo": "Voluntários", "numero": null, "rotulo": "inscritos pela Sympla", "descricao": "Inscrições até 05/11." }
+  ],
+
+  "parceiros": [
+    { "nome": "Instituto Guilda", "papel": "Realização" },
+    { "nome": "Secretaria de Ciência, Tecnologia e Inovação do DF", "papel": "Apoio" },
+    { "nome": "Governo do Distrito Federal", "papel": "Apoio" }
+  ],
+
+  "_modelo_galeria": { "src": "/assets/img/relatorio/foto-1.webp", "legenda": "Batalha de Robôs, sábado" },
+  "galeria": [],
+
+  "_modelo_conclusao": { "titulo": "Título curto", "texto": "O que os números mostram e o que vale repetir." },
+  "conclusoes": []
+}

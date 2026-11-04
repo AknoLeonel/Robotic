@@ -240,6 +240,34 @@ O CSS (`.tabs`, `.tab`, `.timeline`) e o JS (teclado, ARIA, abrir no dia de hoje
 
 Se preferir, me mande a programação (pode ser um texto ou uma planilha) que eu monto.
 
+## Prestação de contas (`/prestacao-de-contas`)
+
+Subpágina com o relatório de comunicação e resultados, no mesmo modelo do relatório de referência (menu por seções,
+números principais, gráficos, tabelas, filtro de publicações, galerias e síntese), com a identidade do AR26.
+
+- **Endereço:** `www.arenarobotica.com.br/prestacao-de-contas`. Está com `noindex` e sem link no site enquanto os
+  números não forem publicados. Para divulgar, tire o `<meta name="robots">` do `index.html` da pasta.
+- **Dados:** tudo sai de `public/prestacao-de-contas/dados.json`. Campo `null` aparece como “—” e gráfico vazio como
+  “Aguardando dados”. Listas vazias (`[]`) têm um `_modelo_...` ao lado para copiar. Taxas como CTR, CPC, custo por
+  ingresso, comparecimento e totais são **calculadas sozinhas**: preencha só os números brutos.
+- **Modo exemplo:** `/prestacao-de-contas?exemplo=1` mostra o layout preenchido com **números fictícios** (faixa magenta
+  no topo). Ele lê `dados-exemplo.json`, gerado por `python3 scripts/gerar_exemplo_relatorio.py`.
+- **Fotos:** coloque em `public/assets/img/relatorio/` (WebP, até ~300 KB cada) e liste em `galeria` ou no campo
+  `imagem` das publicações.
+- **Gráficos:** Chart.js 4.5.0 servido pelo próprio site (`/assets/vendor/`, licença MIT). A página não carrega
+  rastreamento nem cookies.
+- **Imprimir / PDF:** a página tem estilo de impressão (Ctrl+P → Salvar como PDF).
+
+| Seção | De onde vêm os dados |
+|---|---|
+| Geral | Sympla (ingressos) e credenciamento (público por dia) |
+| Ingressos | Exportação diária da Sympla e UTMs (origem) |
+| Mídia paga | Google Ads e Gerenciador de Anúncios da Meta (impressões, cliques, investimento, conversões) |
+| Site | GA4 `G-5GHCH96NG1` (visitas, `ticket_click` por `posicao`) |
+| Instagram | Instagram Insights (totais, formatos e publicações) |
+| Imprensa e ações | Clipping, releases, e-mail marketing, voluntários |
+| Parceiros e síntese | Preenchidos à mão |
+
 ## Imagens
 
 ### Personagens
