@@ -105,3 +105,17 @@ Só adiciona, sem alterar nem remover nada:
   selecione todos e ative. Em 08/11 às 14h, a regra automática pausa tudo.
 
 Depois de importar: Verificar alterações → Publicar.
+
+## Correção da C04 + cronograma (arquivo único de 04/11)
+
+```bash
+python3 marketing/google-ads/gerar_correcao_c04.py   # gera ar26-importar-04-11.csv
+```
+
+Feito a partir da exportação da conta de 04/11, com os nomes de coluna do Editor 2.13. O arquivo:
+- corrige a C04: “Não tem anúncios políticos na UE”, Maximizar cliques com limite de CPC de R$ 1,00 e método de
+  segmentação “Presença”;
+- troca o local da C04 de **Brasil** para DF + as 8 cidades do Entorno usadas nas campanhas de pesquisa;
+- inclui todo o `ar26-cronograma-editor.csv` (palavras-chave, grupo Altas Habilidades e anúncios novos).
+
+As imagens e os logos do anúncio responsivo da C04 continuam manuais: o Editor não importa nem exporta imagens por CSV.
