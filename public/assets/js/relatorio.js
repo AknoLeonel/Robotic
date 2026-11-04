@@ -29,17 +29,18 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   };
-  var safeUrl = function (u) { return /^(https?:\/\/|\/)/i.test(u || "") ? u : ""; };
+  var safeUrl = function (u) { return /^(https?:\/\/|\/(?!\/))/i.test(u || "") ? u : ""; }; // "//host" não passa
   var dataBR = function (iso) {
     if (!iso) return "—";
     var p = String(iso).split("-");
-    return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : esc(iso);
+    return esc(p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : iso);
   };
-  var dm = function (iso) { var p = String(iso).split("-"); return p[2] + "/" + p[1]; };
+  var dm = function (iso) { var p = String(iso).split("-"); return esc(p[2] + "/" + p[1]); };
   var get = function (obj, path) {
     return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, obj);
   };
   var EMPTY = '<p class="empty"><span class="dot" aria-hidden="true"></span>Aguardando dados</p>';
+  var NOLIB = '<p class="empty">Não foi possível carregar a biblioteca de gráficos. Recarregue a página.</p>';
 
   /* ---------- blocos ---------- */
   function kpis(el, items) {
@@ -68,7 +69,8 @@
     var el = $('[data-chart="' + key + '"]');
     if (!el) return;
     if (charts[key]) { charts[key].destroy(); delete charts[key]; }
-    if (!hasData || !window.Chart) { el.innerHTML = EMPTY; return; }
+    if (!hasData) { el.innerHTML = EMPTY; return; }
+    if (!window.Chart) { el.innerHTML = NOLIB; return; }
     el.innerHTML = '<canvas role="img" aria-label="' + esc(label) + '"></canvas>';
     charts[key] = new window.Chart($("canvas", el), cfg);
   }
@@ -84,7 +86,12 @@
         y: { beginAtZero: true, ticks: { color: "#C9D2FF", font: { family: "Space Mono", size: 11 } }, grid: { color: "rgba(160,178,255,.12)" } }
       }
     };
-    return Object.assign(o, extra || {});
+    extra = extra || {};
+    // mescla plugins e escalas um nível abaixo, para um override (ex.: legend) não apagar o estilo do tooltip
+    Object.keys(extra).forEach(function (k) {
+      o[k] = (k === "plugins" || k === "scales") ? Object.assign({}, o[k], extra[k]) : extra[k];
+    });
+    return o;
   }
   var donutOpts = function () {
     return { responsive: true, maintainAspectRatio: false, cutout: "62%",
@@ -100,7 +107,7 @@
 
     // status e cabeçalho
     var status = $("[data-status]");
-    if (EXEMPLO) {
+    if (EXEMPLO || d._aviso) {
       status.hidden = false; status.className = "rel-status rel-status--demo";
       status.innerHTML = "<strong>Dados fictícios.</strong> Esta versão serve só para ver o layout preenchido. Os números reais estão em <a href=\"" + BASE + "\">prestação de contas</a>.";
     } else if (!d.meta || !d.meta.atualizado_em) {
@@ -114,6 +121,12 @@
     $$("[data-text]").forEach(function (el) { var t = get(d, el.getAttribute("data-text")); el.textContent = t || ""; el.hidden = !t; });
 
     // totais de mídia
+    // totais que podem vir do detalhe: usa o número digitado ou, se estiver vazio, a soma das partes
+    var diarioNums = (ing.diario || []).filter(function (x) { return Array.isArray(x) && isNum(x[1]); }).map(function (x) { return x[1]; });
+    if (!isNum(g.ingressos_retirados)) g.ingressos_retirados = sum(diarioNums);
+    if (!isNum(g.publico_presente)) g.publico_presente = sum(g.publico_por_dia || [], "presentes");
+    if (!isNum(st.cliques_ingresso)) st.cliques_ingresso = sum(st.cliques_por_posicao || [], "cliques");
+
     var custoG = sum(gads, "custo"), custoM = sum(mads, "custo"), custoO = sum(outros, "custo");
     var investimento = sum([custoG, custoM, custoO].filter(isNum));
     var cliquesMidia = sum([sum(gads, "cliques"), sum(mads, "cliques"), sum(outros, "cliques")].filter(isNum));
@@ -241,10 +254,11 @@
     }, posOk.length > 0, "Cliques no botão de ingresso por posição na página");
 
     // instagram
+    var igTaxa = ratio(ig.interacoes, ig.alcance);
     kpis($('[data-kpis="instagram"]'), [
       { v: num(ig.alcance), l: "Alcance" },
       { v: num(ig.visualizacoes), l: "Visualizações" },
-      { v: num(ig.interacoes), l: "Interações", s: pct(ratio(ig.interacoes, ig.alcance)) !== "—" ? pct(ratio(ig.interacoes, ig.alcance)) + " do alcance" : "" },
+      { v: num(ig.interacoes), l: "Interações", s: isNum(igTaxa) ? pct(igTaxa) + " do alcance" : "" },
       { v: isNum(ig.seguidores_ganhos) ? "+" + num(ig.seguidores_ganhos) : "—", l: "Novos seguidores" }
     ]);
     var fmts = (ig.formatos || []).filter(function (f) { return isNum(f.visualizacoes) || isNum(f.interacoes); });
