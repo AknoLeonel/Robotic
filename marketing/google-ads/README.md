@@ -52,7 +52,7 @@ Todas as campanhas entram **pausadas**, de 26/10 a 08/11/2026, só na Rede de Pe
 
 ## Conversão
 
-A conversão principal é o clique no ingresso (`ticket_click` no GA4 `G-4GDC9N3GS0`):
+A conversão principal é o clique no ingresso (`ticket_click` no GA4 `G-5GHCH96NG1`):
 
 1. No GA4, marque `ticket_click` como evento-chave.
 2. No Google Ads: Metas → Conversões → Nova ação → Importar → Google Analytics 4 → `ticket_click`. Defina como **primária**.
