@@ -588,6 +588,27 @@ p { text-wrap: pretty; }
 .timeline h3 { font-family: var(--f-mono); font-size: 1.02rem; font-weight: 700; line-height: 1.3; }
 .timeline p { margin-top: 4px; font-size: .9rem; color: var(--muted); }
 .tabs__note { margin-top: 16px; font-size: .8rem; color: var(--muted); }
+/* programação oficial: o dia todo + linha do tempo com etiqueta de local */
+.day-label { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9rem; letter-spacing: .04em; margin-bottom: 14px; }
+.day-label .ico { color: var(--neon); }
+.allday .allday__list { padding: 12px 16px 14px; }
+.allday__list--rows { grid-template-columns: 1fr !important; }
+.allday__list--rows li { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: baseline; font-weight: 400; font-size: .92rem; }
+.allday__list--rows li + li { border-top: 1px dashed var(--blue-line) !important; }
+.allday__list--rows b { color: var(--white); }
+.allday__list--rows span { color: var(--muted); }
+.allday__list--rows small { font-family: var(--f-mono); font-weight: 700; color: var(--neon); white-space: nowrap; }
+.tl-title { font-family: var(--f-display); font-style: italic; font-weight: 900; text-transform: uppercase; font-size: 1.3rem; margin: 30px 0 4px; }
+.timeline h4 { font-family: var(--f-mono); font-size: 1rem; font-weight: 700; line-height: 1.3; margin-top: 6px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: var(--muted); }
+.tag--batalha { background: var(--magenta); }
+.tag--maker { background: var(--neon); }
+.tag--comp { background: #B7A6FF; }
+.tag--altas { background: var(--pink); }
+.tag--geral { background: var(--white); }
+.timeline li.is-final { background: linear-gradient(90deg, rgba(227,63,217,.18), transparent 70%); border-radius: 8px; padding-inline: 10px; margin-inline: -10px; }
+.timeline li.is-final h4 { color: var(--neon); }
+@media (max-width: 639.98px) { .allday__list--rows li { grid-template-columns: 1fr; } }
 @media (min-width: 960px) {
   .sched .wrap, .faq__in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 0 64px; align-items: start; }
   .sched .sec__head, .faq .sec__head { position: sticky; top: calc(var(--hdr-h) + 32px); }

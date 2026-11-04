@@ -63,7 +63,7 @@ for name, b in BUDGETS.items():
 # 2) campanha de Display nova (pausada até as imagens entrarem)
 rows.append(row(**{
     "Campaign": DISPLAY, "Campaign Type": "Display", "Networks": "Display Network",
-    "Budget": f"{BUDGETS[DISPLAY]:.2f}", "Budget type": "Daily", "Bid Strategy Type": "Viewable CPM",
+    "Budget": f"{BUDGETS[DISPLAY]:.2f}", "Budget type": "Daily", "Bid Strategy Type": "Maximize clicks",  # o Editor recusou "Viewable CPM"; CPM visível é escolhido à mão
     "Campaign Status": "Paused", "Start Date": START, "End Date": END, "Languages": "pt",
     "Final URL suffix": SUFFIX,
 }))
