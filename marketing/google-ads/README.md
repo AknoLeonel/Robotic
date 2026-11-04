@@ -88,3 +88,20 @@ Depois de importar, termine no Editor:
 4. Publique e ative a C04. Na web: limite de frequência de 4 impressões por pessoa por dia.
 
 Confirme o gasto real antes de importar: os R$ 118/dia supõem cerca de R$ 1.000 restantes dos R$ 1.500 até 08/11.
+
+## Atualização com o cronograma oficial
+
+```bash
+python3 marketing/google-ads/gerar_cronograma.py   # gera ar26-cronograma-editor.csv
+```
+
+Só adiciona, sem alterar nem remover nada:
+- **48 palavras-chave** (exata e frase) nos grupos atuais: VR, drones FPV, simuladores, oficinas de caneta 3D e laser,
+  Feira Maker e competições estudantis;
+- grupo novo **“Altas Habilidades & Pais”** na C03, para pais que procuram altas habilidades e superdotação;
+- **1 anúncio novo por grupo, ativo**, com os ganchos do cronograma (grande final domingo 14h40, drones FPV e VR,
+  oficinas, lutas sáb e dom, R$ 78 mil em prêmios), levando direto para a programação (`#programacao`);
+- **1 anúncio “É hoje” por grupo, pausado.** Na manhã de 06/11, filtre os anúncios pausados com “É Hoje no Mané Garrincha”,
+  selecione todos e ative. Em 08/11 às 14h, a regra automática pausa tudo.
+
+Depois de importar: Verificar alterações → Publicar.

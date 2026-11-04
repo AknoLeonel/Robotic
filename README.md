@@ -187,7 +187,7 @@ Os textos abaixo estão **provisórios** e precisam ser confirmados antes de pub
 - [x] IDs de GA4, GTM, Meta Pixel e Clarity.
 - [ ] Token da API de Conversões na Vercel, publicação do contêiner do GTM e conversão do Google Ads (ver “Configurar na Vercel” e “GTM, GA4 e Google Ads”).
 - [x] Horários (06 e 07/11, das 9h às 18h; 08/11, das 9h às 16h), endereço e descrição oficial do Sympla.
-- [ ] **Programação por dia**: a página mostra só o que é oficial (dias, horários e o que rola todos os dias) com o aviso "em breve". Quando sair, siga “Publicar a programação” abaixo.
+- [x] **Programação por dia**: cronograma oficial (gerado por `scripts/gerar_programacao.py`; para mudar um horário, edite o script e rode de novo).
 - [ ] Portão de entrada, estacionamento, transporte e acessibilidade (seção Local).
 - [ ] Respostas do FAQ sobre idade, documento na entrada e saída e retorno.
 - [ ] Logos em SVG do Instituto Guilda, da Secretaria de CT&I e do GDF (hoje o rodapé usa texto).
@@ -196,7 +196,18 @@ Os textos abaixo estão **provisórios** e precisam ser confirmados antes de pub
 - [x] Domínio final: `www.arenarobotica.com.br` (canonical, OG, sitemap, robots, JSON-LD).
 - [ ] **QR code e texto das peças do KV** apontam para `arenarobotica26.com`: registrar esse domínio e redirecionar para o site, ou refazer o QR.
 
-## Publicar a programação
+## Programação
+
+A seção `#programacao` é gerada por `scripts/gerar_programacao.py` a partir do cronograma oficial do cliente
+(“CRONOGRAMA DO EVENTO – AGENDA DO EVENTO”). Para mudar um horário, edite a lista `DIAS` no script e rode:
+
+```bash
+python3 scripts/gerar_programacao.py
+```
+
+O script reescreve só o trecho entre `<!-- PROGRAMACAO:INICIO -->` e `<!-- PROGRAMACAO:FIM -->` no `index.html`.
+
+## Publicar a programação (modelo original das abas)
 
 Hoje a seção `#programacao` mostra os 3 dias com o horário oficial e a lista “todos os dias”.
 Quando a programação sair, troque o bloco `<div class="sched__body">` por abas com horários.
