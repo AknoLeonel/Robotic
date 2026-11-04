@@ -68,7 +68,7 @@ voluntários: `.../voluntarios-arena-robotica/3617780`) e no `offers.url` do JSO
 ```js
 window.ARENA_TRACKING_CONFIG = {
   metaPixelId: '1694579642232662',   // Pixel "arena robotica"
-  ga4Id: 'G-4GDC9N3GS0',             // GA4 (fluxo de dados do site)
+  ga4Id: 'G-5GHCH96NG1',             // GA4 "Arena Robótica 26 - Site" (a G-4GDC9N3GS0 recebeu os dados até 04/11)
   googleAdsId: 'AW-18535303737',     // tag do Google Ads
   googleAdsTicketLabel: '',          // rótulo da conversão "AR26 - Clique ingresso" (opcional)
   gtmId: 'GTM-WV3MFCVQ',             // contêiner do Google Tag Manager
@@ -119,7 +119,7 @@ do README dele, com a mesma configuração, os mesmos eventos e a mesma API (`Ar
 - **Pacote “RASTREAMENTO” (LEIA-ME com `1-head.html`, `2-aviso-de-cookies.txt` e `3-antes-do-body.html`):** **não cole**.
   O que ele tem de novo já está no `tracking.js`: TikTok, `Lead` no clique, UTMs `google/cpc` com `gclid`,
   `googleAdsConversionLabel` e as funções `liberarRastreamento()` e `bloquearRastreamento()` (o banner já faz o mesmo sozinho).
-  Colar o pacote carregaria o `gtag.js` e o Pixel duas vezes e usaria o GA4 antigo (`G-5GHCH96NG1`).
+  Colar o pacote carregaria o `gtag.js` e o Pixel duas vezes.
   No GA4, o clique no ingresso se chama `ticket_click`, e não `clique_sympla`.
 - **Deduplicação:** Pixel e API de Conversões usam o mesmo `event_id`.
 
