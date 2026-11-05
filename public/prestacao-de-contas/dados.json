@@ -1,109 +1,778 @@
 {
   "_como_preencher": "Troque null pelos números reais (sem aspas, com ponto decimal: 1234.56). Datas no formato AAAA-MM-DD. Listas vazias [] podem receber itens copiando o modelo do campo _modelo ao lado. Depois de salvar, faça commit: o site publica sozinho.",
-
   "meta": {
     "titulo": "Arena Robótica 26",
     "subtitulo": "Prestação de contas · Comunicação e resultados",
-    "atualizado_em": null,
-    "periodo_campanha": { "inicio": "2026-10-23", "fim": "2026-11-08" },
-    "datas_evento": ["2026-11-06", "2026-11-07", "2026-11-08"],
-    "fontes": ["Sympla (exportação de participantes)", "Google Analytics 4", "Google Ads", "Gerenciador de Anúncios da Meta", "Instagram Insights", "Controle de credenciamento do evento"]
+    "atualizado_em": "2026-11-04",
+    "periodo_campanha": {
+      "inicio": "2026-10-23",
+      "fim": "2026-11-08"
+    },
+    "datas_evento": [
+      "2026-11-06",
+      "2026-11-07",
+      "2026-11-08"
+    ],
+    "fontes": [
+      "Gerenciador de Anúncios da Meta e Meta Business Suite (coleta em 03/11, 18h)",
+      "Sympla (números oficiais em coleta)",
+      "Google Ads (em coleta)",
+      "Google Analytics 4 (em coleta)",
+      "Controle de credenciamento do evento (em coleta)"
+    ],
+    "status": "Parcial: anúncios da Meta e Instagram até 03/11 (relatório de mídia, plano atualizado em 04/11). Sympla oficial, público do evento, Google Ads, site e TikTok ainda em coleta."
   },
-
   "geral": {
-    "ingressos_retirados": null,
+    "ingressos_retirados": 1309,
     "publico_presente": null,
     "publico_por_dia": [
-      { "dia": "2026-11-06", "rotulo": "Sex 06/11", "presentes": null },
-      { "dia": "2026-11-07", "rotulo": "Sáb 07/11", "presentes": null },
-      { "dia": "2026-11-08", "rotulo": "Dom 08/11", "presentes": null }
+      {
+        "dia": "2026-11-06",
+        "rotulo": "Sex 06/11",
+        "presentes": null
+      },
+      {
+        "dia": "2026-11-07",
+        "rotulo": "Sáb 07/11",
+        "presentes": null
+      },
+      {
+        "dia": "2026-11-08",
+        "rotulo": "Dom 08/11",
+        "presentes": null
+      }
     ],
     "equipes": 100,
     "premios_reais": 78000,
     "escolas": null,
-    "observacao": "O evento teve entrada gratuita, com ingressos retirados pela Sympla."
+    "observacao": "O evento teve entrada gratuita, com ingressos retirados pela Sympla.",
+    "ingressos_fonte": "inscrições no Sympla atribuídas aos anúncios da Meta, até 03/11"
   },
-
   "ingressos": {
-    "_modelo_diario": ["2026-10-23", 0],
-    "diario": [],
-    "_modelo_origem": { "canal": "Google Ads", "ingressos": 0 },
+    "_modelo_diario": [
+      "2026-10-23",
+      0
+    ],
+    "diario": [
+      [
+        "2026-10-24",
+        26
+      ],
+      [
+        "2026-10-25",
+        79
+      ],
+      [
+        "2026-10-26",
+        186
+      ],
+      [
+        "2026-10-27",
+        170
+      ],
+      [
+        "2026-10-28",
+        111
+      ],
+      [
+        "2026-10-29",
+        106
+      ],
+      [
+        "2026-10-30",
+        243
+      ],
+      [
+        "2026-10-31",
+        31
+      ],
+      [
+        "2026-11-01",
+        110
+      ],
+      [
+        "2026-11-02",
+        214
+      ],
+      [
+        "2026-11-03",
+        33
+      ]
+    ],
+    "_modelo_origem": {
+      "canal": "Meta Ads",
+      "ingressos": 0
+    },
     "origem": [],
-    "nota": "A origem vem das UTMs que o site repassa ao link da Sympla (utm_source / utm_medium)."
+    "nota": "Até 03/11, inscrições contadas pela Meta a cada visita à página de confirmação do Sympla (03/11 só até as 18h). Os dias com menos inscrições acompanham os dias de menor entrega da Meta. Serão conferidas com o painel oficial do Sympla."
   },
-
   "midia": {
     "google_ads": {
       "campanhas": [
-        { "nome": "C01 · Pesquisa · Marca & Evento", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
-        { "nome": "C02 · Pesquisa · Robótica & Tecnologia", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
-        { "nome": "C03 · Pesquisa · Lazer & Família", "tipo": "Pesquisa", "impressoes": null, "cliques": null, "custo": null, "conversoes": null },
-        { "nome": "C04 · Display · Branding DF", "tipo": "Display", "impressoes": null, "cliques": null, "custo": null, "conversoes": null }
+        {
+          "nome": "C01 · Pesquisa · Marca & Evento",
+          "tipo": "Pesquisa",
+          "impressoes": null,
+          "cliques": null,
+          "custo": null,
+          "conversoes": null
+        },
+        {
+          "nome": "C02 · Pesquisa · Robótica & Tecnologia",
+          "tipo": "Pesquisa",
+          "impressoes": null,
+          "cliques": null,
+          "custo": null,
+          "conversoes": null
+        },
+        {
+          "nome": "C03 · Pesquisa · Lazer & Família",
+          "tipo": "Pesquisa",
+          "impressoes": null,
+          "cliques": null,
+          "custo": null,
+          "conversoes": null
+        },
+        {
+          "nome": "C04 · Display · Branding DF",
+          "tipo": "Display",
+          "impressoes": null,
+          "cliques": null,
+          "custo": null,
+          "conversoes": null
+        }
       ],
       "nota": "Conversão = clique em “Retirar ingresso grátis” no site (ticket_click)."
     },
     "meta_ads": {
-      "_modelo": { "nome": "Nome da campanha", "objetivo": "Tráfego", "alcance": 0, "impressoes": 0, "cliques": 0, "custo": 0, "resultados": 0 },
-      "campanhas": []
+      "_modelo": {
+        "nome": "Nome da campanha",
+        "objetivo": "Tráfego",
+        "alcance": 0,
+        "impressoes": 0,
+        "cliques": 0,
+        "custo": 0,
+        "resultados": 0
+      },
+      "campanhas": [
+        {
+          "nome": "AR26 | VENDAS | Sympla | ABO",
+          "objetivo": "Inscrições no Sympla",
+          "alcance": 135226,
+          "impressoes": 464979,
+          "cliques": 4808,
+          "custo": 3940.16,
+          "resultados": 1309
+        },
+        {
+          "nome": "AR26 | ENG | IG+FB | ABO",
+          "objetivo": "Visitas ao perfil",
+          "alcance": 361404,
+          "impressoes": 722300,
+          "cliques": 12055,
+          "custo": 3284.78,
+          "resultados": 12395
+        }
+      ],
+      "alcance_total": 463849,
+      "nota": "Uma campanha leva ao Sympla; a outra faz o evento ser conhecido. Na tabela detalhada da Meta do mesmo dia (18h06) aparecem 1.301 inscrições e R$ 7.139; aqui usamos o resumo, que bate com a soma diária. Impressões e cliques vêm da tabela detalhada.",
+      "publicos": [
+        {
+          "nome": "VND · Pais e Família 28-55",
+          "status": "Ativo",
+          "orc_dia": 350,
+          "investido": 2484.46,
+          "alcance": 78450,
+          "frequencia": 3.24,
+          "ctr": 0.0129,
+          "resultado": 998,
+          "tipo": "inscrições",
+          "custo": 2.49
+        },
+        {
+          "nome": "VND · Jovens Tech 18-27",
+          "status": "Pausado em 03/11",
+          "orc_dia": 150,
+          "investido": 1415.5,
+          "alcance": 57571,
+          "frequencia": 3.66,
+          "ctr": 0.0073,
+          "resultado": 303,
+          "tipo": "inscrições",
+          "custo": 4.67
+        },
+        {
+          "nome": "ENG · Jovens Tech 18-24",
+          "status": "Ativo",
+          "orc_dia": 230,
+          "investido": 1802.49,
+          "alcance": 201628,
+          "frequencia": 2.33,
+          "ctr": 0.0151,
+          "resultado": 7092,
+          "tipo": "visitas ao perfil",
+          "custo": 0.25
+        },
+        {
+          "nome": "ENG · Pais e Educadores 28-55",
+          "status": "Ativo",
+          "orc_dia": 200,
+          "investido": 1436.48,
+          "alcance": 160688,
+          "frequencia": 1.57,
+          "ctr": 0.0197,
+          "resultado": 5303,
+          "tipo": "visitas ao perfil",
+          "custo": 0.27
+        },
+        {
+          "nome": "VND · Remarketing 18-65",
+          "status": "Ativado após 03/11",
+          "orc_dia": 250,
+          "investido": 0,
+          "alcance": 0,
+          "frequencia": null,
+          "ctr": null,
+          "resultado": 0,
+          "tipo": "inscrições",
+          "custo": null
+        }
+      ],
+      "publicos_destaque": "Pais e família convertem 2× melhor: R$ 2,49 por inscrição, contra R$ 4,67 no público jovem, que foi pausado na campanha de ingressos e segue na campanha do Instagram, onde a visita custa R$ 0,25.",
+      "criativos": [
+        {
+          "nome": "Quem vem com você? (arte)",
+          "codigo": "VND PF ARTE2",
+          "formato": "Arte",
+          "custo": 2.41,
+          "resultados": 734
+        },
+        {
+          "nome": "Programa família (vídeo, cópia)",
+          "codigo": "VND PF VIDEO (cópia)",
+          "formato": "Vídeo",
+          "custo": 2.55,
+          "resultados": 28
+        },
+        {
+          "nome": "Vídeo família original",
+          "codigo": "VND PF VIDEO",
+          "formato": "Vídeo",
+          "custo": 2.71,
+          "resultados": 158
+        },
+        {
+          "nome": "Arte família 1",
+          "codigo": "VND PF ARTE1",
+          "formato": "Arte",
+          "custo": 2.93,
+          "resultados": 67
+        },
+        {
+          "nome": "Vídeo jovens",
+          "codigo": "VND JT VIDEO",
+          "formato": "Vídeo",
+          "custo": 3.37,
+          "resultados": 89
+        },
+        {
+          "nome": "Arte jovens 3",
+          "codigo": "VND JT ARTE3",
+          "formato": "Arte",
+          "custo": 3.69,
+          "resultados": 110
+        },
+        {
+          "nome": "Arte jovens 1 (pausada)",
+          "codigo": "VND JT ARTE1",
+          "formato": "Arte",
+          "custo": 6.7,
+          "resultados": 58
+        },
+        {
+          "nome": "Arte jovens 2 (pausada)",
+          "codigo": "VND JT ARTE2",
+          "formato": "Arte",
+          "custo": 7.01,
+          "resultados": 43
+        }
+      ],
+      "criativos_destaque": "Campeão: “Já sabe quem vem com você para a Arena?” trouxe 734 inscrições, 56% do total, a R$ 2,41 cada.",
+      "idade": [
+        {
+          "faixa": "18 a 24",
+          "inscricoes": 189,
+          "custo": 5.04
+        },
+        {
+          "faixa": "25 a 34",
+          "inscricoes": 358,
+          "custo": 2.97
+        },
+        {
+          "faixa": "35 a 44",
+          "inscricoes": 533,
+          "custo": 2.39
+        },
+        {
+          "faixa": "45 a 54",
+          "inscricoes": 216,
+          "custo": 2.75
+        }
+      ],
+      "genero": [
+        {
+          "genero": "Homens",
+          "inscricoes": 776,
+          "custo": 2.95
+        },
+        {
+          "genero": "Mulheres",
+          "inscricoes": 517,
+          "custo": 3.08
+        }
+      ],
+      "posicionamento": [
+        {
+          "local": "Feed do Instagram",
+          "inscricoes": 695,
+          "custo": 2.86
+        },
+        {
+          "local": "Stories do Instagram",
+          "inscricoes": 252,
+          "custo": 3.29
+        },
+        {
+          "local": "Reels do Instagram",
+          "inscricoes": 203,
+          "custo": 3.32
+        },
+        {
+          "local": "Feed do Facebook",
+          "inscricoes": 62,
+          "custo": 2.97
+        },
+        {
+          "local": "Reels do Facebook",
+          "inscricoes": 40,
+          "custo": 2.54
+        },
+        {
+          "local": "Status do WhatsApp",
+          "inscricoes": 28,
+          "custo": 2.51
+        }
+      ],
+      "geografia": "87% da verba no DF e 13% no entorno goiano. Seguidores concentrados em Taguatinga (18,7%), Brasília (8,6%), Guará (8%), Sobradinho (7,8%), Ceilândia (5,9%) e Gama (5,6%).",
+      "videos": [
+        {
+          "nome": "Instagram · Jovens (ENG JT VIDEO)",
+          "reproducoes_3s": 10836,
+          "thruplay": 2324,
+          "custo_thruplay": 0.31
+        },
+        {
+          "nome": "Instagram · Pais (ENG PE VIDEO)",
+          "reproducoes_3s": 10473,
+          "thruplay": 1701,
+          "custo_thruplay": 0.36
+        },
+        {
+          "nome": "Ingressos · Pais (VND PF VIDEO)",
+          "reproducoes_3s": 7919,
+          "thruplay": 1451,
+          "custo_thruplay": 0.29
+        },
+        {
+          "nome": "Ingressos · Jovens (VND JT VIDEO)",
+          "reproducoes_3s": 6922,
+          "thruplay": 1425,
+          "custo_thruplay": 0.21
+        },
+        {
+          "nome": "Ingressos · Pais, cópia (VND PF VIDEO)",
+          "reproducoes_3s": 1352,
+          "thruplay": 288,
+          "custo_thruplay": 0.25
+        }
+      ],
+      "videos_nota": "ThruPlay: vídeo assistido até o fim ou por pelo menos 15 segundos."
     },
     "outros_canais": [
-      { "canal": "TikTok (impulsionamento no app)", "custo": null, "impressoes": null, "cliques": null }
+      {
+        "canal": "TikTok (impulsionamento no app)",
+        "custo": null,
+        "impressoes": null,
+        "cliques": null
+      }
     ]
   },
-
   "site": {
     "visitas": null,
     "usuarios": null,
     "cliques_ingresso": null,
     "cliques_por_posicao": [
-      { "posicao": "hero", "rotulo": "Topo (hero)", "cliques": null },
-      { "posicao": "header", "rotulo": "Cabeçalho", "cliques": null },
-      { "posicao": "barra_mobile", "rotulo": "Barra do celular", "cliques": null },
-      { "posicao": "card", "rotulo": "Batalha de Robôs", "cliques": null },
-      { "posicao": "passos", "rotulo": "3 passos", "cliques": null },
-      { "posicao": "faq", "rotulo": "Dúvidas", "cliques": null },
-      { "posicao": "final", "rotulo": "Fechamento", "cliques": null }
+      {
+        "posicao": "hero",
+        "rotulo": "Topo (hero)",
+        "cliques": null
+      },
+      {
+        "posicao": "header",
+        "rotulo": "Cabeçalho",
+        "cliques": null
+      },
+      {
+        "posicao": "barra_mobile",
+        "rotulo": "Barra do celular",
+        "cliques": null
+      },
+      {
+        "posicao": "card",
+        "rotulo": "Batalha de Robôs",
+        "cliques": null
+      },
+      {
+        "posicao": "passos",
+        "rotulo": "3 passos",
+        "cliques": null
+      },
+      {
+        "posicao": "faq",
+        "rotulo": "Dúvidas",
+        "cliques": null
+      },
+      {
+        "posicao": "final",
+        "rotulo": "Fechamento",
+        "cliques": null
+      }
     ],
-    "nota": "O GA4 só conta normalmente quem aceita os cookies (LGPD). Os números de site ficam abaixo dos de mídia e da Sympla."
+    "nota": "Até 04/11 o site enviava os dados para outra propriedade do GA4 (ID corrigido em 04/11): os números de site valem a partir dessa data. O GA4 também só conta normalmente quem aceita os cookies (LGPD)."
   },
-
   "instagram": {
     "alcance": null,
-    "visualizacoes": null,
+    "visualizacoes": 1390000,
     "interacoes": null,
-    "seguidores_ganhos": null,
-    "visitas_perfil": null,
+    "seguidores_ganhos": 1043,
+    "visitas_perfil": 15031,
     "formatos": [
-      { "formato": "Posts", "visualizacoes": null, "interacoes": null },
-      { "formato": "Stories", "visualizacoes": null, "interacoes": null },
-      { "formato": "Reels", "visualizacoes": null, "interacoes": null }
+      {
+        "formato": "Posts",
+        "visualizacoes": null,
+        "interacoes": null
+      },
+      {
+        "formato": "Stories",
+        "visualizacoes": null,
+        "interacoes": null
+      },
+      {
+        "formato": "Reels",
+        "visualizacoes": null,
+        "interacoes": null
+      }
     ],
-    "_modelo_publicacao": { "titulo": "Título da publicação", "categoria": "Institucional", "data": "2026-10-30", "url": "https://www.instagram.com/p/XXXX/", "imagem": "", "curtidas": 0, "comentarios": 0, "compartilhamentos": 0, "destaque": false },
-    "publicacoes": []
+    "_modelo_publicacao": {
+      "titulo": "Título da publicação",
+      "categoria": "Institucional",
+      "data": "2026-10-30",
+      "url": "https://www.instagram.com/p/XXXX/",
+      "imagem": "",
+      "curtidas": 0,
+      "comentarios": 0,
+      "compartilhamentos": 0,
+      "destaque": false,
+      "visualizacoes": 0,
+      "salvos": 0
+    },
+    "publicacoes": [
+      {
+        "titulo": "Da velocidade à invenção",
+        "categoria": "Reels",
+        "data": "2026-10-28",
+        "url": "",
+        "imagem": "",
+        "visualizacoes": 220804,
+        "curtidas": 47,
+        "comentarios": 0,
+        "compartilhamentos": 36,
+        "salvos": 9,
+        "destaque": false
+      },
+      {
+        "titulo": "Tem programa pra família inteira",
+        "categoria": "Reels",
+        "data": "2026-10-28",
+        "url": "",
+        "imagem": "",
+        "visualizacoes": 191503,
+        "curtidas": 368,
+        "comentarios": 12,
+        "compartilhamentos": 68,
+        "salvos": 51,
+        "destaque": false
+      },
+      {
+        "titulo": "Robôs em combate",
+        "categoria": "Reels",
+        "data": "2026-10-28",
+        "url": "",
+        "imagem": "",
+        "visualizacoes": 47048,
+        "curtidas": 194,
+        "comentarios": 8,
+        "compartilhamentos": 34,
+        "salvos": 30,
+        "destaque": false
+      },
+      {
+        "titulo": "Batalha de Robôs",
+        "categoria": "Reels",
+        "data": "2026-10-19",
+        "url": "",
+        "imagem": "",
+        "visualizacoes": 1703,
+        "curtidas": 28,
+        "comentarios": 1,
+        "compartilhamentos": 12,
+        "salvos": 1,
+        "destaque": false
+      },
+      {
+        "titulo": "Segue a Linha",
+        "categoria": "Reels",
+        "data": "2026-10-25",
+        "url": "",
+        "imagem": "",
+        "visualizacoes": 1646,
+        "curtidas": 21,
+        "comentarios": 0,
+        "compartilhamentos": 1,
+        "salvos": 1,
+        "destaque": false
+      }
+    ],
+    "seguidores_inicio": 128,
+    "seguidores_fim": 1171,
+    "custo_por_seguidor": 3.07,
+    "seguidores_diario": [
+      [
+        "2026-10-24",
+        57
+      ],
+      [
+        "2026-10-25",
+        58
+      ],
+      [
+        "2026-10-26",
+        109
+      ],
+      [
+        "2026-10-27",
+        112
+      ],
+      [
+        "2026-10-28",
+        79
+      ],
+      [
+        "2026-10-29",
+        169
+      ],
+      [
+        "2026-10-30",
+        203
+      ],
+      [
+        "2026-10-31",
+        8
+      ],
+      [
+        "2026-11-01",
+        131
+      ],
+      [
+        "2026-11-02",
+        113
+      ]
+    ],
+    "nota": "@arenaroboticabsb, de 23/10 a 02/11: perfil 9× maior (128 → 1.171 seguidores), orgânico e anúncios somados. 98% de quem viu ainda não seguia. Visualizações arredondadas pela Meta (1,39 mi)."
   },
-
   "imprensa": {
     "releases_enviados": null,
     "contatos": null,
-    "_modelo_materia": { "veiculo": "Nome do veículo", "titulo": "Título da matéria", "data": "2026-11-05", "url": "https://", "tipo": "Site" },
+    "_modelo_materia": {
+      "veiculo": "Nome do veículo",
+      "titulo": "Título da matéria",
+      "data": "2026-11-05",
+      "url": "https://",
+      "tipo": "Site"
+    },
     "materias": []
   },
-
   "outras_acoes": [
-    { "titulo": "Letra caixa AR26", "numero": null, "rotulo": "peça cenográfica de 8,35 × 2 m", "descricao": "Marca do evento em grande formato na Arena." },
-    { "titulo": "E-mail marketing", "numero": null, "rotulo": "disparos", "descricao": "" },
-    { "titulo": "Voluntários", "numero": null, "rotulo": "inscritos pela Sympla", "descricao": "Inscrições até 05/11." }
+    {
+      "titulo": "Letra caixa AR26",
+      "numero": null,
+      "rotulo": "peça cenográfica de 8,35 × 2 m",
+      "descricao": "Marca do evento em grande formato na Arena."
+    },
+    {
+      "titulo": "E-mail marketing",
+      "numero": null,
+      "rotulo": "disparos",
+      "descricao": ""
+    },
+    {
+      "titulo": "Voluntários",
+      "numero": null,
+      "rotulo": "inscritos pela Sympla",
+      "descricao": "Inscrições até 05/11."
+    }
   ],
-
   "parceiros": [
-    { "nome": "Instituto Guilda", "papel": "Realização" },
-    { "nome": "Secretaria de Ciência, Tecnologia e Inovação do DF", "papel": "Apoio" },
-    { "nome": "Governo do Distrito Federal", "papel": "Apoio" }
+    {
+      "nome": "Instituto Guilda",
+      "papel": "Realização"
+    },
+    {
+      "nome": "Secretaria de Ciência, Tecnologia e Inovação do DF",
+      "papel": "Apoio"
+    },
+    {
+      "nome": "Governo do Distrito Federal",
+      "papel": "Apoio"
+    }
   ],
-
-  "_modelo_galeria": { "src": "/assets/img/relatorio/foto-1.webp", "legenda": "Batalha de Robôs, sábado" },
+  "_modelo_galeria": {
+    "src": "/assets/img/relatorio/foto-1.webp",
+    "legenda": "Batalha de Robôs, sábado"
+  },
   "galeria": [],
-
-  "_modelo_conclusao": { "titulo": "Título curto", "texto": "O que os números mostram e o que vale repetir." },
-  "conclusoes": []
+  "_modelo_conclusao": {
+    "titulo": "Título curto",
+    "texto": "O que os números mostram e o que vale repetir."
+  },
+  "conclusoes": [
+    {
+      "titulo": "Pais e família convertem 2× melhor",
+      "texto": "R$ 2,49 por inscrição no público de pais e família, contra R$ 4,67 no jovem. A faixa de 35 a 44 anos foi a maior e a mais barata: 533 inscrições a R$ 2,39."
+    },
+    {
+      "titulo": "O convite “Quem vem com você?” venceu",
+      "texto": "A arte trouxe 734 inscrições, 56% do total, a R$ 2,41 cada. O convite para trazer outras pessoas funciona com pais."
+    },
+    {
+      "titulo": "O custo por inscrição caiu",
+      "texto": "Começou acima de R$ 4 e, desde 28/10, fica em torno de R$ 2,50 na maioria dos dias. Média da campanha de ingressos: R$ 3,01."
+    },
+    {
+      "titulo": "O Instagram faz quase tudo",
+      "texto": "Feed, Stories e Reels do Instagram somam 88% das inscrições (1.150 de 1.309)."
+    },
+    {
+      "titulo": "Perfil 9× maior",
+      "texto": "De 128 para 1.171 seguidores em 11 dias, a R$ 3,07 por seguidor. 98% de quem viu o perfil ainda não seguia."
+    },
+    {
+      "titulo": "Conteúdo que o público guarda",
+      "texto": "“Tem programa pra família inteira” rendeu nos anúncios e no orgânico: 368 curtidas, 68 compartilhamentos e 51 salvamentos, o Reel mais guardado e enviado."
+    }
+  ],
+  "plano": {
+    "titulo": "Reta final: até R$ 18.000 no evento",
+    "orcamento_total": 18000,
+    "investido_ate_agora": 7224.94,
+    "orcamento_diario": 1750,
+    "ate": "2026-11-09",
+    "itens": [
+      {
+        "nome": "Ingressos · Pais e Família 28-55",
+        "campanha": "Ingressos",
+        "valor_dia": 650
+      },
+      {
+        "nome": "Ingressos · Semelhante aos inscritos",
+        "campanha": "Ingressos",
+        "valor_dia": 600
+      },
+      {
+        "nome": "Ingressos · Remarketing",
+        "campanha": "Ingressos",
+        "valor_dia": 150
+      },
+      {
+        "nome": "Instagram · Jovens 18-24",
+        "campanha": "Instagram",
+        "valor_dia": 175
+      },
+      {
+        "nome": "Instagram · Pais e Educadores",
+        "campanha": "Instagram",
+        "valor_dia": 175
+      }
+    ],
+    "projecao": [
+      {
+        "cenario": "Conservador",
+        "custo": 3.2,
+        "inscricoes": 3850
+      },
+      {
+        "cenario": "Provável",
+        "custo": 3.0,
+        "inscricoes": 4000
+      },
+      {
+        "cenario": "Otimista",
+        "custo": 2.6,
+        "inscricoes": 4450
+      }
+    ],
+    "projecao_extra": "Cenário provável: cerca de 1.900 seguidores e 700 a 750 mil pessoas alcançadas. Projeção de 04/11, com base nos custos reais até 03/11.",
+    "ajustes": [
+      {
+        "texto": "5 rascunhos antigos descartados: a conta ficou só com o que está no ar",
+        "feito": true
+      },
+      {
+        "texto": "Público Jovens pausado na campanha de ingressos (R$ 4,67 por inscrição)",
+        "feito": true
+      },
+      {
+        "texto": "Anúncios fracos pausados: arte de Halloween e a arte mais cara de pais e família",
+        "feito": true
+      },
+      {
+        "texto": "Criativos renomeados por campanha, público, formato e tema",
+        "feito": true
+      },
+      {
+        "texto": "Verba ampliada para R$ 18.000, com a campanha rodando até 09/11",
+        "feito": true
+      },
+      {
+        "texto": "Remarketing ativo para quem já demonstrou interesse",
+        "feito": true
+      },
+      {
+        "texto": "Novos orçamentos por público e público Semelhante (204 a 240 mil pessoas)",
+        "feito": false
+      },
+      {
+        "texto": "Código de medição do site em ajuste com o desenvolvedor",
+        "feito": false
+      }
+    ],
+    "proximos": [
+      "Ativar o público Semelhante, já pronto (204 a 240 mil pessoas)",
+      "Aplicar os novos orçamentos por público para fechar em R$ 18.000",
+      "Três vídeos da reta final: “Faltam dias”, “É hoje” e “Ainda dá tempo”, de 04 a 08/11",
+      "Corrigir a medição do site (troca do código de Analytics)",
+      "Conferir os números oficiais do Sympla por dia e a capacidade, para não anunciar dia esgotado"
+    ]
+  }
 }
