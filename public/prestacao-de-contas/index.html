@@ -39,6 +39,7 @@
         <a href="#site">Site</a>
         <a href="#instagram">Instagram</a>
         <a href="#imprensa">Imprensa e ações</a>
+        <a href="#reta-final">Reta final</a>
         <a href="#parceiros">Parceiros</a>
         <a href="#sintese">Síntese</a>
       </nav>
@@ -154,6 +155,59 @@
         <div class="panel__body">
           <h3 class="panel__title">Meta Ads · Facebook e Instagram</h3>
           <div class="table-wrap" data-table="meta"></div>
+          <p class="panel__note" data-text="midia.meta_ads.nota"></p>
+        </div>
+      </article>
+
+      <h3 class="rel-h3">Meta Ads em detalhe</h3>
+      <article class="win panel">
+        <div class="win__bar"><span class="win__title">publicos.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">Públicos (conjuntos de anúncios)</h3>
+          <div class="table-wrap" data-table="publicos"></div>
+          <p class="panel__note panel__note--hl" data-text="midia.meta_ads.publicos_destaque"></p>
+        </div>
+      </article>
+      <div class="rel-grid rel-grid--2">
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">criativos.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Criativos · custo por inscrição <small>(menor é melhor · <span class="lg lg--a">arte</span> <span class="lg lg--b">vídeo</span>)</small></h3>
+            <div class="chart chart--tall" data-chart="criativos"></div>
+            <p class="panel__note panel__note--hl" data-text="midia.meta_ads.criativos_destaque"></p>
+          </div>
+        </article>
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">posicionamento.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Inscrições por posicionamento</h3>
+            <div class="chart chart--tall" data-chart="posicionamento"></div>
+          </div>
+        </article>
+      </div>
+      <div class="rel-grid rel-grid--2">
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">idade.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Quem se inscreve · por idade</h3>
+            <div class="chart" data-chart="idade"></div>
+          </div>
+        </article>
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">genero.txt</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Por gênero e região</h3>
+            <div class="kpis kpis--2 kpis--flat" data-kpis="genero"></div>
+            <p class="panel__note" data-text="midia.meta_ads.geografia"></p>
+          </div>
+        </article>
+      </div>
+      <article class="win panel">
+        <div class="win__bar"><span class="win__title">videos.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">Vídeos nos anúncios</h3>
+          <div class="table-wrap" data-table="videos"></div>
+          <p class="panel__note" data-text="midia.meta_ads.videos_nota"></p>
         </div>
       </article>
     </section>
@@ -178,6 +232,14 @@
       <p class="eyebrow"><span class="lcd-txt">05</span> Comunicação orgânica</p>
       <h2 class="rel-h2" id="t-ig">Instagram, <span class="hl">post a post.</span></h2>
       <div class="kpis kpis--4" data-kpis="instagram"></div>
+      <article class="win panel">
+        <div class="win__bar"><span class="win__title">seguidores.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">Novos seguidores por dia</h3>
+          <div class="chart" data-chart="seguidores"></div>
+          <p class="panel__note" data-text="instagram.nota"></p>
+        </div>
+      </article>
       <div class="rel-grid rel-grid--2">
         <article class="win panel">
           <div class="win__bar"><span class="win__title">formatos.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
@@ -220,16 +282,56 @@
       <div class="gallery gallery--photos" data-gallery="fotos"></div>
     </section>
 
+    <!-- ===== RETA FINAL ===== -->
+    <section id="reta-final" class="rel-sec" aria-labelledby="t-plano">
+      <p class="eyebrow"><span class="lcd-txt">07</span> Plano e projeção</p>
+      <h2 class="rel-h2" id="t-plano" data-text="plano.titulo">Reta final</h2>
+      <div class="kpis kpis--4" data-kpis="plano"></div>
+      <div class="rel-grid rel-grid--2">
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">orcamento_dia.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Orçamento diário por público <small>(<span class="lg lg--a">ingressos</span> <span class="lg lg--b">Instagram</span>)</small></h3>
+            <div class="chart" data-chart="plano"></div>
+          </div>
+        </article>
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">projecao.txt</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Projeção de inscrições até o fim da campanha</h3>
+            <div class="scen" data-list="projecao"></div>
+            <p class="panel__note" data-text="plano.projecao_extra"></p>
+          </div>
+        </article>
+      </div>
+      <div class="rel-grid rel-grid--2">
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">ajustes.log</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Ajustes na conta</h3>
+            <ul class="checks" data-list="ajustes"></ul>
+          </div>
+        </article>
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">proximos_passos.txt</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Próximos passos</h3>
+            <ol class="steps-list" data-list="proximos"></ol>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- ===== PARCEIROS ===== -->
     <section id="parceiros" class="rel-sec" aria-labelledby="t-par">
-      <p class="eyebrow"><span class="lcd-txt">07</span> Rede de apoio</p>
+      <p class="eyebrow"><span class="lcd-txt">08</span> Rede de apoio</p>
       <h2 class="rel-h2" id="t-par">Quem fez <span class="hl">a Arena acontecer.</span></h2>
       <div class="partners" data-list="parceiros"></div>
     </section>
 
     <!-- ===== SÍNTESE ===== -->
     <section id="sintese" class="rel-sec" aria-labelledby="t-sin">
-      <p class="eyebrow"><span class="lcd-txt">08</span> Síntese</p>
+      <p class="eyebrow"><span class="lcd-txt">09</span> Síntese</p>
       <h2 class="rel-h2" id="t-sin">Leitura <span class="hl">estratégica.</span></h2>
       <p class="rel-lede">O porquê dos números acima e o que vale repetir na próxima edição.</p>
       <div class="conclusions" data-list="conclusoes"></div>

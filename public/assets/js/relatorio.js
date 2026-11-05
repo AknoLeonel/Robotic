@@ -39,6 +39,15 @@
   var get = function (obj, path) {
     return path.split(".").reduce(function (o, k) { return o == null ? o : o[k]; }, obj);
   };
+  // rótulos longos dos gráficos de barras viram várias linhas (no celular, linhas mais curtas)
+  var wrapLabel = function (t) {
+    var max = innerWidth < 640 ? 14 : 24, out = [], line = "";
+    String(t).split(" ").forEach(function (w) {
+      if ((line + " " + w).trim().length > max && line) { out.push(line); line = w; } else line = (line + " " + w).trim();
+    });
+    if (line) out.push(line);
+    return out.length > 1 ? out : out[0] || "";
+  };
   var EMPTY = '<p class="empty"><span class="dot" aria-hidden="true"></span>Aguardando dados</p>';
   var NOLIB = '<p class="empty">Não foi possível carregar a biblioteca de gráficos. Recarregue a página.</p>';
 
@@ -110,6 +119,9 @@
     if (EXEMPLO || d._aviso) {
       status.hidden = false; status.className = "rel-status rel-status--demo";
       status.innerHTML = "<strong>Dados fictícios.</strong> Esta versão serve só para ver o layout preenchido. Os números reais estão em <a href=\"" + BASE + "\">prestação de contas</a>.";
+    } else if (d.meta && d.meta.status) {
+      status.hidden = false; status.className = "rel-status";
+      status.innerHTML = "<strong>Relatório parcial.</strong> " + esc(d.meta.status.replace(/^Parcial:\s*/, ""));
     } else if (!d.meta || !d.meta.atualizado_em) {
       status.hidden = false; status.className = "rel-status";
       status.innerHTML = "<strong>Relatório em preparação.</strong> Os números entram depois do evento. Para ver o layout preenchido, abra o <a href=\"" + BASE + "?exemplo=1\">modo exemplo</a>.";
@@ -118,7 +130,11 @@
     $("[data-meta]").innerHTML = "Campanha de <strong>" + dataBR(per.inicio) + "</strong> a <strong>" + dataBR(per.fim) +
       "</strong>. Evento de 06 a 08/11/2026, Arena Mané Garrincha, Brasília." +
       (d.meta && d.meta.atualizado_em ? " Atualizado em <strong>" + dataBR(d.meta.atualizado_em) + "</strong>." : "");
-    $$("[data-text]").forEach(function (el) { var t = get(d, el.getAttribute("data-text")); el.textContent = t || ""; el.hidden = !t; });
+    $$("[data-text]").forEach(function (el) {
+      var t = get(d, el.getAttribute("data-text"));
+      if (t) { el.textContent = t; el.hidden = false; }
+      else if (!/^H\d$/.test(el.tagName)) el.hidden = true; // título fica com o texto padrão
+    });
 
     // totais de mídia
     // totais que podem vir do detalhe: usa o número digitado ou, se estiver vazio, a soma das partes
@@ -133,7 +149,7 @@
     var impMidia = sum([sum(gads, "impressoes"), sum(mads, "impressoes"), sum(outros, "impressoes")].filter(isNum));
 
     kpis($('[data-kpis="geral"]'), [
-      { v: num(g.ingressos_retirados), l: "Ingressos retirados", s: "Sympla" },
+      { v: num(g.ingressos_retirados), l: "Ingressos retirados", s: g.ingressos_fonte || "Sympla" },
       { v: num(g.publico_presente), l: "Público presente", s: "nos 3 dias" },
       { v: pct(ratio(g.publico_presente, g.ingressos_retirados)), l: "Comparecimento", s: "presentes ÷ ingressos" },
       { v: brl(ratio(investimento, g.ingressos_retirados)), l: "Custo por ingresso", s: "mídia paga ÷ ingressos" }
@@ -219,7 +235,7 @@
       .concat(mads.map(function (c) { return { n: c.nome, v: c.cliques }; })).filter(function (x) { return isNum(x.v); });
     chart("cliques-campanha", {
       type: "bar",
-      data: { labels: camps.map(function (x) { return x.n; }), datasets: [{ label: "Cliques", data: camps.map(function (x) { return x.v; }), backgroundColor: COLORS[1], borderRadius: 4 }] },
+      data: { labels: camps.map(function (x) { return wrapLabel(x.n); }), datasets: [{ label: "Cliques", data: camps.map(function (x) { return x.v; }), backgroundColor: COLORS[1], borderRadius: 4 }] },
       options: baseOpts({ indexAxis: "y", plugins: { legend: { display: false } } })
     }, camps.length > 0, "Cliques por campanha");
 
@@ -238,6 +254,52 @@
         return [esc(c.nome), esc(c.objetivo || ""), num(c.alcance), num(c.impressoes), num(c.cliques), brl(c.custo), brl(ratio(c.custo, c.cliques)), num(c.resultados)];
       }));
 
+    // meta em detalhe
+    var mm = md.meta_ads || {};
+    var tipoCusto = function (t) { return t === "inscrições" ? "por inscrição" : t === "visitas ao perfil" ? "por visita" : "por resultado"; };
+    table($('[data-table="publicos"]'), [{ t: "Público" }, { t: "Status" }, { t: "Orç./dia", n: 1 }, { t: "Investido", n: 1 }, { t: "Alcance", n: 1 },
+      { t: "Freq.", n: 1 }, { t: "CTR", n: 1 }, { t: "Resultado", n: 1 }, { t: "Custo", n: 1 }],
+      (mm.publicos || []).map(function (x) {
+        return [esc(x.nome), esc(x.status || ""), brl(x.orc_dia), brl(x.investido), num(x.alcance), num(x.frequencia, 2), pct(x.ctr),
+          isNum(x.resultado) ? num(x.resultado) + ' <small class="muted">' + esc(x.tipo || "") + "</small>" : "—",
+          isNum(x.custo) ? brl(x.custo) + ' <small class="muted">' + tipoCusto(x.tipo) + "</small>" : "—"];
+      }));
+
+    var hbar = function (key, rows, labelFn, valueKey, color, title, fmtTip) {
+      chart(key, {
+        type: "bar",
+        data: { labels: rows.map(function (x) { return wrapLabel(labelFn(x)); }), datasets: [{ label: title, data: rows.map(function (x) { return x[valueKey]; }),
+          backgroundColor: rows.map(function (x) { return typeof color === "function" ? color(x) : color; }), borderRadius: 4 }] },
+        options: baseOpts({ indexAxis: "y", plugins: { legend: { display: false },
+          tooltip: { backgroundColor: "#02104F", borderColor: "#8CFF1A", borderWidth: 1, callbacks: { label: fmtTip } } },
+          scales: { y: { ticks: { autoSkip: false, color: "#C9D2FF", font: { family: "Space Mono", size: innerWidth < 640 ? 10 : 11 } }, grid: { display: false } } } })
+      }, rows.length > 0, title);
+    };
+    var cri = (mm.criativos || []).filter(function (x) { return isNum(x.custo); });
+    hbar("criativos", cri, function (x) { return x.nome; }, "custo", function (x) { return x.formato === "Vídeo" ? COLORS[1] : COLORS[0]; },
+      "Custo por inscrição de cada criativo", function (c) { var x = cri[c.dataIndex]; return brl(x.custo) + " · " + num(x.resultados) + " inscrições · " + x.formato; });
+    var posM = (mm.posicionamento || []).filter(function (x) { return isNum(x.inscricoes); });
+    hbar("posicionamento", posM, function (x) { return x.local; }, "inscricoes", COLORS[0],
+      "Inscrições por posicionamento", function (c) { var x = posM[c.dataIndex]; return num(x.inscricoes) + " inscrições · " + brl(x.custo) + " cada"; });
+    var ida = (mm.idade || []).filter(function (x) { return isNum(x.inscricoes); });
+    chart("idade", {
+      type: "bar",
+      data: { labels: ida.map(function (x) { return x.faixa; }), datasets: [
+        { label: "Inscrições", data: ida.map(function (x) { return x.inscricoes; }), backgroundColor: COLORS[0], borderRadius: 4, yAxisID: "y" },
+        { label: "Custo por inscrição (R$)", data: ida.map(function (x) { return x.custo; }), type: "line", borderColor: COLORS[1], backgroundColor: COLORS[1], yAxisID: "y2", tension: .3 }] },
+      options: baseOpts({ scales: {
+        x: { ticks: { color: "#C9D2FF", font: { family: "Space Mono" } }, grid: { display: false } },
+        y: { beginAtZero: true, ticks: { color: "#8CFF1A", font: { family: "Space Mono", size: 10 } }, grid: { color: "rgba(160,178,255,.12)" } },
+        y2: { beginAtZero: true, position: "right", ticks: { color: "#E33FD9", font: { family: "Space Mono", size: 10 } }, grid: { display: false } } } })
+    }, ida.length > 0, "Inscrições e custo por faixa de idade");
+    kpis($('[data-kpis="genero"]'), (mm.genero && mm.genero.length ? mm.genero : [{ genero: "Homens" }, { genero: "Mulheres" }]).map(function (x) {
+      return { v: num(x.inscricoes), l: x.genero, s: isNum(x.custo) ? brl(x.custo) + " por inscrição" : "" };
+    }));
+    table($('[data-table="videos"]'), [{ t: "Vídeo" }, { t: "Reprod. 3s", n: 1 }, { t: "ThruPlay", n: 1 }, { t: "Retenção", n: 1 }, { t: "Custo/ThruPlay", n: 1 }],
+      (mm.videos || []).map(function (v) {
+        return [esc(v.nome), num(v.reproducoes_3s), num(v.thruplay), pct(ratio(v.thruplay, v.reproducoes_3s)), brl(v.custo_thruplay)];
+      }));
+
     // site
     var pos = (st.cliques_por_posicao || []);
     kpis($('[data-kpis="site"]'), [
@@ -249,18 +311,25 @@
     var posOk = pos.filter(function (p) { return isNum(p.cliques); }).sort(function (a, b) { return b.cliques - a.cliques; });
     chart("posicoes", {
       type: "bar",
-      data: { labels: posOk.map(function (p) { return p.rotulo; }), datasets: [{ label: "Cliques", data: posOk.map(function (p) { return p.cliques; }), backgroundColor: COLORS[0], borderRadius: 4 }] },
+      data: { labels: posOk.map(function (p) { return wrapLabel(p.rotulo); }), datasets: [{ label: "Cliques", data: posOk.map(function (p) { return p.cliques; }), backgroundColor: COLORS[0], borderRadius: 4 }] },
       options: baseOpts({ indexAxis: "y", plugins: { legend: { display: false } } })
     }, posOk.length > 0, "Cliques no botão de ingresso por posição na página");
 
     // instagram
     var igTaxa = ratio(ig.interacoes, ig.alcance);
     kpis($('[data-kpis="instagram"]'), [
-      { v: num(ig.alcance), l: "Alcance" },
-      { v: num(ig.visualizacoes), l: "Visualizações" },
-      { v: num(ig.interacoes), l: "Interações", s: isNum(igTaxa) ? pct(igTaxa) + " do alcance" : "" },
-      { v: isNum(ig.seguidores_ganhos) ? "+" + num(ig.seguidores_ganhos) : "—", l: "Novos seguidores" }
+      { v: num(ig.visualizacoes), l: "Visualizações", s: isNum(igTaxa) ? "interações: " + pct(igTaxa) + " do alcance" : "" },
+      { v: num(ig.visitas_perfil), l: "Visitas ao perfil" },
+      { v: isNum(ig.seguidores_ganhos) ? "+" + num(ig.seguidores_ganhos) : "—", l: "Novos seguidores",
+        s: isNum(ig.seguidores_inicio) && isNum(ig.seguidores_fim) ? num(ig.seguidores_inicio) + " → " + num(ig.seguidores_fim) : "" },
+      { v: brl(ig.custo_por_seguidor), l: "Custo por seguidor" }
     ]);
+    var segD = (ig.seguidores_diario || []).filter(function (x) { return Array.isArray(x) && isNum(x[1]); });
+    chart("seguidores", {
+      type: "bar",
+      data: { labels: segD.map(function (x) { return dm(x[0]); }), datasets: [{ label: "Novos seguidores", data: segD.map(function (x) { return x[1]; }), backgroundColor: COLORS[1], borderRadius: 4 }] },
+      options: baseOpts({ plugins: { legend: { display: false } } })
+    }, segD.length > 0, "Novos seguidores no Instagram por dia");
     var fmts = (ig.formatos || []).filter(function (f) { return isNum(f.visualizacoes) || isNum(f.interacoes); });
     chart("formatos", {
       type: "bar",
@@ -274,7 +343,7 @@
     }, fmts.length > 0, "Visualizações e interações por formato no Instagram");
 
     var pubs = ig.publicacoes || [];
-    var eng = function (p) { return (p.curtidas || 0) + (p.comentarios || 0) + (p.compartilhamentos || 0); };
+    var eng = function (p) { return (p.curtidas || 0) + (p.comentarios || 0) + (p.compartilhamentos || 0) + (p.salvos || 0); };
     var topPubs = pubs.slice().sort(function (a, b) { return eng(b) - eng(a); }).slice(0, 5);
     $('[data-list="top-posts"]').innerHTML = topPubs.length ? topPubs.map(function (p) {
       return '<li><span class="rank__k">' + esc(p.titulo) + '</span><span class="rank__v">' + num(eng(p)) + " interações</span></li>";
@@ -284,10 +353,10 @@
     var filtro = $("[data-filter]");
     function drawPubs(cat) {
       var lista = pubs.filter(function (p) { return cat === "Todas" || p.categoria === cat; });
-      table($('[data-table="publicacoes"]'), [{ t: "Publicação" }, { t: "Categoria" }, { t: "Data" }, { t: "Curtidas", n: 1 }, { t: "Coment.", n: 1 }, { t: "Compart.", n: 1 }, { t: "" }],
+      table($('[data-table="publicacoes"]'), [{ t: "Publicação" }, { t: "Categoria" }, { t: "Data" }, { t: "Visualiz.", n: 1 }, { t: "Curtidas", n: 1 }, { t: "Coment.", n: 1 }, { t: "Compart.", n: 1 }, { t: "Salvos", n: 1 }, { t: "" }],
         lista.map(function (p) {
           var u = safeUrl(p.url);
-          return [esc(p.titulo), esc(p.categoria), p.data ? dm(p.data) : "—", num(p.curtidas), num(p.comentarios), num(p.compartilhamentos),
+          return [esc(p.titulo), esc(p.categoria), p.data ? dm(p.data) : "—", num(p.visualizacoes), num(p.curtidas), num(p.comentarios), num(p.compartilhamentos), num(p.salvos),
             u ? '<a class="ext" href="' + esc(u) + '" target="_blank" rel="noopener">Abrir<span class="sr-only"> ' + esc(p.titulo) + " (nova aba)</span></a>" : ""];
         }));
     }
@@ -331,6 +400,30 @@
         '<p class="action__l">' + esc(a.rotulo || "") + "</p>" + (a.descricao ? '<p class="action__d">' + esc(a.descricao) + "</p>" : "") + "</article>";
     }).join("");
     gallery($('[data-gallery="fotos"]'), d.galeria || [], false);
+
+    // reta final
+    var pl = d.plano || {};
+    kpis($('[data-kpis="plano"]'), [
+      { v: brl(pl.orcamento_total).replace(",00", ""), l: "Verba total na Meta", s: pl.ate ? "campanha até " + dataBR(pl.ate) : "" },
+      { v: brl(pl.investido_ate_agora), l: "Investido até agora", s: pct(ratio(pl.investido_ate_agora, pl.orcamento_total)) !== "—" ? pct(ratio(pl.investido_ate_agora, pl.orcamento_total)) + " da verba" : "" },
+      { v: brl(pl.orcamento_diario).replace(",00", ""), l: "Orçamento diário na reta final" },
+      { v: num((pl.projecao || []).filter(function (x) { return x.cenario === "Provável"; }).map(function (x) { return x.inscricoes; })[0]), l: "Inscrições projetadas", s: "cenário provável" }
+    ]);
+    var itens = (pl.itens || []).filter(function (x) { return isNum(x.valor_dia); });
+    hbar("plano", itens, function (x) { return x.nome; }, "valor_dia", function (x) { return x.campanha === "Instagram" ? COLORS[1] : COLORS[0]; },
+      "Orçamento diário por público", function (c) { return brl(itens[c.dataIndex].valor_dia) + " por dia"; });
+    var proj = pl.projecao || [];
+    var projMax = Math.max.apply(null, proj.map(function (x) { return x.inscricoes || 0; }).concat([1]));
+    $('[data-list="projecao"]').innerHTML = proj.length ? proj.map(function (x) {
+      return '<div class="scen__row' + (x.cenario === "Provável" ? " is-main" : "") + '"><p class="scen__k">' + esc(x.cenario) +
+        '<small>' + brl(x.custo) + ' por inscrição</small></p><div class="scen__bar"><span style="width:' + Math.round((x.inscricoes || 0) / projMax * 100) +
+        '%"></span></div><p class="scen__v">' + num(x.inscricoes) + "</p></div>";
+    }).join("") : EMPTY;
+    $('[data-list="ajustes"]').innerHTML = (pl.ajustes || []).length ? pl.ajustes.map(function (a) {
+      return '<li class="' + (a.feito ? "is-done" : "is-doing") + '"><span class="checks__i" aria-hidden="true">' + (a.feito ? "●" : "○") + "</span>" +
+        esc(a.texto) + '<span class="sr-only">' + (a.feito ? " (feito)" : " (em andamento)") + "</span></li>";
+    }).join("") : EMPTY;
+    $('[data-list="proximos"]').innerHTML = (pl.proximos || []).length ? pl.proximos.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") : EMPTY;
 
     // parceiros
     var papeis = {};
