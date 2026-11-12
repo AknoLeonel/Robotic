@@ -3,10 +3,10 @@
   "meta": {
     "titulo": "Arena Robótica 26",
     "subtitulo": "Prestação de contas · Comunicação e resultados",
-    "atualizado_em": "2026-11-04",
+    "atualizado_em": "2026-11-09",
     "periodo_campanha": {
       "inicio": "2026-10-23",
-      "fim": "2026-11-08"
+      "fim": "2026-11-09"
     },
     "datas_evento": [
       "2026-11-06",
@@ -14,16 +14,18 @@
       "2026-11-08"
     ],
     "fontes": [
-      "Gerenciador de Anúncios da Meta e Meta Business Suite (coleta em 03/11, 18h)",
-      "Sympla (números oficiais em coleta)",
+      "Gerenciador de Anúncios da Meta (coleta em 09/11, 12h48–13h25)",
+      "Faturas e pagamentos da conta de anúncios da Meta",
+      "Meta Business Suite / Instagram Insights",
+      "Google Analytics 4 (04/11 a 09/11)",
+      "Sympla (painel oficial em coleta)",
       "Google Ads (em coleta)",
-      "Google Analytics 4 (em coleta)",
       "Controle de credenciamento do evento (em coleta)"
     ],
-    "status": "Parcial: anúncios da Meta e Instagram até 03/11 (relatório de mídia, plano atualizado em 04/11). Sympla oficial, público do evento, Google Ads, site e TikTok ainda em coleta."
+    "status": "Parcial: anúncios da Meta, financeiro, Instagram e site fechados em 09/11. Sympla oficial, público do evento e Google Ads ainda em coleta."
   },
   "geral": {
-    "ingressos_retirados": 1309,
+    "ingressos_retirados": 3830,
     "publico_presente": null,
     "publico_por_dia": [
       {
@@ -46,7 +48,7 @@
     "premios_reais": 78000,
     "escolas": null,
     "observacao": "O evento teve entrada gratuita, com ingressos retirados pela Sympla.",
-    "ingressos_fonte": "inscrições no Sympla atribuídas aos anúncios da Meta, até 03/11"
+    "ingressos_fonte": "inscrições no Sympla atribuídas aos anúncios da Meta"
   },
   "ingressos": {
     "_modelo_diario": [
@@ -96,7 +98,27 @@
       ],
       [
         "2026-11-03",
-        33
+        112
+      ],
+      [
+        "2026-11-04",
+        633
+      ],
+      [
+        "2026-11-05",
+        692
+      ],
+      [
+        "2026-11-06",
+        500
+      ],
+      [
+        "2026-11-07",
+        483
+      ],
+      [
+        "2026-11-08",
+        134
       ]
     ],
     "_modelo_origem": {
@@ -104,7 +126,7 @@
       "ingressos": 0
     },
     "origem": [],
-    "nota": "Até 03/11, inscrições contadas pela Meta a cada visita à página de confirmação do Sympla (03/11 só até as 18h). Os dias com menos inscrições acompanham os dias de menor entrega da Meta. Serão conferidas com o painel oficial do Sympla."
+    "nota": "Inscrições no Sympla atribuídas aos anúncios da Meta (conversão personalizada na página de confirmação), de 24/10 a 08/11. As 134 de 08/11 vieram de cliques e visualizações anteriores: os anúncios pararam em 07/11, quando o saldo pré-pago zerou. Serão conferidas com o painel oficial do Sympla."
   },
   "midia": {
     "google_ads": {
@@ -158,246 +180,473 @@
         {
           "nome": "AR26 | VENDAS | Sympla | ABO",
           "objetivo": "Inscrições no Sympla",
-          "alcance": 135226,
-          "impressoes": 464979,
-          "cliques": 4808,
-          "custo": 3940.16,
-          "resultados": 1309
+          "alcance": 239006,
+          "impressoes": 954375,
+          "cliques": 12117,
+          "custo": 9738.79,
+          "resultados": 3830
         },
         {
           "nome": "AR26 | ENG | IG+FB | ABO",
           "objetivo": "Visitas ao perfil",
-          "alcance": 361404,
-          "impressoes": 722300,
-          "cliques": 12055,
-          "custo": 3284.78,
-          "resultados": 12395
+          "alcance": 435463,
+          "impressoes": 1019374,
+          "cliques": 17605,
+          "custo": 4756.44,
+          "resultados": 18402
         }
       ],
-      "alcance_total": 463849,
-      "nota": "Uma campanha leva ao Sympla; a outra faz o evento ser conhecido. Na tabela detalhada da Meta do mesmo dia (18h06) aparecem 1.301 inscrições e R$ 7.139; aqui usamos o resumo, que bate com a soma diária. Impressões e cliques vêm da tabela detalhada.",
+      "alcance_total": null,
+      "nota": "Período de 23/10 a 09/11. Cliques = cliques no link. As duas campanhas rodaram até 07/11, quando o saldo pré-pago zerou; ficaram ligadas, sem entrega, até 09/11. O alcance das duas não pode ser somado (a mesma pessoa pode ter visto as duas).",
       "publicos": [
         {
           "nome": "VND · Pais e Família 28-55",
-          "status": "Ativo",
-          "orc_dia": 350,
-          "investido": 2484.46,
-          "alcance": 78450,
-          "frequencia": 3.24,
-          "ctr": 0.0129,
-          "resultado": 998,
+          "status": "Até 07/11 (saldo zerado)",
+          "orc_dia": 650,
+          "investido": 5207.86,
+          "alcance": 147550,
+          "frequencia": 3.43,
+          "ctr": 0.0146,
+          "resultado": 2399,
           "tipo": "inscrições",
-          "custo": 2.49
+          "custo": 2.17
+        },
+        {
+          "nome": "VND · Semelhante aos inscritos 1%",
+          "status": "03/11 a 07/11",
+          "orc_dia": 600,
+          "investido": 2488.8,
+          "alcance": 95624,
+          "frequencia": 1.97,
+          "ctr": 0.0128,
+          "resultado": 821,
+          "tipo": "inscrições",
+          "custo": 3.03
+        },
+        {
+          "nome": "VND · Remarketing 18-65",
+          "status": "03/11 a 07/11",
+          "orc_dia": 150,
+          "investido": 621.54,
+          "alcance": 14738,
+          "frequencia": 3.24,
+          "ctr": 0.0159,
+          "resultado": 296,
+          "tipo": "inscrições",
+          "custo": 2.1
         },
         {
           "nome": "VND · Jovens Tech 18-27",
           "status": "Pausado em 03/11",
           "orc_dia": 150,
-          "investido": 1415.5,
-          "alcance": 57571,
+          "investido": 1420.59,
+          "alcance": 57915,
           "frequencia": 3.66,
           "ctr": 0.0073,
-          "resultado": 303,
+          "resultado": 314,
           "tipo": "inscrições",
-          "custo": 4.67
+          "custo": 4.52
         },
         {
           "nome": "ENG · Jovens Tech 18-24",
-          "status": "Ativo",
-          "orc_dia": 230,
-          "investido": 1802.49,
-          "alcance": 201628,
-          "frequencia": 2.33,
-          "ctr": 0.0151,
-          "resultado": 7092,
+          "status": "Até 07/11 (saldo zerado)",
+          "orc_dia": 175,
+          "investido": 2565.38,
+          "alcance": 232305,
+          "frequencia": 2.81,
+          "ctr": 0.0156,
+          "resultado": 10307,
           "tipo": "visitas ao perfil",
           "custo": 0.25
         },
         {
           "nome": "ENG · Pais e Educadores 28-55",
-          "status": "Ativo",
-          "orc_dia": 200,
-          "investido": 1436.48,
-          "alcance": 160688,
-          "frequencia": 1.57,
-          "ctr": 0.0197,
-          "resultado": 5303,
+          "status": "Até 07/11 (saldo zerado)",
+          "orc_dia": 175,
+          "investido": 2191.06,
+          "alcance": 204060,
+          "frequencia": 1.8,
+          "ctr": 0.0202,
+          "resultado": 8095,
           "tipo": "visitas ao perfil",
           "custo": 0.27
-        },
-        {
-          "nome": "VND · Remarketing 18-65",
-          "status": "Ativado após 03/11",
-          "orc_dia": 250,
-          "investido": 0,
-          "alcance": 0,
-          "frequencia": null,
-          "ctr": null,
-          "resultado": 0,
-          "tipo": "inscrições",
-          "custo": null
         }
       ],
-      "publicos_destaque": "Pais e família convertem 2× melhor: R$ 2,49 por inscrição, contra R$ 4,67 no público jovem, que foi pausado na campanha de ingressos e segue na campanha do Instagram, onde a visita custa R$ 0,25.",
+      "publicos_destaque": "Pais e família foi o público principal: 2.399 inscrições, 63% do total, a R$ 2,17 cada. O Remarketing também converteu bem (R$ 2,10). O público jovem custou R$ 4,52 por inscrição e foi pausado na campanha de ingressos; na campanha do Instagram, trouxe visitas ao perfil a R$ 0,25.",
       "criativos": [
         {
-          "nome": "Quem vem com você? (arte)",
-          "codigo": "VND PF ARTE2",
-          "formato": "Arte",
-          "custo": 2.41,
-          "resultados": 734
-        },
-        {
-          "nome": "Programa família (vídeo, cópia)",
-          "codigo": "VND PF VIDEO (cópia)",
+          "nome": "Faltam 2 dias",
+          "codigo": "VND VIDEO3 (PF, RMK)",
           "formato": "Vídeo",
-          "custo": 2.55,
-          "resultados": 28
+          "investido": 1434.99,
+          "resultados": 968,
+          "custo": 1.48
         },
         {
-          "nome": "Vídeo família original",
+          "nome": "Aquecimento",
+          "codigo": "VND VIDEO4 (PF, RMK)",
+          "formato": "Vídeo",
+          "investido": 100.55,
+          "resultados": 61,
+          "custo": 1.65
+        },
+        {
+          "nome": "Quem vem com você?",
+          "codigo": "VND ARTE2 (PF, SEM, RMK)",
+          "formato": "Arte",
+          "investido": 4055.25,
+          "resultados": 1548,
+          "custo": 2.62
+        },
+        {
+          "nome": "Vídeo família original (excluído)",
           "codigo": "VND PF VIDEO",
           "formato": "Vídeo",
-          "custo": 2.71,
-          "resultados": 158
+          "investido": 427.48,
+          "resultados": 163,
+          "custo": 2.62
+        },
+        {
+          "nome": "Ingressos limitados",
+          "codigo": "VND ARTE5 (PF, RMK)",
+          "formato": "Arte",
+          "investido": 119.78,
+          "resultados": 45,
+          "custo": 2.66
+        },
+        {
+          "nome": "Programa família · corrigido",
+          "codigo": "VND VIDEO2b (PF, SEM, RMK)",
+          "formato": "Vídeo",
+          "investido": 688.46,
+          "resultados": 249,
+          "custo": 2.76
+        },
+        {
+          "nome": "Programa família · link errado",
+          "codigo": "VND VIDEO2 (PF, SEM, RMK)",
+          "formato": "Vídeo",
+          "investido": 938.56,
+          "resultados": 324,
+          "custo": 2.9
         },
         {
           "nome": "Arte família 1",
           "codigo": "VND PF ARTE1",
           "formato": "Arte",
-          "custo": 2.93,
-          "resultados": 67
+          "investido": 196.22,
+          "resultados": 67,
+          "custo": 2.93
         },
         {
           "nome": "Vídeo jovens",
           "codigo": "VND JT VIDEO",
           "formato": "Vídeo",
-          "custo": 3.37,
-          "resultados": 89
+          "investido": 304.79,
+          "resultados": 97,
+          "custo": 3.14
         },
         {
-          "nome": "Arte jovens 3",
+          "nome": "Arte jovens 3 (post de família)",
           "codigo": "VND JT ARTE3",
           "formato": "Arte",
-          "custo": 3.69,
-          "resultados": 110
+          "investido": 406.4,
+          "resultados": 113,
+          "custo": 3.6
         },
         {
-          "nome": "Arte jovens 1 (pausada)",
+          "nome": "Contagem regressiva",
+          "codigo": "VND ARTE3 (PF, SEM, RMK)",
+          "formato": "Arte",
+          "investido": 287.92,
+          "resultados": 63,
+          "custo": 4.57
+        },
+        {
+          "nome": "Arte jovens 1",
           "codigo": "VND JT ARTE1",
           "formato": "Arte",
-          "custo": 6.7,
-          "resultados": 58
+          "investido": 388.42,
+          "resultados": 58,
+          "custo": 6.7
         },
         {
-          "nome": "Arte jovens 2 (pausada)",
+          "nome": "Arte jovens 2",
           "codigo": "VND JT ARTE2",
           "formato": "Arte",
-          "custo": 7.01,
-          "resultados": 43
+          "investido": 301.56,
+          "resultados": 43,
+          "custo": 7.01
         }
       ],
-      "criativos_destaque": "Campeão: “Já sabe quem vem com você para a Arena?” trouxe 734 inscrições, 56% do total, a R$ 2,41 cada.",
+      "criativos_destaque": "“Quem vem com você?” foi o campeão: 1.548 inscrições, 40% do total, a R$ 2,62 cada. O vídeo “Faltam 2 dias” teve o menor custo em escala: 968 inscrições a R$ 1,48. Na campanha de ingressos, o vídeo custou R$ 2,09 por inscrição, contra R$ 2,97 da arte. Peças com menos de 40 inscrições ficaram fora do gráfico.",
       "idade": [
         {
           "faixa": "18 a 24",
-          "inscricoes": 189,
-          "custo": 5.04
+          "inscricoes": 254,
+          "custo": 4.12
         },
         {
           "faixa": "25 a 34",
-          "inscricoes": 358,
-          "custo": 2.97
+          "inscricoes": 1001,
+          "custo": 2.63
         },
         {
           "faixa": "35 a 44",
-          "inscricoes": 533,
-          "custo": 2.39
+          "inscricoes": 1773,
+          "custo": 2.28
         },
         {
           "faixa": "45 a 54",
-          "inscricoes": 216,
-          "custo": 2.75
+          "inscricoes": 779,
+          "custo": 2.5
+        },
+        {
+          "faixa": "55 ou mais",
+          "inscricoes": 22,
+          "custo": 2.95
         }
       ],
       "genero": [
         {
           "genero": "Homens",
-          "inscricoes": 776,
-          "custo": 2.95
+          "inscricoes": 2541,
+          "custo": 2.44
         },
         {
           "genero": "Mulheres",
-          "inscricoes": 517,
-          "custo": 3.08
+          "inscricoes": 1272,
+          "custo": 2.75
         }
       ],
       "posicionamento": [
         {
           "local": "Feed do Instagram",
-          "inscricoes": 695,
-          "custo": 2.86
+          "inscricoes": 1689,
+          "custo": 2.53
         },
         {
           "local": "Stories do Instagram",
-          "inscricoes": 252,
-          "custo": 3.29
+          "inscricoes": 752,
+          "custo": 2.87
         },
         {
           "local": "Reels do Instagram",
-          "inscricoes": 203,
-          "custo": 3.32
-        },
-        {
-          "local": "Feed do Facebook",
-          "inscricoes": 62,
-          "custo": 2.97
+          "inscricoes": 746,
+          "custo": 2.49
         },
         {
           "local": "Reels do Facebook",
-          "inscricoes": 40,
-          "custo": 2.54
+          "inscricoes": 226,
+          "custo": 2.02
+        },
+        {
+          "local": "Feed do Facebook",
+          "inscricoes": 196,
+          "custo": 2.24
         },
         {
           "local": "Status do WhatsApp",
-          "inscricoes": 28,
-          "custo": 2.51
+          "inscricoes": 71,
+          "custo": 2.88
+        },
+        {
+          "local": "Outros (web, Stories do FB, Threads, Audience Network…)",
+          "inscricoes": 150,
+          "custo": 2.35
         }
       ],
-      "geografia": "87% da verba no DF e 13% no entorno goiano. Seguidores concentrados em Taguatinga (18,7%), Brasília (8,6%), Guará (8%), Sobradinho (7,8%), Ceilândia (5,9%) e Gama (5,6%).",
+      "geografia": "90% da verba de ingressos no DF (R$ 8.772) e 10% no entorno goiano (R$ 967). Seguidores concentrados em Taguatinga (18,7%), Brasília (8,6%), Guará (8%), Sobradinho (7,8%), Ceilândia (5,9%) e Gama (5,6%), na leitura de 03/11.",
       "videos": [
         {
-          "nome": "Instagram · Jovens (ENG JT VIDEO)",
-          "reproducoes_3s": 10836,
-          "thruplay": 2324,
-          "custo_thruplay": 0.31
+          "nome": "Instagram · Jovens · Velocidade à invenção (ENG JT VIDEO1)",
+          "investido": 1344.88,
+          "reproducoes_3s": 17921,
+          "thruplay": 3853,
+          "custo_thruplay": 0.35,
+          "reproducoes_100": 2256
         },
         {
-          "nome": "Instagram · Pais (ENG PE VIDEO)",
-          "reproducoes_3s": 10473,
-          "thruplay": 1701,
-          "custo_thruplay": 0.36
+          "nome": "Instagram · Pais · Programa pra família inteira (ENG PE VIDEO1)",
+          "investido": 1224.73,
+          "reproducoes_3s": 18190,
+          "thruplay": 3044,
+          "custo_thruplay": 0.4,
+          "reproducoes_100": 1533
         },
         {
-          "nome": "Ingressos · Pais (VND PF VIDEO)",
-          "reproducoes_3s": 7919,
-          "thruplay": 1451,
-          "custo_thruplay": 0.29
+          "nome": "Ingressos · Pais · Faltam 2 dias (VND PF VIDEO3)",
+          "investido": 1231.17,
+          "reproducoes_3s": 29064,
+          "thruplay": 7830,
+          "custo_thruplay": 0.16,
+          "reproducoes_100": 4136
+        },
+        {
+          "nome": "Ingressos · Remarketing · Faltam 2 dias (VND RMK VIDEO3)",
+          "investido": 203.82,
+          "reproducoes_3s": 2834,
+          "thruplay": 765,
+          "custo_thruplay": 0.27,
+          "reproducoes_100": 409
+        },
+        {
+          "nome": "Ingressos · Semelhante · Programa família (VND PF VIDEO2)",
+          "investido": 738.02,
+          "reproducoes_3s": 10809,
+          "thruplay": 2823,
+          "custo_thruplay": 0.26,
+          "reproducoes_100": 1177
+        },
+        {
+          "nome": "Ingressos · Semelhante · Programa família (VND SEM VIDEO2b)",
+          "investido": 522.59,
+          "reproducoes_3s": 6906,
+          "thruplay": 1607,
+          "custo_thruplay": 0.33,
+          "reproducoes_100": 671
         },
         {
           "nome": "Ingressos · Jovens (VND JT VIDEO)",
-          "reproducoes_3s": 6922,
-          "thruplay": 1425,
-          "custo_thruplay": 0.21
+          "investido": 304.79,
+          "reproducoes_3s": 7056,
+          "thruplay": 1453,
+          "custo_thruplay": 0.21,
+          "reproducoes_100": 479
         },
         {
-          "nome": "Ingressos · Pais, cópia (VND PF VIDEO)",
-          "reproducoes_3s": 1352,
-          "thruplay": 288,
-          "custo_thruplay": 0.25
+          "nome": "Ingressos · Pais · Programa família (VND PF VIDEO2b)",
+          "investido": 153.35,
+          "reproducoes_3s": 2327,
+          "thruplay": 602,
+          "custo_thruplay": 0.25,
+          "reproducoes_100": 240
+        },
+        {
+          "nome": "Ingressos · Pais · Programa família (VND PF VIDEO2)",
+          "investido": 121.81,
+          "reproducoes_3s": 2458,
+          "thruplay": 815,
+          "custo_thruplay": 0.15,
+          "reproducoes_100": 345
+        },
+        {
+          "nome": "Ingressos · Remarketing · Programa família (VND PF VIDEO2)",
+          "investido": 78.73,
+          "reproducoes_3s": 824,
+          "thruplay": 168,
+          "custo_thruplay": 0.47,
+          "reproducoes_100": 77
+        },
+        {
+          "nome": "Ingressos · Remarketing · Aquecimento (VND RMK VIDEO4)",
+          "investido": 56.5,
+          "reproducoes_3s": 2287,
+          "thruplay": 256,
+          "custo_thruplay": 0.22,
+          "reproducoes_100": 171
+        },
+        {
+          "nome": "Ingressos · Pais · Aquecimento (VND PF VIDEO4)",
+          "investido": 44.05,
+          "reproducoes_3s": 2529,
+          "thruplay": 262,
+          "custo_thruplay": 0.17,
+          "reproducoes_100": 165
+        },
+        {
+          "nome": "Ingressos · Remarketing · Programa família (VND RMK VIDEO2b)",
+          "investido": 12.52,
+          "reproducoes_3s": 165,
+          "thruplay": 34,
+          "custo_thruplay": 0.37,
+          "reproducoes_100": 21
         }
       ],
-      "videos_nota": "ThruPlay: vídeo assistido até o fim ou por pelo menos 15 segundos."
+      "videos_nota": "ThruPlay: vídeo assistido até o fim ou por pelo menos 15 segundos. “Até o fim” = reproduções de 100% sobre as de 3 segundos. No vídeo ENG JT VIDEO1 a Meta informa mais reproduções de 50% do que de 25%: dado a conferir. O vídeo original de família, excluído, gastou R$ 427,48 e não tem dados de reprodução.",
+      "gasto_diario": [
+        [
+          "2026-10-24",
+          105.66,
+          95.07
+        ],
+        [
+          "2026-10-25",
+          416.58,
+          390.77
+        ],
+        [
+          "2026-10-26",
+          603.48,
+          398.58
+        ],
+        [
+          "2026-10-27",
+          579.46,
+          518.25
+        ],
+        [
+          "2026-10-28",
+          227.07,
+          179.06
+        ],
+        [
+          "2026-10-29",
+          269.71,
+          274.51
+        ],
+        [
+          "2026-10-30",
+          614.36,
+          496.85
+        ],
+        [
+          "2026-10-31",
+          51.39,
+          50.19
+        ],
+        [
+          "2026-11-01",
+          391.43,
+          349.74
+        ],
+        [
+          "2026-11-02",
+          568.72,
+          447.09
+        ],
+        [
+          "2026-11-03",
+          523.08,
+          182.27
+        ],
+        [
+          "2026-11-04",
+          1690.44,
+          283.78
+        ],
+        [
+          "2026-11-05",
+          1385.85,
+          309.73
+        ],
+        [
+          "2026-11-06",
+          982.57,
+          409.85
+        ],
+        [
+          "2026-11-07",
+          1328.99,
+          370.7
+        ],
+        [
+          "2026-11-08",
+          0,
+          0
+        ]
+      ],
+      "gasto_diario_nota": "Barras: investimento por dia nas duas campanhas. Linha: inscrições no Sympla. O salto de 04/11 vem do novo plano de verba e do vídeo “Faltam 2 dias”. Sem entrega em 08 e 09/11: o saldo pré-pago zerou."
     },
     "outros_canais": [
       {
@@ -409,9 +658,9 @@
     ]
   },
   "site": {
-    "visitas": null,
-    "usuarios": null,
-    "cliques_ingresso": null,
+    "visitas": 1226,
+    "usuarios": 852,
+    "cliques_ingresso": 382,
     "cliques_por_posicao": [
       {
         "posicao": "hero",
@@ -449,14 +698,52 @@
         "cliques": null
       }
     ],
-    "nota": "Até 04/11 o site enviava os dados para outra propriedade do GA4 (ID corrigido em 04/11): os números de site valem a partir dessa data. O GA4 também só conta normalmente quem aceita os cookies (LGPD)."
+    "nota": "GA4 de 04/11 a 09/11: até 04/11 o site enviava os dados para outra propriedade (ID corrigido em 04/11). Visitas = sessões; 850 dos 852 usuários eram novos. O clique por posição do botão ainda não foi extraído. O GA4 só conta normalmente quem aceita os cookies (LGPD).",
+    "origens": [
+      {
+        "origem": "Google Ads (pesquisa)",
+        "sessoes": 600,
+        "cliques": 202
+      },
+      {
+        "origem": "Google orgânico",
+        "sessoes": 161,
+        "cliques": 19
+      },
+      {
+        "origem": "Anúncios no Instagram",
+        "sessoes": 118,
+        "cliques": 63
+      },
+      {
+        "origem": "Instagram (link do perfil e posts)",
+        "sessoes": 127,
+        "cliques": 27
+      },
+      {
+        "origem": "Direto",
+        "sessoes": 115,
+        "cliques": 26
+      },
+      {
+        "origem": "Anúncios no Facebook e Meta",
+        "sessoes": 72,
+        "cliques": 31
+      },
+      {
+        "origem": "Outros",
+        "sessoes": 33,
+        "cliques": 14
+      }
+    ],
+    "origens_nota": "Anúncios da Meta somam fb, ig, meta e an / paid. Instagram sem anúncio = l.instagram.com e instagram.com. “Outros” inclui Bing, Yahoo, Facebook orgânico, sem dados e testes."
   },
   "instagram": {
-    "alcance": null,
-    "visualizacoes": 1390000,
-    "interacoes": null,
-    "seguidores_ganhos": 1043,
-    "visitas_perfil": 15031,
+    "alcance": 555300,
+    "visualizacoes": 2306302,
+    "interacoes": 11500,
+    "seguidores_ganhos": 2227,
+    "visitas_perfil": 28400,
     "formatos": [
       {
         "formato": "Posts",
@@ -494,11 +781,11 @@
         "data": "2026-10-28",
         "url": "",
         "imagem": "",
-        "visualizacoes": 220804,
-        "curtidas": 47,
+        "visualizacoes": 380187,
+        "curtidas": 71,
         "comentarios": 0,
-        "compartilhamentos": 36,
-        "salvos": 9,
+        "compartilhamentos": 40,
+        "salvos": 14,
         "destaque": false
       },
       {
@@ -507,12 +794,25 @@
         "data": "2026-10-28",
         "url": "",
         "imagem": "",
-        "visualizacoes": 191503,
-        "curtidas": 368,
-        "comentarios": 12,
-        "compartilhamentos": 68,
-        "salvos": 51,
+        "visualizacoes": 344741,
+        "curtidas": 478,
+        "comentarios": 14,
+        "compartilhamentos": 131,
+        "salvos": 90,
         "destaque": false
+      },
+      {
+        "categoria": "Reels",
+        "url": "",
+        "imagem": "",
+        "destaque": false,
+        "titulo": "Faltam só 2 dias pra #AR26!",
+        "data": "2026-11-04",
+        "visualizacoes": 133568,
+        "curtidas": 789,
+        "comentarios": 13,
+        "compartilhamentos": 766,
+        "salvos": 131
       },
       {
         "titulo": "Robôs em combate",
@@ -520,12 +820,25 @@
         "data": "2026-10-28",
         "url": "",
         "imagem": "",
-        "visualizacoes": 47048,
-        "curtidas": 194,
+        "visualizacoes": 48794,
+        "curtidas": 57,
         "comentarios": 8,
-        "compartilhamentos": 34,
-        "salvos": 30,
+        "compartilhamentos": 51,
+        "salvos": 7,
         "destaque": false
+      },
+      {
+        "categoria": "Reels",
+        "url": "",
+        "imagem": "",
+        "destaque": false,
+        "titulo": "Por aqui, o aquecimento já começou",
+        "data": "2026-11-05",
+        "visualizacoes": 14060,
+        "curtidas": 155,
+        "comentarios": 3,
+        "compartilhamentos": 46,
+        "salvos": 7
       },
       {
         "titulo": "Batalha de Robôs",
@@ -555,8 +868,8 @@
       }
     ],
     "seguidores_inicio": 128,
-    "seguidores_fim": 1171,
-    "custo_por_seguidor": 3.07,
+    "seguidores_fim": 2376,
+    "custo_por_seguidor": 2.14,
     "seguidores_diario": [
       [
         "2026-10-24",
@@ -599,7 +912,8 @@
         113
       ]
     ],
-    "nota": "@arenaroboticabsb, de 23/10 a 02/11: perfil 9× maior (128 → 1.171 seguidores), orgânico e anúncios somados. 98% de quem viu ainda não seguia. Visualizações arredondadas pela Meta (1,39 mi)."
+    "nota": "@arenaroboticabsb de 23/10 a 09/11 (fuso do Business Suite), orgânico e anúncios somados: 128 → 2.376 seguidores, perfil 18× maior. Novos seguidores: soma diária até 07/11 (painel: 2,2 mil); o gráfico diário vai até 02/11. Custo por seguidor = investimento da campanha do Instagram ÷ novos seguidores. Alcance e interações arredondados pela Meta (555,3 mil e 11,5 mil).",
+    "cliques_link": 27100
   },
   "imprensa": {
     "releases_enviados": null,
@@ -658,34 +972,42 @@
   },
   "conclusoes": [
     {
+      "titulo": "3.830 inscrições a R$ 2,54",
+      "texto": "A campanha de ingressos investiu R$ 9.738,79 e trouxe 3.830 inscrições no Sympla. Seis em cada dez (2.308) vieram de 04 a 07/11, na reta final."
+    },
+    {
       "titulo": "Pais e família convertem 2× melhor",
-      "texto": "R$ 2,49 por inscrição no público de pais e família, contra R$ 4,67 no jovem. A faixa de 35 a 44 anos foi a maior e a mais barata: 533 inscrições a R$ 2,39."
+      "texto": "R$ 2,17 por inscrição em Pais e Família e R$ 2,10 no Remarketing, contra R$ 4,52 no público jovem. A faixa de 35 a 44 anos foi a maior e a mais barata: 1.773 inscrições a R$ 2,28."
     },
     {
       "titulo": "O convite “Quem vem com você?” venceu",
-      "texto": "A arte trouxe 734 inscrições, 56% do total, a R$ 2,41 cada. O convite para trazer outras pessoas funciona com pais."
+      "texto": "A arte trouxe 1.548 inscrições, 40% do total, a R$ 2,62 cada. E o vídeo de urgência “Faltam 2 dias” foi o mais barato em escala: R$ 1,48 por inscrição."
     },
     {
-      "titulo": "O custo por inscrição caiu",
-      "texto": "Começou acima de R$ 4 e, desde 28/10, fica em torno de R$ 2,50 na maioria dos dias. Média da campanha de ingressos: R$ 3,01."
+      "titulo": "Vídeo converteu melhor que arte",
+      "texto": "Na campanha de ingressos, vídeo custou R$ 2,09 por inscrição e arte, R$ 2,97. Na campanha do Instagram, os dois empataram em R$ 0,26 por visita ao perfil."
     },
     {
       "titulo": "O Instagram faz quase tudo",
-      "texto": "Feed, Stories e Reels do Instagram somam 88% das inscrições (1.150 de 1.309)."
+      "texto": "Feed, Stories e Reels do Instagram somam 83% das inscrições (3.187 de 3.830)."
     },
     {
-      "titulo": "Perfil 9× maior",
-      "texto": "De 128 para 1.171 seguidores em 11 dias, a R$ 3,07 por seguidor. 98% de quem viu o perfil ainda não seguia."
+      "titulo": "Perfil 18× maior",
+      "texto": "De 128 para 2.376 seguidores, com 2,3 milhões de visualizações e 28,4 mil visitas ao perfil. A campanha do Instagram custou R$ 0,26 por visita."
     },
     {
-      "titulo": "Conteúdo que o público guarda",
-      "texto": "“Tem programa pra família inteira” rendeu nos anúncios e no orgânico: 368 curtidas, 68 compartilhamentos e 51 salvamentos, o Reel mais guardado e enviado."
+      "titulo": "Erros de operação custaram pouco, mas dá para evitar",
+      "texto": "Anúncios com link errado (um caso ainda a confirmar) gastaram R$ 1.226,48, 13% da verba de ingressos, e trouxeram só 387 inscrições. Na próxima edição: conferir links antes de publicar e programar o fim das peças com data."
+    },
+    {
+      "titulo": "O saldo acabou antes do evento terminar",
+      "texto": "Os R$ 16.500 pagos cobriram R$ 14.495,23 de mídia e R$ 2.004,75 de impostos (13,83%). O saldo zerou em 07/11 e não houve anúncio no último dia do evento: na próxima, reservar os impostos no plano de verba."
     }
   ],
   "plano": {
-    "titulo": "Reta final: até R$ 18.000 no evento",
+    "titulo": "Reta final: como a campanha fechou",
     "orcamento_total": 18000,
-    "investido_ate_agora": 7224.94,
+    "investido_ate_agora": 14495.23,
     "orcamento_diario": 1750,
     "ate": "2026-11-09",
     "itens": [
@@ -730,9 +1052,15 @@
         "cenario": "Otimista",
         "custo": 2.6,
         "inscricoes": 4450
+      },
+      {
+        "cenario": "Realizado",
+        "custo": 2.54,
+        "inscricoes": 3830,
+        "realizado": true
       }
     ],
-    "projecao_extra": "Cenário provável: cerca de 1.900 seguidores e 700 a 750 mil pessoas alcançadas. Projeção de 04/11, com base nos custos reais até 03/11.",
+    "projecao_extra": "Projeção de 04/11, com verba de R$ 18.000. Foram pagos R$ 16.500, dos quais R$ 14.495 viraram mídia (o resto são impostos), e os anúncios pararam em 07/11. Mesmo assim, o custo por inscrição ficou abaixo do cenário otimista. Seguidores: 2.376 (projeção: cerca de 1.900).",
     "ajustes": [
       {
         "texto": "5 rascunhos antigos descartados: a conta ficou só com o que está no ar",
@@ -751,7 +1079,7 @@
         "feito": true
       },
       {
-        "texto": "Verba ampliada para R$ 18.000, com a campanha rodando até 09/11",
+        "texto": "Verba ampliada para até R$ 18.000, com a campanha prevista até 09/11",
         "feito": true
       },
       {
@@ -759,20 +1087,197 @@
         "feito": true
       },
       {
-        "texto": "Novos orçamentos por público e público Semelhante (204 a 240 mil pessoas)",
-        "feito": false
+        "texto": "Novos orçamentos por público e público Semelhante ativado em 03/11 (821 inscrições a R$ 3,03)",
+        "feito": true
       },
       {
-        "texto": "Código de medição do site em ajuste com o desenvolvedor",
-        "feito": false
+        "texto": "Código de medição do site corrigido em 04/11",
+        "feito": true
+      },
+      {
+        "texto": "Vídeo “Programa família” com link errado trocado por versão corrigida (VIDEO2b)",
+        "feito": true
+      },
+      {
+        "texto": "Peças com data vencida pausadas (Faltam 2 dias, Aquecimento, Halloween)",
+        "feito": true
       }
     ],
     "proximos": [
-      "Ativar o público Semelhante, já pronto (204 a 240 mil pessoas)",
-      "Aplicar os novos orçamentos por público para fechar em R$ 18.000",
-      "Três vídeos da reta final: “Faltam dias”, “É hoje” e “Ainda dá tempo”, de 04 a 08/11",
-      "Corrigir a medição do site (troca do código de Analytics)",
-      "Conferir os números oficiais do Sympla por dia e a capacidade, para não anunciar dia esgotado"
+      "Conferir as 3.830 inscrições com o painel oficial do Sympla (por dia e por origem)",
+      "Registrar o público presente em cada dia do evento (credenciamento)",
+      "Coletar os números do Google Ads (maior origem de visitas ao site)",
+      "Confirmar se a arte “Contagem regressiva” (ARTE3) estava com link errado",
+      "Extrair do GA4 os cliques no ingresso por posição na página",
+      "Guardar as notas fiscais das 15 faturas da Meta junto com os comprovantes de PIX"
     ]
-  }
+  },
+  "financeiro": {
+    "pagamentos": [
+      [
+        "2026-10-23",
+        2000.0
+      ],
+      [
+        "2026-10-26",
+        2000.0
+      ],
+      [
+        "2026-10-29",
+        2000.0
+      ],
+      [
+        "2026-10-31",
+        2000.0
+      ],
+      [
+        "2026-11-03",
+        2000.0
+      ],
+      [
+        "2026-11-04",
+        3500.0
+      ],
+      [
+        "2026-11-05",
+        3000.0
+      ]
+    ],
+    "faturas": [
+      [
+        "2026-10-25",
+        "FBADS-280-106649600",
+        228.5
+      ],
+      [
+        "2026-10-26",
+        "FBADS-280-106654980",
+        918.24
+      ],
+      [
+        "2026-10-27",
+        "FBADS-280-106660996",
+        1140.56
+      ],
+      [
+        "2026-10-28",
+        "FBADS-280-106667017",
+        1248.52
+      ],
+      [
+        "2026-10-29",
+        "FBADS-280-106672982",
+        464.18
+      ],
+      [
+        "2026-10-30",
+        "FBADS-280-106678903",
+        618.7
+      ],
+      [
+        "2026-10-31",
+        "FBADS-280-106684850",
+        1265.67
+      ],
+      [
+        "2026-11-01",
+        "FBADS-280-106691862",
+        115.63
+      ],
+      [
+        "2026-11-02",
+        "FBADS-280-106696918",
+        842.95
+      ],
+      [
+        "2026-11-03",
+        "FBADS-280-106702582",
+        1157.02
+      ],
+      [
+        "2026-11-04",
+        "FBADS-280-106708540",
+        800.82
+      ],
+      [
+        "2026-11-05",
+        "FBADS-280-106714383",
+        2246.4
+      ],
+      [
+        "2026-11-06",
+        "FBADS-280-106720617",
+        1931.76
+      ],
+      [
+        "2026-11-07",
+        "FBADS-280-106727216",
+        1584.7
+      ],
+      [
+        "2026-11-08",
+        "FBADS-280-106733779",
+        1936.33
+      ]
+    ],
+    "midia": 14495.23,
+    "saldo_final": 0.02,
+    "nota": "Pagamentos por PIX na conta pré-paga da Meta; cada fatura é paga com o saldo. A diferença entre o que foi debitado e o investimento em mídia do Gerenciador são impostos (13,83% sobre a mídia, como na fatura de 08/11: R$ 235,26 sobre R$ 1.701,07). Saldo final de R$ 0,02 (o painel mostra R$ 0,00)."
+  },
+  "ocorrencias": [
+    {
+      "ocorrencia": "Link errado no vídeo “Programa família” (VIDEO2): pausado e trocado pelo VIDEO2b",
+      "anuncios": "3 cópias (PF, SEM, RMK)",
+      "investido": 938.56,
+      "inscricoes": 324
+    },
+    {
+      "ocorrencia": "Link errado na arte “Contagem regressiva” (ARTE3), a confirmar",
+      "anuncios": "3 cópias (PF, SEM, RMK)",
+      "investido": 287.92,
+      "inscricoes": 63
+    },
+    {
+      "ocorrencia": "Data vencida: vídeo “Faltam 2 dias” (VIDEO3) pausado",
+      "anuncios": "PF e RMK",
+      "investido": 1434.99,
+      "inscricoes": 968
+    },
+    {
+      "ocorrencia": "Data vencida: vídeo “Aquecimento” (VIDEO4) pausado",
+      "anuncios": "PF e RMK",
+      "investido": 100.55,
+      "inscricoes": 61
+    },
+    {
+      "ocorrencia": "Data vencida: arte de Halloween pausada",
+      "anuncios": "JT ARTE4",
+      "investido": 19.42,
+      "inscricoes": 3
+    },
+    {
+      "ocorrencia": "Vídeo “Se divertindo” (VIDEO5) com data errada: nunca foi ao ar",
+      "anuncios": "PF e RMK",
+      "investido": 0,
+      "inscricoes": 0
+    },
+    {
+      "ocorrencia": "Anúncio excluído com gasto (só aparece no filtro de excluídos)",
+      "anuncios": "Vídeo Pais e Família",
+      "investido": 427.48,
+      "inscricoes": 163
+    },
+    {
+      "ocorrencia": "ID do GA4 corrigido no site (04/11): dados do site valem a partir daí",
+      "anuncios": "—",
+      "investido": null,
+      "inscricoes": null
+    },
+    {
+      "ocorrencia": "Saldo pré-pago zerado: campanhas sem entrega em 08 e 09/11",
+      "anuncios": "Todos",
+      "investido": null,
+      "inscricoes": null
+    }
+  ]
 }

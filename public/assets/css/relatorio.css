@@ -36,6 +36,8 @@ body.rel { background: radial-gradient(90% 50% at 10% 0%, rgba(40,70,220,.45), t
 .kpi::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--neon), var(--magenta)); }
 .kpi__v { font-family: var(--f-display); font-style: italic; font-weight: 900; font-size: clamp(1.4rem, 1rem + 1.6vw, 2.1rem); line-height: 1.05; color: var(--white); white-space: nowrap; }
 @media (max-width: 639.98px) { .kpi { padding: 14px 12px 12px; } .kpi__v { font-size: 1.12rem; } }
+.kpi--long .kpi__v { font-size: clamp(1.1rem, .7rem + 1.15vw, 1.6rem); }
+@media (max-width: 639.98px) { .kpi--long .kpi__v { font-size: .98rem; } }
 .kpi__l { margin-top: 6px; font-size: .78rem; color: var(--muted); }
 .kpi__s { display: block; font-size: .68rem; opacity: .75; }
 .kpi.is-empty .kpi__v { color: rgba(201,210,255,.35); }
@@ -135,6 +137,8 @@ body.rel { background: radial-gradient(90% 50% at 10% 0%, rgba(40,70,220,.45), t
 /* blocos do relatório da Meta e da reta final */
 .chart--tall { height: 340px; }
 @media (max-width: 639.98px) { .chart--tall { height: 440px; } }
+.chart--xtall { height: 440px; }
+@media (max-width: 639.98px) { .chart--xtall { height: 640px; } }
 .panel__title small { font-weight: 400; color: var(--muted); font-size: .78rem; }
 .panel__note--hl { color: var(--white); padding: 10px 12px; border-radius: 8px; background: rgba(140,255,26,.08); box-shadow: inset 3px 0 0 var(--neon); }
 .muted { color: var(--muted); font-size: .72rem; }

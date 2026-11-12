@@ -263,7 +263,8 @@ números principais, gráficos, tabelas, filtro de publicações, galerias e sí
 | Geral | Sympla (ingressos) e credenciamento (público por dia) |
 | Ingressos | Exportação diária da Sympla e UTMs (origem) |
 | Mídia paga | Google Ads e Gerenciador de Anúncios da Meta (impressões, cliques, investimento, conversões) |
-| Site | GA4 `G-5GHCH96NG1` (visitas, `ticket_click` por `posicao`) |
+| Financeiro | Comprovantes de PIX e faturas da conta de anúncios da Meta (`financeiro`), ocorrências da conta (`ocorrencias`) |
+| Site | GA4 `G-5GHCH96NG1` (visitas, `ticket_click` por `posicao` e por origem da sessão) |
 | Instagram | Instagram Insights (totais, formatos e publicações) |
 | Imprensa e ações | Clipping, releases, e-mail marketing, voluntários |
 | Parceiros e síntese | Preenchidos à mão |
