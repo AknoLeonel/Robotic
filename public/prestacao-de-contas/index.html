@@ -36,6 +36,7 @@
         <a href="#geral">Geral</a>
         <a href="#ingressos">Ingressos</a>
         <a href="#midia">Mídia paga</a>
+        <a href="#financeiro">Financeiro</a>
         <a href="#site">Site</a>
         <a href="#instagram">Instagram</a>
         <a href="#imprensa">Imprensa e ações</a>
@@ -161,6 +162,14 @@
 
       <h3 class="rel-h3">Meta Ads em detalhe</h3>
       <article class="win panel">
+        <div class="win__bar"><span class="win__title">gasto_diario.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">Investimento por dia e inscrições <small>(<span class="lg lg--a">ingressos</span> <span class="lg lg--b">Instagram</span>)</small></h3>
+          <div class="chart chart--wide" data-chart="gasto-diario"></div>
+          <p class="panel__note" data-text="midia.meta_ads.gasto_diario_nota"></p>
+        </div>
+      </article>
+      <article class="win panel">
         <div class="win__bar"><span class="win__title">publicos.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
         <div class="panel__body">
           <h3 class="panel__title">Públicos (conjuntos de anúncios)</h3>
@@ -173,7 +182,7 @@
           <div class="win__bar"><span class="win__title">criativos.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
           <div class="panel__body">
             <h3 class="panel__title">Criativos · custo por inscrição <small>(menor é melhor · <span class="lg lg--a">arte</span> <span class="lg lg--b">vídeo</span>)</small></h3>
-            <div class="chart chart--tall" data-chart="criativos"></div>
+            <div class="chart chart--xtall" data-chart="criativos"></div>
             <p class="panel__note panel__note--hl" data-text="midia.meta_ads.criativos_destaque"></p>
           </div>
         </article>
@@ -181,7 +190,7 @@
           <div class="win__bar"><span class="win__title">posicionamento.exe</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
           <div class="panel__body">
             <h3 class="panel__title">Inscrições por posicionamento</h3>
-            <div class="chart chart--tall" data-chart="posicionamento"></div>
+            <div class="chart chart--xtall" data-chart="posicionamento"></div>
           </div>
         </article>
       </div>
@@ -212,9 +221,41 @@
       </article>
     </section>
 
+    <!-- ===== FINANCEIRO ===== -->
+    <section id="financeiro" class="rel-sec" aria-labelledby="t-fin">
+      <p class="eyebrow"><span class="lcd-txt">04</span> Financeiro</p>
+      <h2 class="rel-h2" id="t-fin">Cada real, <span class="hl">conciliado.</span></h2>
+      <p class="rel-lede">Pagamentos na conta pré-paga da Meta, faturas debitadas do saldo e quanto virou mídia.</p>
+      <div class="kpis kpis--4" data-kpis="financeiro"></div>
+      <div class="rel-grid rel-grid--2">
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">pix.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Pagamentos (PIX)</h3>
+            <div class="table-wrap" data-table="pagamentos"></div>
+          </div>
+        </article>
+        <article class="win panel">
+          <div class="win__bar"><span class="win__title">faturas.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+          <div class="panel__body">
+            <h3 class="panel__title">Faturas debitadas do saldo</h3>
+            <div class="table-wrap" data-table="faturas"></div>
+          </div>
+        </article>
+      </div>
+      <p class="panel__note panel__note--hl" data-text="financeiro.nota"></p>
+      <article class="win panel">
+        <div class="win__bar"><span class="win__title">ocorrencias.log</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">Ocorrências na conta de anúncios</h3>
+          <div class="table-wrap" data-table="ocorrencias"></div>
+        </div>
+      </article>
+    </section>
+
     <!-- ===== SITE ===== -->
     <section id="site" class="rel-sec" aria-labelledby="t-site">
-      <p class="eyebrow"><span class="lcd-txt">04</span> Site</p>
+      <p class="eyebrow"><span class="lcd-txt">05</span> Site</p>
       <h2 class="rel-h2" id="t-site">arenarobotica.com.br, <span class="hl">clique a clique.</span></h2>
       <div class="kpis kpis--4" data-kpis="site"></div>
       <article class="win panel">
@@ -225,11 +266,19 @@
           <p class="panel__note" data-text="site.nota"></p>
         </div>
       </article>
+      <article class="win panel">
+        <div class="win__bar"><span class="win__title">origem_visitas.csv</span><span class="win__btns" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="panel__body">
+          <h3 class="panel__title">De onde vieram as visitas e os cliques no ingresso</h3>
+          <div class="table-wrap" data-table="origens-site"></div>
+          <p class="panel__note" data-text="site.origens_nota"></p>
+        </div>
+      </article>
     </section>
 
     <!-- ===== INSTAGRAM ===== -->
     <section id="instagram" class="rel-sec" aria-labelledby="t-ig">
-      <p class="eyebrow"><span class="lcd-txt">05</span> Comunicação orgânica</p>
+      <p class="eyebrow"><span class="lcd-txt">06</span> Comunicação orgânica</p>
       <h2 class="rel-h2" id="t-ig">Instagram, <span class="hl">post a post.</span></h2>
       <div class="kpis kpis--4" data-kpis="instagram"></div>
       <article class="win panel">
@@ -267,7 +316,7 @@
 
     <!-- ===== IMPRENSA E AÇÕES ===== -->
     <section id="imprensa" class="rel-sec" aria-labelledby="t-imp">
-      <p class="eyebrow"><span class="lcd-txt">06</span> Fora do digital</p>
+      <p class="eyebrow"><span class="lcd-txt">07</span> Fora do digital</p>
       <h2 class="rel-h2" id="t-imp">Imprensa e <span class="hl">outras ações.</span></h2>
       <div class="kpis kpis--3" data-kpis="imprensa"></div>
       <article class="win panel">
@@ -284,7 +333,7 @@
 
     <!-- ===== RETA FINAL ===== -->
     <section id="reta-final" class="rel-sec" aria-labelledby="t-plano">
-      <p class="eyebrow"><span class="lcd-txt">07</span> Plano e projeção</p>
+      <p class="eyebrow"><span class="lcd-txt">08</span> Plano e projeção</p>
       <h2 class="rel-h2" id="t-plano" data-text="plano.titulo">Reta final</h2>
       <div class="kpis kpis--4" data-kpis="plano"></div>
       <div class="rel-grid rel-grid--2">
@@ -324,14 +373,14 @@
 
     <!-- ===== PARCEIROS ===== -->
     <section id="parceiros" class="rel-sec" aria-labelledby="t-par">
-      <p class="eyebrow"><span class="lcd-txt">08</span> Rede de apoio</p>
+      <p class="eyebrow"><span class="lcd-txt">09</span> Rede de apoio</p>
       <h2 class="rel-h2" id="t-par">Quem fez <span class="hl">a Arena acontecer.</span></h2>
       <div class="partners" data-list="parceiros"></div>
     </section>
 
     <!-- ===== SÍNTESE ===== -->
     <section id="sintese" class="rel-sec" aria-labelledby="t-sin">
-      <p class="eyebrow"><span class="lcd-txt">09</span> Síntese</p>
+      <p class="eyebrow"><span class="lcd-txt">10</span> Síntese</p>
       <h2 class="rel-h2" id="t-sin">Leitura <span class="hl">estratégica.</span></h2>
       <p class="rel-lede">O porquê dos números acima e o que vale repetir na próxima edição.</p>
       <div class="conclusions" data-list="conclusoes"></div>

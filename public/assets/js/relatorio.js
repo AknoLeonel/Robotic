@@ -55,7 +55,8 @@
   function kpis(el, items) {
     el.innerHTML = items.map(function (k) {
       var vazio = k.v === "—";
-      return '<div class="kpi' + (vazio ? " is-empty" : "") + '"><p class="kpi__v">' + k.v + '</p><p class="kpi__l">' + esc(k.l) +
+      var longo = String(k.v).length > 9; // valores como "R$ 16.499,98" usam fonte menor para caber no card
+      return '<div class="kpi' + (vazio ? " is-empty" : "") + (longo ? " kpi--long" : "") + '"><p class="kpi__v">' + k.v + '</p><p class="kpi__l">' + esc(k.l) +
         (k.s ? '<span class="kpi__s">' + esc(k.s) + "</span>" : "") + "</p></div>";
     }).join("");
   }
@@ -277,7 +278,27 @@
     };
     var cri = (mm.criativos || []).filter(function (x) { return isNum(x.custo); });
     hbar("criativos", cri, function (x) { return x.nome; }, "custo", function (x) { return x.formato === "Vídeo" ? COLORS[1] : COLORS[0]; },
-      "Custo por inscrição de cada criativo", function (c) { var x = cri[c.dataIndex]; return brl(x.custo) + " · " + num(x.resultados) + " inscrições · " + x.formato; });
+      "Custo por inscrição de cada criativo", function (c) {
+        var x = cri[c.dataIndex];
+        return brl(x.custo) + " · " + num(x.resultados) + " inscrições · " + x.formato + (isNum(x.investido) ? " · " + brl(x.investido) + " investidos" : "");
+      });
+
+    // investimento por dia (barras empilhadas por campanha) e inscrições (linha)
+    var gd = (mm.gasto_diario || []).filter(function (x) { return Array.isArray(x) && (isNum(x[1]) || isNum(x[2])); });
+    var insDia = {};
+    diario.forEach(function (x) { insDia[x[0]] = x[1]; });
+    chart("gasto-diario", {
+      type: "bar",
+      data: { labels: gd.map(function (x) { return dm(x[0]); }), datasets: [
+        { label: "Ingressos (R$)", data: gd.map(function (x) { return x[1]; }), backgroundColor: COLORS[0], borderRadius: 3, stack: "g", yAxisID: "y" },
+        { label: "Instagram (R$)", data: gd.map(function (x) { return x[2]; }), backgroundColor: COLORS[1], borderRadius: 3, stack: "g", yAxisID: "y" },
+        { label: "Inscrições", data: gd.map(function (x) { return isNum(insDia[x[0]]) ? insDia[x[0]] : null; }), type: "line",
+          borderColor: COLORS[4], backgroundColor: COLORS[4], tension: .3, pointRadius: 2, yAxisID: "y2" }] },
+      options: baseOpts({ scales: {
+        x: { stacked: true, ticks: { color: "#C9D2FF", font: { family: "Space Mono", size: 10 } }, grid: { display: false } },
+        y: { stacked: true, beginAtZero: true, ticks: { color: "#C9D2FF", font: { family: "Space Mono", size: 10 } }, grid: { color: "rgba(160,178,255,.12)" } },
+        y2: { beginAtZero: true, position: "right", ticks: { color: "#FFFFFF", font: { family: "Space Mono", size: 10 } }, grid: { display: false } } } })
+    }, gd.length > 0, "Investimento diário por campanha e inscrições por dia");
     var posM = (mm.posicionamento || []).filter(function (x) { return isNum(x.inscricoes); });
     hbar("posicionamento", posM, function (x) { return x.local; }, "inscricoes", COLORS[0],
       "Inscrições por posicionamento", function (c) { var x = posM[c.dataIndex]; return num(x.inscricoes) + " inscrições · " + brl(x.custo) + " cada"; });
@@ -295,10 +316,34 @@
     kpis($('[data-kpis="genero"]'), (mm.genero && mm.genero.length ? mm.genero : [{ genero: "Homens" }, { genero: "Mulheres" }]).map(function (x) {
       return { v: num(x.inscricoes), l: x.genero, s: isNum(x.custo) ? brl(x.custo) + " por inscrição" : "" };
     }));
-    table($('[data-table="videos"]'), [{ t: "Vídeo" }, { t: "Reprod. 3s", n: 1 }, { t: "ThruPlay", n: 1 }, { t: "Retenção", n: 1 }, { t: "Custo/ThruPlay", n: 1 }],
+    table($('[data-table="videos"]'), [{ t: "Vídeo" }, { t: "Investido", n: 1 }, { t: "Reprod. 3s", n: 1 }, { t: "ThruPlay", n: 1 }, { t: "Retenção", n: 1 },
+      { t: "Até o fim", n: 1 }, { t: "Custo/ThruPlay", n: 1 }],
       (mm.videos || []).map(function (v) {
-        return [esc(v.nome), num(v.reproducoes_3s), num(v.thruplay), pct(ratio(v.thruplay, v.reproducoes_3s)), brl(v.custo_thruplay)];
+        return [esc(v.nome), brl(v.investido), num(v.reproducoes_3s), num(v.thruplay), pct(ratio(v.thruplay, v.reproducoes_3s)),
+          pct(ratio(v.reproducoes_100, v.reproducoes_3s)), brl(v.custo_thruplay)];
       }));
+
+    // financeiro
+    var fin = d.financeiro || {};
+    var pags = (fin.pagamentos || []).filter(function (x) { return Array.isArray(x) && isNum(x[1]); });
+    var fats = (fin.faturas || []).filter(function (x) { return Array.isArray(x) && isNum(x[2]); });
+    var pago = sum(pags.map(function (x) { return x[1]; })), debitado = sum(fats.map(function (x) { return x[2]; }));
+    var midiaFin = isNum(fin.midia) ? fin.midia : custoM;
+    var impostos = isNum(debitado) && isNum(midiaFin) ? debitado - midiaFin : null;
+    kpis($('[data-kpis="financeiro"]'), [
+      { v: brl(pago), l: "Pago via PIX", s: pags.length ? num(pags.length) + " pagamentos" : "" },
+      { v: brl(debitado), l: "Debitado em faturas", s: isNum(fin.saldo_final) ? "saldo final: " + brl(fin.saldo_final) : "" },
+      { v: brl(midiaFin), l: "Virou mídia", s: "Gerenciador de Anúncios" },
+      { v: brl(impostos), l: "Impostos", s: isNum(impostos) ? pct(ratio(impostos, midiaFin)) + " sobre a mídia" : "" }
+    ]);
+    table($('[data-table="pagamentos"]'), [{ t: "Data" }, { t: "Valor", n: 1 }],
+      pags.map(function (x) { return [dataBR(x[0]), brl(x[1])]; }), pags.length > 1 ? ["Total", brl(pago)] : null);
+    table($('[data-table="faturas"]'), [{ t: "Data" }, { t: "Fatura" }, { t: "Valor", n: 1 }],
+      fats.map(function (x) { return [dataBR(x[0]), '<small class="muted">' + esc(x[1]) + "</small>", brl(x[2])]; }),
+      fats.length > 1 ? ["Total", "", brl(debitado)] : null);
+    var ocs = d.ocorrencias || [];
+    table($('[data-table="ocorrencias"]'), [{ t: "Ocorrência" }, { t: "Anúncios" }, { t: "Investido", n: 1 }, { t: "Inscrições", n: 1 }],
+      ocs.map(function (o) { return [esc(o.ocorrencia), esc(o.anuncios || ""), brl(o.investido), num(o.inscricoes)]; }));
 
     // site
     var pos = (st.cliques_por_posicao || []);
@@ -314,6 +359,10 @@
       data: { labels: posOk.map(function (p) { return wrapLabel(p.rotulo); }), datasets: [{ label: "Cliques", data: posOk.map(function (p) { return p.cliques; }), backgroundColor: COLORS[0], borderRadius: 4 }] },
       options: baseOpts({ indexAxis: "y", plugins: { legend: { display: false } } })
     }, posOk.length > 0, "Cliques no botão de ingresso por posição na página");
+    var ors = (st.origens || []).filter(function (o) { return isNum(o.sessoes); });
+    table($('[data-table="origens-site"]'), [{ t: "Origem" }, { t: "Visitas", n: 1 }, { t: "Cliques no ingresso", n: 1 }, { t: "Taxa de clique", n: 1 }],
+      ors.map(function (o) { return [esc(o.origem), num(o.sessoes), num(o.cliques), pct(ratio(o.cliques, o.sessoes))]; }),
+      ors.length > 1 ? ["Total", num(sum(ors, "sessoes")), num(sum(ors, "cliques")), pct(ratio(sum(ors, "cliques"), sum(ors, "sessoes")))] : null);
 
     // instagram
     var igTaxa = ratio(ig.interacoes, ig.alcance);
@@ -414,8 +463,10 @@
       "Orçamento diário por público", function (c) { return brl(itens[c.dataIndex].valor_dia) + " por dia"; });
     var proj = pl.projecao || [];
     var projMax = Math.max.apply(null, proj.map(function (x) { return x.inscricoes || 0; }).concat([1]));
+    var temReal = proj.some(function (x) { return x.realizado; });
     $('[data-list="projecao"]').innerHTML = proj.length ? proj.map(function (x) {
-      return '<div class="scen__row' + (x.cenario === "Provável" ? " is-main" : "") + '"><p class="scen__k">' + esc(x.cenario) +
+      var main = temReal ? x.realizado : x.cenario === "Provável";
+      return '<div class="scen__row' + (main ? " is-main" : "") + '"><p class="scen__k">' + esc(x.cenario) +
         '<small>' + brl(x.custo) + ' por inscrição</small></p><div class="scen__bar"><span style="width:' + Math.round((x.inscricoes || 0) / projMax * 100) +
         '%"></span></div><p class="scen__v">' + num(x.inscricoes) + "</p></div>";
     }).join("") : EMPTY;
